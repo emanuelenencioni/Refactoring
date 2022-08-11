@@ -4,12 +4,12 @@ import java.util.*;
 /**
  * 
  */
-public class Class1 {
+public class main {
 
     /**
      * Default constructor
      */
-    public Class1() {
+    public main() {
     }
 
 }
