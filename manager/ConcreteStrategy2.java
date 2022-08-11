@@ -10,7 +10,8 @@ public class ConcreteStrategy2 implements SimplifyGraphStrategy {
     /**
      * Default constructor
      */
-    public ConcreteStrategy2() {
+    public ConcreteStrategy2() { 
+        
     }
 
     /**
