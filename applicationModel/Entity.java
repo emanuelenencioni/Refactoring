@@ -10,9 +10,17 @@ public class Entity {
     /**
      * Default constructor
      */
-    public Entity() {
+    public Entity(String name) {
+        this.name = name;
     }
 
+    public String getEntity(){
+        return name;
+    }
+
+    public void setEntity(String name){
+        this.name = name;
+    }
     /**
      * 
      */
