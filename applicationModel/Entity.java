@@ -1,6 +1,6 @@
 package applicationModel;
 
-import java.util.*;
+
 
 /**
  * 
@@ -8,19 +8,19 @@ import java.util.*;
 public class Entity {
 
     /**
-     * Default constructor
+     * @param the name of the entity
      */
     public Entity(String name) {
         this.name = name;
     }
-
+    /**
+     * 
+     * @return the name of the entity
+     */
     public String getEntity(){
         return name;
     }
-
-    public void setEntity(String name){
-        this.name = name;
-    }
+    
     /**
      * 
      */
