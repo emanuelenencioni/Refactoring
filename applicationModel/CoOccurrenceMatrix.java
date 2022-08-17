@@ -26,14 +26,12 @@ public class CoOccurrenceMatrix {
         int map_index = 0;
         for(int i = 0; i < cl.size(); i++){
             if(cl.get(i).getType() == this.type){ //final check for same type of coupling
-                if(!isInMatrix(cl.get(i).getSrcEntity())){
-                    mapper.put(cl.get(i).getSrcEntity(), map_index);
-                    map_index++;
-                }
-                if(!isInMatrix(cl.get(i).getDestEntity())){
-                    mapper.put(cl.get(i).getDestEntity(), map_index);
-                    map_index++;
-                }
+                if(!isInMatrix(cl.get(i).getSrcEntity()))
+                    mapper.put(cl.get(i).getSrcEntity(), map_index++);
+                
+                if(!isInMatrix(cl.get(i).getDestEntity()))
+                    mapper.put(cl.get(i).getDestEntity(), map_index++);
+                
 
             }
         }
@@ -48,12 +46,34 @@ public class CoOccurrenceMatrix {
         }
     }
     /**
-     * @param Entity e1 
-     * @param Entity e2 
-     * @param value
+     * @param Entity source the source of the coupling
+     * @param Entity dest  destination of the coupling
+     * @param value value of the coupling
      */
-    public void addCoValue(void Entity e1, void Entity e2, void value) {
+    public void addCoValue(Entity source,Entity dest, float value) { //TODO non c'è il controllo del tipo, capire se è ok o no
+        int size = cOMatrix.length;
+        if(!isInMatrix(source))
+            mapper.put(source, size++);
         
+        if(!isInMatrix(dest))
+            mapper.put(source, size++);
+        if(size > cOMatrix.length){
+            float[][] x = cOMatrix.clone(); //TODO capire quando serve il clone, in caso di deep copy.
+            
+        
+            cOMatrix = new float[size][size];
+            for(int i = 0; i < x.length; i++){
+                for(int j = 0; j < x.length; j++){
+                    cOMatrix[i][j] = x[i][j];
+                }
+            }
+        
+        }
+        cOMatrix[mapper.get(source)][mapper.get(dest)] = value;
+    }
+
+    public void addCoValue(Couping c){
+
     }
 
     /**
