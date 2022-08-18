@@ -46,8 +46,9 @@ public class CoOccurrenceMatrix {
         }
     }
     /**
-     * @param Entity source the source of the coupling
-     * @param Entity dest  destination of the coupling
+     * add a coupling to the co-occurrence matrix
+     * @param Entity source the source of the coupling, column
+     * @param Entity dest  destination of the coupling, row
      * @param value value of the coupling
      */
     public void addCoValue(Entity source,Entity dest, float value) { //TODO non c'è il controllo del tipo, capire se è ok o no
@@ -71,27 +72,44 @@ public class CoOccurrenceMatrix {
         }
         cOMatrix[mapper.get(source)][mapper.get(dest)] = value;
     }
-
-    public void addCoValue(Couping c){
-
+    /**
+     * add a coupling to the co-occurrence matrix only if they are the same type
+     * @param c
+     */
+    public void addCoValue(Coupling c){
+        if(c.getType() == this.type){
+            addCoValue(c.getSrcEntity(), c.getDestEntity(), c.getCoOccurrence());
+        }
     }
 
     /**
-     * @param Entity e1 
-     * @param Entity e2 
-     * @return
+     * 
+     * @param Entity source the source of the coupling, column
+     * @param Entity dest destination of the coupling, row
+     * @return the co-occurrence value, or null if one of the entity isn't in the co-occurrence matrix
      */
-    public float getValue(void Entity e1, void Entity e2) {
-        // TODO implement here
-        return 0.0f;
+    public Float getValue(Entity source, Entity dest) {
+        Integer x = mapper.get(source);
+        Integer y = mapper.get(dest);
+        if(x != null && y != null)
+            return null;
+        else
+            return cOMatrix[x][y];
     }
 
     /**
-     * @return
+     * @return the mapper of the matrix
      */
-    public HashMap getMapper() {
-        // TODO implement here
-        return null;
+    public HashMap<Entity, Integer> getMapper() {
+       
+        return mapper;
+    }
+    /**
+     * 
+     * @return the type of the matrix
+     */
+    public Type getType(){
+        return type;
     }
     /**
      * function that check if an entity is already in the matrix, 
