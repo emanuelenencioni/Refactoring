@@ -40,11 +40,15 @@ public class Entity {
      * @return
      * @override
      */
-    public boolean equals(Entity e){
-        if(this.name.equals(e.name))
+    public boolean equals(Object o){
+        if (o == this)
             return true;
-        else
+        
+        if(!(o instanceof Entity))
             return false;
+        
+        Entity e = (Entity) o;
+        return this.name.equals(e.name);
     }
     /**
      * 

@@ -80,6 +80,21 @@ public class Coupling {
     public void setDestEntity(Entity e){
         entity2 = e;
     }
+    @Override
+    public boolean equals(Object o){
+        if (o == this) {
+            return true;
+        }
+        if(!(o instanceof Coupling)){
+            return false;
+        }
+        Coupling c = (Coupling) o;
+        
+        return c.entity1.equals(this.entity1) 
+                && c.entity2.equals(this.entity2) 
+                && this.coOccurrence == c.coOccurrence;
+    }
+
     /**
      * 
      */
