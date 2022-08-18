@@ -2,7 +2,6 @@ package applicationModel;
 
 import java.util.*;
 
-import org.w3c.dom.ranges.Range;
 
 /**
  * 
@@ -121,7 +120,7 @@ public class CoOccurrenceMatrix {
         int c = 0;
         while(it.hasNext()){
             Entity x = it.next();
-            if(e == x){
+            if(e.equals(x)){
                 c++;
             }
         }
