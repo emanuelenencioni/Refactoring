@@ -90,7 +90,7 @@ public class CoOccurrenceMatrix {
     public Float getValue(Entity source, Entity dest) {
         Integer x = mapper.get(source);
         Integer y = mapper.get(dest);
-        if(x != null && y != null)
+        if(x == null || y == null)
             return null;
         else
             return cOMatrix[x][y];
