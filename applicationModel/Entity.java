@@ -33,12 +33,24 @@ public class Entity {
     public String getName(){
         return name;
     }
-    
+
+    /**
+     * 
+     * @param e
+     * @return
+     * @override
+     */
+    public boolean equals(Entity e){
+        if(this.name.equals(e.name))
+            return true;
+        else
+            return false;
+    }
     /**
      * 
      */
     private String name;
-
+    
 
 
 
