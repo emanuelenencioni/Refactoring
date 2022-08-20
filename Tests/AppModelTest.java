@@ -35,13 +35,12 @@ public class AppModelTest{
     public void testCoOccurrenceMatrix(){
         ArrayList<Coupling> cl = new ArrayList<Coupling>();
         ArrayList<Entity> el = new ArrayList<Entity>();
-        for(int i=0;i<20;i++){
+        for(int i=0;i<20;i++)
             el.add(new Entity("E"+i));
-        }
-        for(int i=0;i<10;i++){
+        
+        for(int i=0;i<10;i++)
             cl.add(new Coupling(el.get(i), el.get(i+10), Type.CC, i));
             
-        }
         CoOccurrenceMatrix cm = new CoOccurrenceMatrix(Type.CC, cl);
         Float x =  cm.getValue(el.get(0), el.get(10));
         
@@ -78,6 +77,5 @@ public class AppModelTest{
         aa.buildMatrices();
         assertEquals(5, (float) aa.getMapper().get(Type.CC).getValue(el.get(5), el.get(15)), 0.000005);
         assertEquals(0.0, (float) aa.getMapper().get(Type.CC).getValue(el.get(15), el.get(5)), 0.00005);
-        
     }
 }
