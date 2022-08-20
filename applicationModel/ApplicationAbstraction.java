@@ -10,10 +10,11 @@ public abstract class ApplicationAbstraction {
     /**
      * Default constructor
      */
-    public ApplicationAbstraction(String id, float f) {
+    public ApplicationAbstraction(String id, float f,BuildCoMatStrategy strategy) {
         mapper = new HashMap<Type, CoOccurrenceMatrix>();
         this.ID = id;
         this.frequency = f;
+        this.strategy = strategy;
     }
 
     /**
@@ -21,16 +22,34 @@ public abstract class ApplicationAbstraction {
      */
     public abstract void buildMatrices();
 
+    public float getFrequency(){
+        return this.frequency;
+    }
+    public void setFrequency(float f){
+        this.frequency = f;
+    }
+
+    /**
+     * 
+     * @return the ID of the AppAbstraction
+     */
+    public String getID(){
+        return this.ID;
+    }
+
+    public HashMap<Type, CoOccurrenceMatrix>getMapper(){
+        return mapper;
+    }
     /**
      * 
      */
-    public abstract void buildMatrices(ArrayList<CoOccurrenceMatrix> m);
+    protected abstract void buildMatrices(ArrayList<CoOccurrenceMatrix> m);
         
 
     /**
      * 
      */
-    public abstract void buildCoMat(ArrayList<ApplicationAbstraction> aa);
+    protected abstract void buildCoMat(ArrayList<ApplicationAbstraction> aa);
     /**
      * add a coValue to the correct matrix
      * @param Coupling c 
@@ -57,30 +76,18 @@ public abstract class ApplicationAbstraction {
     protected HashMap<Entity, Integer> getCoMapper(Type type) {
         return mapper.get(type).getMapper();
     }
-    /**
-     * 
-     * @return the frequency of the AppAbstraction
-     */
-    public float getFrequency(){
-        return this.frequency;
-    }
-    public void setFrequency(float f){
-        this.frequency = f;
-    }
-    /**
-     * 
-     * @return the ID of the AppAbstraction
-     */
-    public String getID(){
-        return this.ID;
-    }
-    
 
     /**
-     * 
+     * mapper to map type with the cooccurrence matrix
      */
-    private HashMap<Type, CoOccurrenceMatrix> mapper;
+    protected HashMap<Type, CoOccurrenceMatrix> mapper;
+    /**
+     * frequency of the ApplicationAbstraction
+     */
     private float frequency;
+    /**
+     * 
+     */
     private String ID;
-
+    protected BuildCoMatStrategy strategy; //TODO è ok metterlo protected?
 }
