@@ -58,7 +58,7 @@ public class CoOccurrenceMatrix {
         if(!isInMatrix(dest))
             mapper.put(dest, size++);
         if(size > cOMatrix.length){
-            float[][] x = cOMatrix.clone(); //TODO capire quando serve il clone, in caso di deep copy.
+            float[][] x = cOMatrix.clone();
             
         
             cOMatrix = new float[size][size];
