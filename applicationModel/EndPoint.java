@@ -37,21 +37,6 @@ public class EndPoint extends ApplicationAbstraction {
         }
     }
 
-    /**
-     * function that add a Couping object to the list of the endpoint
-     * @param Coupling , the object to add
-     */
-    public void addCoupling(Coupling c) {
-        coupList.add(c);
-    }
-    /**
-     * 
-     * @param idx index of the coupling to get
-     * @return the Coupling object at the index requested
-     */
-    public Coupling getCoupling(int idx){
-        return coupList.get(idx);
-    }
     @Override
     protected void buildMatrices(ArrayList<CoOccurrenceMatrix> m) {
         //TODO a che serve questo metodo?
