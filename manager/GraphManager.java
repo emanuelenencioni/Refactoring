@@ -1,6 +1,7 @@
 package manager;
 
 import java.util.*;
+import SimplifyGraphFactory;
 
 /**
  * 
@@ -11,6 +12,9 @@ public class GraphManager {
      * Default constructor
      */
     public GraphManager() {
+
+        matContainer = null;
+
     }
 
     /**
@@ -43,6 +47,11 @@ public class GraphManager {
      */
     private float weightQQ;
 
+    private SimplifyGraphFactory simplifyGraphFactory;
+
+    private SimplifyGraphStrategy graphStrategy;
+
+    private LossFunctionStrategy lossStrategy;
 
 
 
@@ -51,26 +60,20 @@ public class GraphManager {
     /**
      * @return
      */
-    public void createGraph() {
+    public boolean createGraph() {
         // TODO implement here
-        return null;
-    }
+        if (matContainer == null)
+            return false;
+        
+        //CREARE tutti i vertici scorrendo la matrice
+        //MOLTIPLICARE ogni matrice per il suo peso
+        //SOMMA CC+CQ+QC+QQ
+        //SOMMA valori simmetrici (AB+BA)
+        //DIVIDERE per 4 (così si ottiene la media)
+        //CREARE gli archi da questi valori ottenuti
 
-    /**
-     * @return
-     */
-    private Graph createDirectedGraph() {
-        // TODO implement here
-        return null;
-    }
 
-    /**
-     * @param Graph g 
-     * @return
-     */
-    private Graph createUndirectedGraph(void Graph g) {
-        // TODO implement here
-        return null;
+        return true;
     }
 
     /**
@@ -79,7 +82,15 @@ public class GraphManager {
      */
     public Graph simplifyGraph(void Graph g) {
         // TODO implement here
-        return null;
+
+        if (graphStrategy == null)
+            return null;
+        
+
+        //INVOCARE simplifyGraph usando la graphStrategy preimpostata
+
+
+        return null; //RETURN il grafo restituito dalla funzione simplifyGraph
     }
 
     /**
@@ -89,7 +100,19 @@ public class GraphManager {
      */
     public Graph findBestSolution(void Graph g, void LossFunctionStrategy lf) {
         // TODO implement here
-        return null;
+
+        //SETTARE il valore della lossFunction al massimo
+        int lossValue; // = infinito
+        Graph bestGraph = null;
+        //ITERARE per ogni SimplifyGraphType
+        //GENERARE la SimplifyGraphStrategy con la SimplifyGraphFactory passando il SimplifyGraphType
+        //INVOCARE myBestSolution della ConcreteStrategy (che invocherà il suo simplifyGraph variando i suoi parametri)
+        //CALCOLARE il lossValue utilizzando la lossFunction
+        //CONFRONTARE il valore ottenuto con il lossValue attuale e sostituirlo in caso fosse migliore
+        //Altro?
+
+
+        return bestGraph;
     }
 
     /**
@@ -108,6 +131,8 @@ public class GraphManager {
      */
     public void setSimplifyGraphStrategy(void SimplifyGraphStrategy sgs) {
         // TODO implement here
+        this.graphStrategy = sgs;
+
         return null;
     }
 
@@ -117,6 +142,8 @@ public class GraphManager {
      */
     public void setLossFunctionStrategy(void LossFunctionStrategy lfs) {
         // TODO implement here
+        this.lossStrategy = lfs;
+
         return null;
     }
 
@@ -126,7 +153,7 @@ public class GraphManager {
      * @return
      */
     public Graph myBestSolution(void Graph g, void LossFunctionStrategy lf) {
-        // TODO implement here
+        // TODO0 implement here
         return null;
     }
 
