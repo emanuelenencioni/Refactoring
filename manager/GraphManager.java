@@ -13,7 +13,19 @@ public class GraphManager {
      */
     public GraphManager() {
 
+        graph = null;
         matContainer = null;
+
+        //TODO : Corretto impostare a 1?
+        weightCC = 1;
+        weightCQ = 1;
+        weightQC = 1;
+        weightQQ = 1;
+        
+        simplifyGraphFactory = new SimplifyGraphFactory();
+
+        graphStrategy = null;
+        lossStrategy = null;
 
     }
 
@@ -66,6 +78,7 @@ public class GraphManager {
             return false;
         
         //CREARE tutti i vertici scorrendo la matrice
+
         //MOLTIPLICARE ogni matrice per il suo peso
         //SOMMA CC+CQ+QC+QQ
         //SOMMA valori simmetrici (AB+BA)
@@ -157,4 +170,34 @@ public class GraphManager {
         return null;
     }
 
+    public void setApplicationAbstraction(ApplicationAbstraction mc){
+        
+        this.matContainer = mc;
+        return null;
+
+    }
+
+    public void setWeightCC(float weightCC){
+
+        this.weightCC = weightCC;
+
+    }
+    
+    public void setWeightCQ(float weightCQ){
+
+        this.weightCQ = weightCQ;
+
+    }
+
+    public void setWeightQC(float weightQC){
+
+        this.weightQC = weightQC;
+
+    }
+
+    public void setWeightQQ(float weightQQ){
+
+        this.weightQQ = weightQQ;
+
+    }
 }
