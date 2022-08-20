@@ -43,7 +43,9 @@ public class EndPoint extends ApplicationAbstraction {
     }
 
     @Override
-    protected void buildCoMat(ArrayList<ApplicationAbstraction> aa) {}
+    protected ArrayList<CoOccurrenceMatrix> buildCoMat(ArrayList<ApplicationAbstraction> aa) {
+        return null;
+    }
     /**
      * coupling list 
      */

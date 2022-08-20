@@ -49,7 +49,7 @@ public abstract class ApplicationAbstraction {
     /**
      * 
      */
-    protected abstract void buildCoMat(ArrayList<ApplicationAbstraction> aa);
+    protected abstract ArrayList<CoOccurrenceMatrix> buildCoMat(ArrayList<ApplicationAbstraction> aa);
     /**
      * add a coValue to the correct matrix
      * @param Coupling c 
