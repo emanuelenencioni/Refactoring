@@ -17,7 +17,7 @@ public abstract class ApplicationAbstraction {
     }
 
     /**
-     * @return
+     * 
      */
     public abstract void buildMatrices();
 
@@ -57,7 +57,23 @@ public abstract class ApplicationAbstraction {
     protected HashMap<Entity, Integer> getCoMapper(Type type) {
         return mapper.get(type).getMapper();
     }
-
+    /**
+     * 
+     * @return the frequency of the AppAbstraction
+     */
+    public float getFrequency(){
+        return this.frequency;
+    }
+    public void setFrequency(float f){
+        this.frequency = f;
+    }
+    /**
+     * 
+     * @return the ID of the AppAbstraction
+     */
+    public String getID(){
+        return this.ID;
+    }
     
 
     /**
