@@ -10,40 +10,34 @@ public abstract class ApplicationAbstraction {
     /**
      * Default constructor
      */
-    public ApplicationAbstraction() {
+    public ApplicationAbstraction(String id, float f) {
+        mapper = new HashMap<Type, CoOccurrenceMatrix>();
+        this.ID = id;
+        this.frequency = f;
     }
 
     /**
-     * 
-     */
-    private HashMap<Type CoOccurrenceMatrix> mapper;
-
-    /**
-     * 
-     */
-    private float frequency;
-
-    /**
-     * 
-     */
-    private string ID;
-
-
-
-
-    /**
-     * 
-     */
-    public CoOccurrenceMatrix 4;
-
-
-    /**
-     * @param Coupling c 
      * @return
      */
-    public void addCoValue(void Coupling c) {
-        // TODO implement here
-        return null;
+    public abstract void buildMatrices();
+
+    /**
+     * 
+     */
+    public abstract void buildMatrices(ArrayList<CoOccurrenceMatrix> m);
+        
+
+    /**
+     * 
+     */
+    public abstract void buildCoMat(ArrayList<ApplicationAbstraction> aa);
+    /**
+     * add a coValue to the correct matrix
+     * @param Coupling c 
+     * 
+     */
+    protected void addCoValue(Coupling c) {
+        mapper.get(c.getType()).addCoValue(c);
     }
 
     /**
@@ -52,40 +46,25 @@ public abstract class ApplicationAbstraction {
      * @param Entity e2 
      * @return
      */
-    public float getCoValue(void Type type, void Entity e1, void Entity e2) {
-        // TODO implement here
-        return 0.0f;
+    protected float getCoValue(Type type, Entity e1, Entity e2) {
+        return mapper.get(type).getValue(e1, e2);
     }
 
     /**
-     * @param Type type 
-     * @return
+     * @param Type type the type of the co-occurrency matrix
+     * @return the mapper of the matrix
      */
-    public HashMap getCoMapper(void Type type) {
-        // TODO implement here
-        return null;
+    protected HashMap<Entity, Integer> getCoMapper(Type type) {
+        return mapper.get(type).getMapper();
     }
 
-    /**
-     * @return
-     */
-    public void buildMatrices() {
-        // TODO implement here
-        return null;
-    }
+    
 
     /**
      * 
      */
-    public void buildMatrices(ArrayList<CoOccurrenceMatrix> m): void() {
-        // TODO implement here
-    }
-
-    /**
-     * 
-     */
-    public void buildCoMat(ArrayList<ApplicationAbstraction> aa)() {
-        // TODO implement here
-    }
+    private HashMap<Type, CoOccurrenceMatrix> mapper;
+    private float frequency;
+    private String ID;
 
 }
