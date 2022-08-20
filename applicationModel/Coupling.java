@@ -80,6 +80,7 @@ public class Coupling {
     public void setDestEntity(Entity e){
         entity2 = e;
     }
+    
     @Override
     public boolean equals(Object o){
         if (o == this) {
@@ -94,7 +95,7 @@ public class Coupling {
                 && c.entity2.equals(this.entity2) 
                 && this.coOccurrence == c.coOccurrence;
     }
-
+    
     /**
      * 
      */
@@ -106,10 +107,4 @@ public class Coupling {
     private float coOccurrence;
     private Entity entity1;
     private Entity entity2;
-
-
-
-
-
-
 }

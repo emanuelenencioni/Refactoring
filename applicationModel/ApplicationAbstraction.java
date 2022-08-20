@@ -10,40 +10,53 @@ public abstract class ApplicationAbstraction {
     /**
      * Default constructor
      */
-    public ApplicationAbstraction() {
+    public ApplicationAbstraction(String id, float f,BuildCoMatStrategy strategy) {
+        mapper = new HashMap<Type, CoOccurrenceMatrix>();
+        this.ID = id;
+        this.frequency = f;
+        this.strategy = strategy;
     }
 
     /**
      * 
      */
-    private HashMap<Type CoOccurrenceMatrix> mapper;
+    public abstract void buildMatrices();
+
+    public float getFrequency(){
+        return this.frequency;
+    }
+    public void setFrequency(float f){
+        this.frequency = f;
+    }
+
+    /**
+     * 
+     * @return the ID of the AppAbstraction
+     */
+    public String getID(){
+        return this.ID;
+    }
+
+    public HashMap<Type, CoOccurrenceMatrix>getMapper(){
+        return mapper;
+    }
+    /**
+     * 
+     */
+    protected abstract void buildMatrices(ArrayList<CoOccurrenceMatrix> m);
+        
 
     /**
      * 
      */
-    private float frequency;
-
+    protected abstract ArrayList<CoOccurrenceMatrix> buildCoMat(ArrayList<ApplicationAbstraction> aa);
     /**
-     * 
-     */
-    private string ID;
-
-
-
-
-    /**
-     * 
-     */
-    public CoOccurrenceMatrix 4;
-
-
-    /**
+     * add a coValue to the correct matrix
      * @param Coupling c 
-     * @return
+     * 
      */
-    public void addCoValue(void Coupling c) {
-        // TODO implement here
-        return null;
+    protected void addCoValue(Coupling c) {
+        mapper.get(c.getType()).addCoValue(c);
     }
 
     /**
@@ -52,40 +65,29 @@ public abstract class ApplicationAbstraction {
      * @param Entity e2 
      * @return
      */
-    public float getCoValue(void Type type, void Entity e1, void Entity e2) {
-        // TODO implement here
-        return 0.0f;
+    protected float getCoValue(Type type, Entity e1, Entity e2) {
+        return mapper.get(type).getValue(e1, e2);
     }
 
     /**
-     * @param Type type 
-     * @return
+     * @param Type type the type of the co-occurrency matrix
+     * @return the mapper of the matrix
      */
-    public HashMap getCoMapper(void Type type) {
-        // TODO implement here
-        return null;
+    protected HashMap<Entity, Integer> getCoMapper(Type type) {
+        return mapper.get(type).getMapper();
     }
 
     /**
-     * @return
+     * mapper to map type with the cooccurrence matrix
      */
-    public void buildMatrices() {
-        // TODO implement here
-        return null;
-    }
-
+    protected HashMap<Type, CoOccurrenceMatrix> mapper;
+    /**
+     * frequency of the ApplicationAbstraction
+     */
+    private float frequency;
     /**
      * 
      */
-    public void buildMatrices(ArrayList<CoOccurrenceMatrix> m): void() {
-        // TODO implement here
-    }
-
-    /**
-     * 
-     */
-    public void buildCoMat(ArrayList<ApplicationAbstraction> aa)() {
-        // TODO implement here
-    }
-
+    private String ID;
+    protected BuildCoMatStrategy strategy; //TODO è ok metterlo protected?
 }

@@ -7,10 +7,10 @@ import java.util.*;
  */
 public class Graph {
 
-    /**
-     * Default constructor
-     */
+    
     public Graph() {
+        vertex = new ArrayList<Vertex>();
+        edge = new ArrayList<Edge>();
     }
 
     /**
@@ -29,35 +29,31 @@ public class Graph {
     /**
      * @return
      */
-    public void addVertex() {
-        // TODO implement here
-        return null;
+    public void addVertex(Vertex v) {
+        vertex.add(v);
     }
 
     /**
      * @return
      */
-    public void addEdge() {
-        // TODO implement here
-        return null;
+    public void addEdge(Edge e) {
+        edge.add(e);
     }
 
     /**
      * @param Vertex v 
      * @return
      */
-    public void removeVertex(void Vertex v) {
-        // TODO implement here
-        return null;
+    public void removeVertex(Vertex v) {
+        vertex.remove(v);
     }
 
     /**
      * @param Edge e 
      * @return
      */
-    public void removeEdge(void Edge e) {
-        // TODO implement here
-        return null;
+    public void removeEdge(Edge e) {
+        edge.remove(e);
     }
 
 }

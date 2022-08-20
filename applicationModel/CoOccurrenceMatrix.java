@@ -56,9 +56,9 @@ public class CoOccurrenceMatrix {
             mapper.put(source, size++);
         
         if(!isInMatrix(dest))
-            mapper.put(source, size++);
+            mapper.put(dest, size++);
         if(size > cOMatrix.length){
-            float[][] x = cOMatrix.clone(); //TODO capire quando serve il clone, in caso di deep copy.
+            float[][] x = cOMatrix.clone();
             
         
             cOMatrix = new float[size][size];
@@ -100,7 +100,6 @@ public class CoOccurrenceMatrix {
      * @return the mapper of the matrix
      */
     public HashMap<Entity, Integer> getMapper() {
-       
         return mapper;
     }
     /**
