@@ -1,7 +1,10 @@
 package manager;
 
 import java.util.*;
-import SimplifyGraphFactory;
+import weightedGraph.*;
+import applicationModel.ApplicationAbstraction;
+import applicationModel.Entity;
+import applicationModel.Type;
 
 /**
  * 
@@ -13,7 +16,7 @@ public class GraphManager {
      */
     public GraphManager() {
 
-        graph = null;
+        graph = new Graph();
         matContainer = null;
 
         //TODO : Corretto impostare a 1?
@@ -77,9 +80,17 @@ public class GraphManager {
         if (matContainer == null)
             return false;
         
-        //CREARE tutti i vertici scorrendo la matrice
-
+        //CREARE tutti i vertici scorrendo la matrice (siccome le matrici hanno tutte le stessee righe e colonne, si prende una matrice qualsiasi, cioè CC)
+        HashMap coMapper = matContainer.getCoMapper(Type.CC);
+        
+        Iterator<Entity> it = coMapper.keySet().iterator();
+        while(it.hasNext()){
+            Entity x = it.next();
+            Vertex v = new Vertex(x);
+            graph.addVertex(v);
+        }
         //MOLTIPLICARE ogni matrice per il suo peso
+        
         //SOMMA CC+CQ+QC+QQ
         //SOMMA valori simmetrici (AB+BA)
         //DIVIDERE per 4 (così si ottiene la media)
@@ -93,7 +104,7 @@ public class GraphManager {
      * @param Graph g 
      * @return
      */
-    public Graph simplifyGraph(void Graph g) {
+    public Graph simplifyGraph(Graph g) { // TODO : eviterei di passargli il grafo.. per il nostro scopo il GraphManager deve solo semplificafre il suo grafo
         // TODO implement here
 
         if (graphStrategy == null)
@@ -111,7 +122,7 @@ public class GraphManager {
      * @param LossFunctionStrategy lf 
      * @return
      */
-    public Graph findBestSolution(void Graph g, void LossFunctionStrategy lf) {
+    public Graph findBestSolution(Graph g, LossFunctionStrategy lf) {
         // TODO implement here
 
         //SETTARE il valore della lossFunction al massimo
@@ -133,7 +144,7 @@ public class GraphManager {
      * @param Graph sg 
      * @return
      */
-    public float lossFunction(void Graph g, void Graph sg) {
+    public float lossFunction(Graph g, Graph sg) {
         // TODO implement here
         return 0.0f;
     }
@@ -142,22 +153,22 @@ public class GraphManager {
      * @param SimplifyGraphStrategy sgs 
      * @return
      */
-    public void setSimplifyGraphStrategy(void SimplifyGraphStrategy sgs) {
+    public void setSimplifyGraphStrategy(SimplifyGraphStrategy sgs) {
         // TODO implement here
         this.graphStrategy = sgs;
 
-        return null;
+        return;
     }
 
     /**
      * @param LossFunctionStrategy lfs 
      * @return
      */
-    public void setLossFunctionStrategy(void LossFunctionStrategy lfs) {
+    public void setLossFunctionStrategy(LossFunctionStrategy lfs) {
         // TODO implement here
         this.lossStrategy = lfs;
 
-        return null;
+        return;
     }
 
     /**
@@ -165,7 +176,7 @@ public class GraphManager {
      * @param LossFunctionStrategy lf 
      * @return
      */
-    public Graph myBestSolution(void Graph g, void LossFunctionStrategy lf) {
+    public Graph myBestSolution(Graph g, LossFunctionStrategy lf) {
         // TODO0 implement here
         return null;
     }
@@ -173,7 +184,7 @@ public class GraphManager {
     public void setApplicationAbstraction(ApplicationAbstraction mc){
         
         this.matContainer = mc;
-        return null;
+        return;
 
     }
 

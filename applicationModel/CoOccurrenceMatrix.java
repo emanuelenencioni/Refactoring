@@ -120,7 +120,7 @@ public class CoOccurrenceMatrix {
         while(it.hasNext()){
             Entity x = it.next();
             if(e.equals(x)){
-                c++;
+                c++; //TODO : PERCHE c++? non si potrebbe tronare subito true? *********************************************************************
             }
         }
         if(c == 0)

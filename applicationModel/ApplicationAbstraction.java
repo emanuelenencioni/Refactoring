@@ -73,14 +73,14 @@ public abstract class ApplicationAbstraction {
      * @param Type type the type of the co-occurrency matrix
      * @return the mapper of the matrix
      */
-    protected HashMap<Entity, Integer> getCoMapper(Type type) {
+    public HashMap<Entity, Integer> getCoMapper(Type type) { //TODO : SERVE PUBLIC *******************************************************************
         return mapper.get(type).getMapper();
     }
 
     /**
      * mapper to map type with the cooccurrence matrix
      */
-    protected HashMap<Type, CoOccurrenceMatrix> mapper;
+    protected HashMap<Type, CoOccurrenceMatrix> mapper; // TODO : PERCHE' PROTECTED? SERVE? O SI PUO' METTERE PRIVATE?
     /**
      * frequency of the ApplicationAbstraction
      */
