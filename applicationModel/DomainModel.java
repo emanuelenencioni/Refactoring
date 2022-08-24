@@ -59,6 +59,16 @@ public class DomainModel {
         return null;
     }
 
+
+    /**
+     * get the list of all entities
+     * @return the ArrayList of all entities
+     */
+    public ArrayList<Entity> getEntities(){
+
+        return entities;
+    }
+
     private ArrayList<Entity> entities;
 
 }

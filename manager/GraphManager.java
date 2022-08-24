@@ -5,6 +5,7 @@ import weightedGraph.*;
 import applicationModel.ApplicationAbstraction;
 import applicationModel.Entity;
 import applicationModel.Type;
+import applicationModel.DomainModel;
 
 /**
  * 
@@ -68,12 +69,13 @@ public class GraphManager {
 
     private LossFunctionStrategy lossStrategy;
 
-
+    private DomainModel domainModel;
 
 
 
     /**
-     * @return
+     * create graph from the list of Co-Occurrence matrixes given in ApplicationAbstraction matContainer
+     * @return true if graph has been created, false if matContainer is not set
      */
     public boolean createGraph() {
         // TODO implement here
@@ -91,6 +93,27 @@ public class GraphManager {
         }
         //MOLTIPLICARE ogni matrice per il suo peso
         
+        ArrayList<Entity> entitiesList = domainModel.getEntities();
+
+
+
+        float[][] cOMatrix = new float[entitiesList.size()][entitiesList.size()];
+
+        for (Entity r : entitiesList){
+
+            for (Entity c : entitiesList){
+
+                //matContainer.getCoValue(Type.CC, r, c) + matContainer.getCoValue(Type.CC, c, r) + resto
+
+
+            }
+
+
+
+        }
+
+
+
         //SOMMA CC+CQ+QC+QQ
         //SOMMA valori simmetrici (AB+BA)
         //DIVIDERE per 4 (così si ottiene la media)
@@ -110,11 +133,8 @@ public class GraphManager {
         if (graphStrategy == null)
             return null;
         
-
         //INVOCARE simplifyGraph usando la graphStrategy preimpostata
-
-
-        return null; //RETURN il grafo restituito dalla funzione simplifyGraph
+        return graphStrategy.simplifyGraph(g); //RETURN il grafo restituito dalla funzione simplifyGraph
     }
 
     /**
@@ -129,6 +149,7 @@ public class GraphManager {
         int lossValue; // = infinito
         Graph bestGraph = null;
         //ITERARE per ogni SimplifyGraphType
+
         //GENERARE la SimplifyGraphStrategy con la SimplifyGraphFactory passando il SimplifyGraphType
         //INVOCARE myBestSolution della ConcreteStrategy (che invocherà il suo simplifyGraph variando i suoi parametri)
         //CALCOLARE il lossValue utilizzando la lossFunction
@@ -146,7 +167,9 @@ public class GraphManager {
      */
     public float lossFunction(Graph g, Graph sg) {
         // TODO implement here
-        return 0.0f;
+
+        // INVOCARE lossFunction della Strategia di Loss settata e ritornare il suo valore
+        return lossStrategy.lossFunction(g, sg);
     }
 
     /**
