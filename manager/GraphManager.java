@@ -93,7 +93,7 @@ public class GraphManager {
         }
         //MOLTIPLICARE ogni matrice per il suo peso
         
-        ArrayList<Entity> entitiesList = domainModel.getEntities();
+        ArrayList<Entity> entitiesList = domainModel.getEntityList();
 
 
 
