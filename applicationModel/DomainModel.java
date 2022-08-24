@@ -11,9 +11,9 @@ public class DomainModel {
      * @param es Array of entity
      */
     public DomainModel(Entity[] es) {
-        entities = new ArrayList<>();
+        entityList = new ArrayList<>();
         for(int i=0;i<es.length;i++){
-            entities.add(es[i]);
+            entityList.add(es[i]);
         }
     }
     /**
@@ -21,20 +21,20 @@ public class DomainModel {
      * @param es array list of entity
      */
     public DomainModel(ArrayList<Entity> es) {
-        entities = new ArrayList<>();
+        entityList = new ArrayList<>();
         for(int i=0;i<es.size();i++){
-            entities.add(es.get(i));
+            entityList.add(es.get(i));
         }
     }
     /**
      * Default constructor
      */
     public DomainModel(){
-        entities = new ArrayList<Entity>();
+        entityList = new ArrayList<Entity>();
     }
 
     public void addEntity(Entity e){
-        entities.add(e);
+        entityList.add(e);
     }
     /**
      * 
@@ -42,8 +42,8 @@ public class DomainModel {
      * @return the Entity or null if the idx is out the range the ArrayList's size
      */
     public Entity getEntity(int idx){
-        if (idx < entities.size() && idx >= 0){
-            return entities.get(idx);
+        if (idx < entityList.size() && idx >= 0){
+            return entityList.get(idx);
         }
         return  null;
     }
@@ -53,8 +53,8 @@ public class DomainModel {
      * @return the entity that has been deleted
      */
     public Entity deleteEntity(int idx){
-        if (idx < entities.size() && idx <= 0){
-            return  entities.remove(idx);
+        if (idx < entityList.size() && idx <= 0){
+            return  entityList.remove(idx);
         }
         return null;
     }
@@ -66,9 +66,9 @@ public class DomainModel {
      */
     public ArrayList<Entity> getEntities(){
 
-        return entities;
+        return entityList;
     }
 
-    private ArrayList<Entity> entities;
+    private ArrayList<Entity> entityList;
 
 }
