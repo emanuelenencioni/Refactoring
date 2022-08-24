@@ -6,12 +6,8 @@ import java.util.*;
  * 
  */
 public interface BuildCoMatStrategy {
-
-
-
     /**
      * 
      */
-    public void buildCoMat(ArrayList<ApplicationAbstraction> aa)();
-
+    public ArrayList<CoOccurrenceMatrix> buildCoMat(ArrayList<ApplicationAbstraction> aa);
 }

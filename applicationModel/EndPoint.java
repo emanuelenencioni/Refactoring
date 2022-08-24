@@ -38,11 +38,6 @@ public class EndPoint extends ApplicationAbstraction {
     }
 
     @Override
-    protected void buildMatrices(ArrayList<CoOccurrenceMatrix> m) {
-        //TODO a che serve questo metodo?
-    }
-
-    @Override
     protected ArrayList<CoOccurrenceMatrix> buildCoMat(ArrayList<ApplicationAbstraction> aa) {
         return null;
     }

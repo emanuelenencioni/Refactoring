@@ -46,8 +46,8 @@ public class CoOccurrenceMatrix {
     }
     /**
      * add a coupling to the co-occurrence matrix
-     * @param Entity source the source of the coupling, column
-     * @param Entity dest  destination of the coupling, row
+     * @param Entity source the source of the coupling, row
+     * @param Entity dest  destination of the coupling, column
      * @param value value of the coupling
      */
     public void addCoValue(Entity source,Entity dest, float value) { //TODO non c'è il controllo del tipo, capire se è ok o no
@@ -83,8 +83,8 @@ public class CoOccurrenceMatrix {
 
     /**
      * 
-     * @param Entity source the source of the coupling, column
-     * @param Entity dest destination of the coupling, row
+     * @param Entity source the source of the coupling, row
+     * @param Entity dest destination of the coupling, column
      * @return the co-occurrence value, or null if one of the entity isn't in the co-occurrence matrix
      */
     public Float getValue(Entity source, Entity dest) {

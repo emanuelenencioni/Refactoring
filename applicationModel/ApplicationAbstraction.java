@@ -40,10 +40,6 @@ public abstract class ApplicationAbstraction {
     public HashMap<Type, CoOccurrenceMatrix>getMapper(){
         return mapper;
     }
-    /**
-     * 
-     */
-    protected abstract void buildMatrices(ArrayList<CoOccurrenceMatrix> m);
         
 
     /**
