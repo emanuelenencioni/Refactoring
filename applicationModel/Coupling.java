@@ -95,7 +95,17 @@ public class Coupling {
                 && c.entity2.equals(this.entity2) 
                 && this.coOccurrence == c.coOccurrence;
     }
-    
+
+    /**
+     * function that check if the given coupling and itself have same entities
+     * @param e the coupling to check
+     * @return true if the two coupling have the same entity, false otherwise
+     */
+    public boolean hasSameEntities(Coupling e){
+        return e.entity1.equals(this.entity1) 
+                && e.entity2.equals(this.entity2);
+    }
+
     /**
      * 
      */
