@@ -14,8 +14,8 @@ public class Edge {
 
 
     /**
-     * @param Vertex v 
-     * @return
+     * @param Vertex v one of the vertices connected by the edge
+     * @return the vertex connected to v by the edge
      */
     public Vertex getConnVertex(Vertex v) {
         if (v.equals(vertex1))
@@ -32,7 +32,7 @@ public class Edge {
         return weight;
     }
 
-
+    @Override
     public boolean equals(Object obj) {
         if (obj instanceof Edge) {
             Edge e = (Edge) obj;

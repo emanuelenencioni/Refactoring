@@ -15,12 +15,21 @@ public class SimplifyGraphFactory {
 
 
     /**
-     * @param SimplifyGraphType t 
-     * @return
+     * @param SimplifyGraphType t name of the concrete strategy to be instantiated
+     * @return reference to instance of concrete strategy implementing the chosen strategy
      */
     public SimplifyGraphStrategy createSimplifyGraphStrategy(SimplifyGraphType t) {
-        // TODO implement here
-        return null;
+
+        switch (t) {
+            case ConcreteStrategy1:
+                return new ConcreteStrategy1();
+
+            case ConcreteStrategy2:
+                return new ConcreteStrategy2();
+
+            default:
+                return null;}
+
     }
 
 }

@@ -1,6 +1,7 @@
 package manager;
 
 import java.util.*;
+import weightedGraph.Graph;
 
 /**
  * 
@@ -18,7 +19,7 @@ public class ConcreteStrategy2 implements SimplifyGraphStrategy {
      * @param Graph g 
      * @return
      */
-    public Graph simplifyGraph(void Graph g) {
+    public Graph simplifyGraph(Graph g) {
         // TODO implement here
         return null;
     }
@@ -28,26 +29,7 @@ public class ConcreteStrategy2 implements SimplifyGraphStrategy {
      * @param LossFunctionStrategy lf 
      * @return
      */
-    public Graph myBestSolution(void Graph g, void LossFunctionStrategy lf) {
-        // TODO implement here
-        return null;
-    }
-
-    /**
-     * @param Graph g 
-     * @return
-     */
-    public Graph simplifyGraph(void Graph g) {
-        // TODO implement here
-        return null;
-    }
-
-    /**
-     * @param Graph g 
-     * @param LossFunctionStrategy lf 
-     * @return
-     */
-    public Graph myBestSolution(void Graph g, void LossFunctionStrategy lf) {
+    public Graph myBestSolution(Graph g, LossFunctionStrategy lf) {
         // TODO implement here
         return null;
     }
