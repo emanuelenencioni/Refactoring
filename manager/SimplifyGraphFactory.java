@@ -18,7 +18,7 @@ public class SimplifyGraphFactory {
      * @param SimplifyGraphType t 
      * @return
      */
-    public SimplifyGraphStrategy createSimplifyGraphStrategy(void SimplifyGraphType t) {
+    public SimplifyGraphStrategy createSimplifyGraphStrategy(SimplifyGraphType t) {
         // TODO implement here
         return null;
     }
