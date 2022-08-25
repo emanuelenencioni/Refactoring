@@ -29,7 +29,7 @@ public class Vertex {
     public void removeEdge(Edge e) {
         
     }
-
+    @Override
     public boolean equals(Object obj) {
         if (obj instanceof Vertex) {
             Vertex v = (Vertex) obj;

@@ -1,7 +1,7 @@
 package manager;
 
 import java.util.*;
-
+import weightedGraph.Graph;
 /**
  * 
  */
@@ -14,21 +14,12 @@ public class LossStrategy2 implements LossFunctionStrategy {
     }
 
     /**
-     * @param Graph g 
-     * @param Graph sg 
-     * @return
+     * @param Graph g starting graph
+     * @param Graph sg simplified version of starting graph
+     * @return numeric evaluation of the information lost between the graphs
+     * higher value means more information was lost
      */
-    public float lossFunction(void Graph g, void Graph sg) {
-        // TODO implement here
-        return 0.0f;
-    }
-
-    /**
-     * @param Graph g 
-     * @param Graph sg 
-     * @return
-     */
-    public float lossFunction(void Graph g, void Graph sg) {
+    public float lossFunction(Graph g, Graph sg) {
         // TODO implement here
         return 0.0f;
     }
