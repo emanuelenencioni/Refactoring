@@ -32,7 +32,10 @@ public class DomainModel {
     public DomainModel(){
         entityList = new ArrayList<Entity>();
     }
-
+    /**
+     * Append to the end of the list an entity
+     * @param e the entity to append
+     */
     public void addEntity(Entity e){
         entityList.add(e);
     }
