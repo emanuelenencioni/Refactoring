@@ -120,13 +120,10 @@ public class CoOccurrenceMatrix {
         while(it.hasNext()){
             Entity x = it.next();
             if(e.equals(x)){
-                c++; //TODO : PERCHE c++? non si potrebbe tronare subito true? *********************************************************************
+                return true;
             }
         }
-        if(c == 0)
-            return false;
-        else 
-            return true;
+        return false;
     }
 
     private HashMap<Entity, Integer> mapper;
