@@ -68,14 +68,46 @@ public class AppModelTest{
         for(int i=0;i<20;i++)
             el.add(new Entity("E"+i));
         
-        for(int i=0;i<10;i++)
+        for(int i=0;i<10;i++){
             cl.add(new Coupling(el.get(i), el.get(i+10), Type.CC, i));
-        
+            cl.add(new Coupling(el.get(i+10), el.get(i), Type.CC, i+10));
+        }
         ApplicationAbstraction aa = new EndPoint(cl, "EP1", 0.5f);
         assertEquals(0.5, aa.getFrequency(), 0.0005);
         assertEquals("EP1", aa.getID());
         aa.buildMatrices();
         assertEquals(5, (float) aa.getMapper().get(Type.CC).getValue(el.get(5), el.get(15)), 0.000005);
-        assertEquals(0.0, (float) aa.getMapper().get(Type.CC).getValue(el.get(15), el.get(5)), 0.00005);
+        assertEquals(15, (float) aa.getMapper().get(Type.CC).getValue(el.get(15), el.get(5)), 0.00005);
+        assertEquals(0, (float) aa.getMapper().get(Type.CC).getValue(el.get(0), el.get(10)), 0.000005);
+        assertEquals(10, (float) aa.getMapper().get(Type.CC).getValue(el.get(10), el.get(0)), 0.000005);
+    }
+
+    @Test
+    public void testAverage(){
+        ArrayList<ApplicationAbstraction> epList = new ArrayList<>();
+        ArrayList<Coupling> cl = new ArrayList<Coupling>();
+        ArrayList<Entity> el = new ArrayList<Entity>();
+        for(int i=0;i<20;i++)
+                el.add(new Entity("E"+i));
+        for(int i=0;i<10;i++){
+            cl.add(new Coupling(el.get(i), el.get(i+10), Type.CC, i+1));
+            cl.add(new Coupling(el.get(i+10), el.get(i),Type.CC, (i+1)*100));
+        }
+        
+        epList.add(new EndPoint(cl, "EP1", 0.5f));
+        epList.add(new EndPoint(cl, "EP2", 0.25f));
+
+        epList.get(0).buildMatrices();
+        epList.get(1).buildMatrices();
+
+        BuildCoMatStrategy bs = new Average();
+        ArrayList<CoOccurrenceMatrix> ms = bs.buildCoMat(epList);
+        float value,value1;
+        for(int i = 0; i<10; i++){
+            value = (float) ((i+1)*0.5 + (i+1)*0.25)/2f;
+            value1 = (float ) ((i+1)*0.5*100 + (i+1)*0.25*100)/2f;
+            assertEquals(value, ms.get(0).getValue(el.get(i), el.get(i+10)), 0.00001f);
+            assertEquals(value1, ms.get(0).getValue(el.get(i+10),el.get(i)),0.00001f);
+        }
     }
 }
