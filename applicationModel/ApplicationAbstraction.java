@@ -22,9 +22,18 @@ public abstract class ApplicationAbstraction {
      */
     public abstract void buildMatrices();
 
+    /**
+     * 
+     * @return the frequency
+     */
     public float getFrequency(){
         return this.frequency;
     }
+
+    /**
+     * funciton that set the new frequency
+     * @param f the new frequency, it should be betwee 0 and 1.
+     */
     public void setFrequency(float f){
         this.frequency = f;
     }
@@ -37,8 +46,28 @@ public abstract class ApplicationAbstraction {
         return this.ID;
     }
 
+    /**
+     * 
+     * @return the hashmap of the matrices
+     */
     public HashMap<Type, CoOccurrenceMatrix>getMapper(){
         return mapper;
+    }
+
+    /**
+     * function that set the new strategy
+     * @param strat the new strategy
+     */
+    public void setStrategy(BuildCoMatStrategy strat){
+        this.strategy = strat;
+    }
+
+    /**
+     * 
+     * @return the strategy
+     */
+    public BuildCoMatStrategy getStrategy(){
+        return strategy;
     }
         
 
