@@ -19,6 +19,7 @@ public class Vertex {
      * @return
      */
     public void addEdge(Edge e) {
+        if (!neighbour.contains(e))
         neighbour.add(e);
     }
 
@@ -27,8 +28,9 @@ public class Vertex {
      * @return
      */
     public void removeEdge(Edge e) {
-        
+        neighbour.remove(e);
     }
+
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Vertex) {
@@ -36,6 +38,14 @@ public class Vertex {
             return v.entity.equals(this.entity);
         }
         return false;
+    }
+
+    public ArrayList<Edge> getNeighbour(){
+        return neighbour;
+    }
+
+    public Entity getEntity(){
+        return entity;
     }
 
 

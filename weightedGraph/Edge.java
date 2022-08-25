@@ -25,6 +25,15 @@ public class Edge {
         return null;
     }
 
+    public Vertex getVertex1(){
+        return vertex1;
+    }
+
+    public Vertex getVertex2(){
+        return vertex2;
+    }
+
+
     /**
      * @return
      */
@@ -37,8 +46,7 @@ public class Edge {
         if (obj instanceof Edge) {
             Edge e = (Edge) obj;
             return e.weight == this.weight
-                && e.vertex1.equals(this.vertex1)
-                && e.vertex2.equals(this.vertex2);
+                && ((e.vertex1.equals(this.vertex1) && e.vertex2.equals(this.vertex2)) || (e.vertex1.equals(this.vertex2) && e.vertex2.equals(this.vertex1)));
         }
         return false;
     }
