@@ -37,6 +37,35 @@ public class EndPoint extends ApplicationAbstraction {
         }
     }
 
+    /**
+     * function that append a coupling object to the end of the list
+     * This method is only usable if user know the type, it is not in the parent class interface
+     * @param c the coupling to append
+     */
+    public void addCoupling(Coupling c){
+        coupList.add(c);
+    }
+
+    /**
+     * function that return a coupling object from the list
+     * This method is only usable if user know the type, it is not in the parent class interface
+     * @param idx the index of the coupling object in the list
+     * @return a coupling object
+     */
+    public Coupling getCoupling(int idx){
+        return coupList.get(idx);
+    }
+
+    /**
+     * function that delete a coupling from the list giving the idx
+     * This method is only usable if user know the type, it is not in the parent class interface
+     * @param idx the index of the coupling object to remove in the list
+     * @return the coupling object removed
+     */
+    public Coupling removeCoupling(int idx){
+        return coupList.remove(idx);
+    }
+
     @Override
     protected ArrayList<CoOccurrenceMatrix> buildCoMat(ArrayList<ApplicationAbstraction> aa) {
         return null;
