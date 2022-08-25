@@ -116,7 +116,6 @@ public class CoOccurrenceMatrix {
      */
     private Boolean isInMatrix(Entity e){
         Iterator<Entity> it = this.mapper.keySet().iterator();
-        int c = 0;
         while(it.hasNext()){
             Entity x = it.next();
             if(e.equals(x)){
