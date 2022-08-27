@@ -107,3 +107,4 @@ public class UseCase extends ApplicationAbstraction {
    }
 
    private ArrayList<EndPoint> endPointList; 
+}
