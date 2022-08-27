@@ -47,6 +47,46 @@ public class UseCase extends ApplicationAbstraction {
         this.strategy = strat;
     }
 
+    /**
+     * function that add an endpoint object to the list of endpoint
+     * @param ep
+     */
+    public void addEndPoint(EndPoint ep){
+        this.endPointList.add(ep);
+    }
+
+    /**
+     * 
+     * @param idx the index of an endpoint
+     * @return an endpoint object
+     */
+    public EndPoint getEndPoint(int idx){
+        if(idx > 0 && idx<endPointList.size())
+            return this.endPointList.get(idx);
+        
+        return null;
+    }
+
+    /**
+     * function that remove an endpoint object from the list
+     * @param idx the index of the endpoint object
+     * @return the endpount object removed
+     */
+    public EndPoint removeEndPoint(int idx){
+        if(idx > 0 && idx<endPointList.size())
+            return this.endPointList.remove(idx);
+        
+        return null;
+    }
+
+    /**
+     * 
+     * @return the list of endpoint objects
+     */
+    public ArrayList<EndPoint> getEndpointList(){
+        return this.endPointList;
+    }
+
     @Override
     public void buildMatrices() {
         ArrayList<ApplicationAbstraction> aa = new ArrayList<>();
@@ -66,5 +106,4 @@ public class UseCase extends ApplicationAbstraction {
        return strategy.buildCoMat(aa);
    }
 
-   private ArrayList<EndPoint> endPointList;
-}
+   private ArrayList<EndPoint> endPointList; 
