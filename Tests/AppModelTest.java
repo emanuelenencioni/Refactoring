@@ -110,4 +110,36 @@ public class AppModelTest{
             assertEquals(value1, ms.get(0).getValue(el.get(i+10),el.get(i)),0.00001f);
         }
     }
+
+    @Test
+    public void testUseCase(){
+        ArrayList<EndPoint> epList = new ArrayList<>();
+        ArrayList<Coupling> cl = new ArrayList<Coupling>();
+        ArrayList<Coupling> cl2 = new ArrayList<Coupling>();
+        ArrayList<Entity> el = new ArrayList<Entity>();
+        for(int i=0;i<20;i++)
+                el.add(new Entity("E"+i));
+        for(int i=0;i<10;i++){
+            cl.add(new Coupling(el.get(i), el.get(i+10), Type.CC, i+1));
+            cl.add(new Coupling(el.get(i+10), el.get(i),Type.CC, (i+1)*100));
+            cl2.add(new Coupling(el.get(i), el.get(i+10), Type.CC, (i+1)*1000));
+        }
+        
+        epList.add(new EndPoint(cl, "EP1", 0.5f));
+        epList.add(new EndPoint(cl, "EP2", 0.25f));
+        epList.add(new EndPoint(cl2, "EP2", 0.15f));
+        for(int i = 0; i< epList.size(); i++)
+            epList.get(i).buildMatrices();
+        UseCase uc = new UseCase("UC1", 1, epList);
+        uc.setStrategy(new Average());
+        uc.buildMatrices();
+        CoOccurrenceMatrix cocm = uc.getMapper().get(Type.CC);
+        float value,value1;
+        for(int i = 0; i<10; i++){
+            value = (float) ((i+1)*0.5 + (i+1)*0.25 + (i+1)*1000f*0.15f)/3f;
+            value1 = (float ) ((i+1)*0.5*100 + (i+1)*0.25*100)/3f;
+            assertEquals(value, cocm.getValue(el.get(i), el.get(i+10)), 0.00001f);
+            assertEquals(value1, cocm.getValue(el.get(i+10),el.get(i)),0.00001f);
+        }
+    }
 }
