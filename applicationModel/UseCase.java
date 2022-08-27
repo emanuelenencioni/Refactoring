@@ -83,7 +83,7 @@ public class UseCase extends ApplicationAbstraction {
      * 
      * @return the list of endpoint objects
      */
-    public ArrayList<EndPoint> getEndpointList(){
+    public ArrayList<EndPoint> getEndpointList(){ //TODO forse conviene metterle abstract in ApplicationAbstraction
         return this.endPointList;
     }
 
