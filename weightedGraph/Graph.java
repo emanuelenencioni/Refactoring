@@ -2,6 +2,8 @@ package weightedGraph;
 
 import java.util.*;
 
+import applicationModel.Entity;
+
 /**
  * 
  */
@@ -83,6 +85,12 @@ public class Graph {
 
     public ArrayList<Vertex> getVertex(){
         return vertex;
+    }
+
+    public Vertex getVertex(Entity e){ // NECESSARIO PER COSTRUIRE IL GRAFO
+        
+        // TODO : ITERARE SULL'ARRAY DI VERTICI E RESTITUIRE IL VETTORE CORRISPONDENTE ALL'ENTITA' PRESA IN INGRESSO
+        return vertex.get(0); //PROVVISORIO
     }
 
 }

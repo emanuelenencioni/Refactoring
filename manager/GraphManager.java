@@ -20,7 +20,6 @@ public class GraphManager {
         graph = new Graph();
         matContainer = null;
 
-        //TODO : Corretto impostare a 1?
         weightCC = 1;
         weightCQ = 1;
         weightQC = 1;
@@ -32,6 +31,8 @@ public class GraphManager {
         lossStrategy = null;
 
     }
+
+    // TODO : FARE COSTRUTTORE CON TUTTI GLI ATTRIBUTI IN INGRESSO
 
     /**
      * 
@@ -82,43 +83,50 @@ public class GraphManager {
         if (matContainer == null)
             return false;
         
-        //CREARE tutti i vertici scorrendo la matrice (siccome le matrici hanno tutte le stessee righe e colonne, si prende una matrice qualsiasi, cioè CC)
-        HashMap coMapper = matContainer.getCoMapper(Type.CC);
-        
-        Iterator<Entity> it = coMapper.keySet().iterator();
-        while(it.hasNext()){
-            Entity x = it.next();
-            Vertex v = new Vertex(x);
-            graph.addVertex(v);
-        }
-        //MOLTIPLICARE ogni matrice per il suo peso
-        
+        // CREARE tutti i vertici scorrendo la lista delle entità
         ArrayList<Entity> entitiesList = domainModel.getEntityList();
 
+        for (Entity x : entitiesList){
 
+            Vertex v = new Vertex(x);
+            graph.addVertex(v);
 
-        float[][] cOMatrix = new float[entitiesList.size()][entitiesList.size()];
+        }
+        
+        // CALCOLARE media ponderata dei valori nelle matrici di co-occorrenza per ogni coppia di entità
 
+        int i = 0;
+        int j = 0;
+        float edgeWeight;
         for (Entity r : entitiesList){
 
             for (Entity c : entitiesList){
 
-                //matContainer.getCoValue(Type.CC, r, c) + matContainer.getCoValue(Type.CC, c, r) + resto
+                if(j > i){ // perché la matrice dev'essere triangolare
 
+
+                
+                edgeWeight = //NUMERATORE
+                                (weightCC*(matContainer.getCoValue(Type.CC, r, c) + matContainer.getCoValue(Type.CC, c, r)) + 
+                                weightCQ*(matContainer.getCoValue(Type.CQ, r, c) + matContainer.getCoValue(Type.CQ, c, r)) + 
+                                weightQC*(matContainer.getCoValue(Type.QC, r, c) + matContainer.getCoValue(Type.QC, c, r)) + 
+                                weightQQ*(matContainer.getCoValue(Type.QQ, r, c) + matContainer.getCoValue(Type.QQ, c, r)))/(
+                                //DENOMINATORE
+                                2*weightCC + 2*weightCQ + 2*weightQC + 2*weightQQ
+                                );
+
+                Edge e = new Edge(edgeWeight, graph.getVertex(r), graph.getVertex(c));
+                graph.addEdge(e);
+
+                }
+                
+                j++;
 
             }
 
-
+            i++;
 
         }
-
-
-
-        //SOMMA CC+CQ+QC+QQ
-        //SOMMA valori simmetrici (AB+BA)
-        //DIVIDERE per 4 (così si ottiene la media)
-        //CREARE gli archi da questi valori ottenuti
-
 
         return true;
     }
@@ -127,14 +135,14 @@ public class GraphManager {
      * @param Graph g 
      * @return
      */
-    public Graph simplifyGraph(Graph g) { // TODO : eviterei di passargli il grafo.. per il nostro scopo il GraphManager deve solo semplificafre il suo grafo
+    public Graph simplifyGraph() {
         // TODO implement here
 
         if (graphStrategy == null)
             return null;
         
         //INVOCARE simplifyGraph usando la graphStrategy preimpostata
-        return graphStrategy.simplifyGraph(g); //RETURN il grafo restituito dalla funzione simplifyGraph
+        return graphStrategy.simplifyGraph(this.graph); //RETURN il grafo restituito dalla funzione simplifyGraph
     }
 
     /**
