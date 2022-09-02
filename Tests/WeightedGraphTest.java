@@ -61,6 +61,8 @@ public class WeightedGraphTest{
             g.addVertex(vxList.get(i));
             
     }
+
+    assertEquals(vxList.get(0), g.getVertex(new Entity ("en0")));
     
     for (int i=0; i<vxList.size(); i++){
         for(int j=0; j<vxList.size(); j++){

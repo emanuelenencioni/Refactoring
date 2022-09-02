@@ -87,10 +87,19 @@ public class Graph {
         return vertex;
     }
 
-    public Vertex getVertex(Entity e){ // NECESSARIO PER COSTRUIRE IL GRAFO
+    /**
+     * @param Entity e
+     * @return vertex associated with e (that contains e)
+     * returns null if no vertex contains e
+     */
+
+    public Vertex getVertex(Entity e){
         
-        // TODO : ITERARE SULL'ARRAY DI VERTICI E RESTITUIRE IL VETTORE CORRISPONDENTE ALL'ENTITA' PRESA IN INGRESSO
-        return vertex.get(0); //PROVVISORIO
+        for (Vertex v : vertex){
+            if (e.equals(v.getEntity()))
+                return v;
+        }
+        return null;
     }
 
 }
