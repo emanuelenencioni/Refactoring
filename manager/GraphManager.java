@@ -34,42 +34,55 @@ public class GraphManager {
 
     // TODO : FARE COSTRUTTORE CON TUTTI GLI ATTRIBUTI IN INGRESSO
 
+
     /**
-     * 
+     * Graph resulting from associations between entities in CoOccurrence Matrices
      */
     private Graph graph;
 
     /**
-     * 
+     * Container of the CoOccurrence Matrices used to build the graph
      */
     private ApplicationAbstraction matContainer;
 
     /**
-     * 
+     * Weight of CoOccurrence Matrix CC
      */
     private float weightCC;
 
     /**
-     * 
+     * Weight of CoOccurrence Matrix CQ
      */
     private float weightCQ;
 
     /**
-     * 
+     * Weight of CoOccurrence Matrix QC
      */
     private float weightQC;
 
     /**
-     * 
+     * Weight of CoOccurrence Matrix QQ
      */
     private float weightQQ;
 
+    /**
+     * Factory that produces each SimplifyGraphStetegy
+     */
     private SimplifyGraphFactory simplifyGraphFactory;
 
+    /**
+     * Strategy used to simplify the Graph
+     */
     private SimplifyGraphStrategy graphStrategy;
 
+    /**
+     * Streategy used to calculate the Loss Function
+     */
     private LossFunctionStrategy lossStrategy;
 
+    /**
+     * Domain model of the ApplicationModel
+     */
     private DomainModel domainModel;
 
 
@@ -154,10 +167,14 @@ public class GraphManager {
         // TODO implement here
 
         //SETTARE il valore della lossFunction al massimo
-        int lossValue; // = infinito
+        int lossValue; // = infinito? o forse uno
         Graph bestGraph = null;
         //ITERARE per ogni SimplifyGraphType
+        for (SimplifyGraphType t : SimplifyGraphType.values()){
 
+
+
+        }
         //GENERARE la SimplifyGraphStrategy con la SimplifyGraphFactory passando il SimplifyGraphType
         //INVOCARE myBestSolution della ConcreteStrategy (che invocherà il suo simplifyGraph variando i suoi parametri)
         //CALCOLARE il lossValue utilizzando la lossFunction
