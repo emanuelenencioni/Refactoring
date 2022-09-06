@@ -90,7 +90,7 @@ public abstract class ApplicationAbstraction {
      * @param Entity e2 
      * @return
      */
-    protected float getCoValue(Type type, Entity e1, Entity e2) {
+    public float getCoValue(Type type, Entity e1, Entity e2) {
         return mapper.get(type).getValue(e1, e2);
     }
 
