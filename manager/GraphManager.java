@@ -242,4 +242,18 @@ public class GraphManager {
         this.weightQQ = weightQQ;
 
     }
+
+    public void setDomainModel(DomainModel domainModel){
+        //TODO metodo aggiunto quando non era ancora implementato il costruttore, per comodità di fare i test, una volta implementato il costruttore si può togliere
+
+        this.domainModel=domainModel;
+        
+    }
+
+    public Graph getGraph(){
+        //TODO metodo aggiunto per i test. Può essere utile avere un accesso al grafo dall'esterno? (forse createGraph() può ritornare il riferimento al grafo?)
+
+        return graph;
+
+    }
 }
