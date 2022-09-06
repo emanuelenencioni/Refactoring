@@ -34,6 +34,8 @@ public class GraphManager {
 
     // TODO : FARE COSTRUTTORE CON TUTTI GLI ATTRIBUTI IN INGRESSO
 
+    // TODO : FARE UN COSTRUTTORE CHE PRENDE IN INGRESSO UN GRAFO
+
 
     /**
      * Graph resulting from associations between entities in CoOccurrence Matrices
@@ -170,7 +172,7 @@ public class GraphManager {
         // TODO implement here
 
         //SETTARE il valore della lossFunction al massimo
-        float bestLossValue = 1.0f; // = infinito? o forse uno
+        float bestLossValue = Float.MAX_VALUE;
         float currentLossValue;
         Graph bestGraph = null;
         Graph currentGraph = new Graph();
@@ -184,10 +186,10 @@ public class GraphManager {
             currentGraph = s.myBestSolution(this.graph, lf);
 
             //CALCOLARE il lossValue utilizzando la lossFunction
-            currentLossValue = lossStrategy.lossFunction(this.graph, currentGraph); // TODO : lossStrategy.lossFunction(..) oppure lossFunction(..)?
+            currentLossValue = lossStrategy.lossFunction(this.graph, currentGraph);
 
             //CONFRONTARE il valore ottenuto con il lossValue attuale e sostituirlo in caso fosse migliore
-            if (currentLossValue < bestLossValue){ // TODO : eseguire confronto tra float con epsilon...
+            if (Float.compare(currentLossValue, bestLossValue) < 0){
                 bestGraph = currentGraph;
             }
 
@@ -202,11 +204,13 @@ public class GraphManager {
      * @param Graph sg 
      * @return return the loss value between GraphManager graph g and an other graph sg
      */
-    public float lossFunction(Graph g, Graph sg) { //TODO : forse è meglio eliminare graph g e far fare il confronto sempre con this.graph?
+    public float computeLossValue(Graph sg) { // TODO : SERVE O SI TOGLIE?? PENSARE A SimplifyAndCompute che fa tutto in automatico
         // TODO implement here
 
+        //TODO : controllare che i due grafi abbiano le stesse entità
+
         // INVOCARE lossFunction della Strategia di Loss settata e ritornare il suo valore
-        return lossStrategy.lossFunction(g, sg);
+        return lossStrategy.lossFunction(this.graph, sg);
     }
 
     /**
