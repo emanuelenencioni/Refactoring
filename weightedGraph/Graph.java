@@ -11,19 +11,19 @@ public class Graph {
 
     
     public Graph() {
-        vertex = new ArrayList<Vertex>();
-        edge = new ArrayList<Edge>();
+        vertexList = new ArrayList<Vertex>();
+        edgeList = new ArrayList<Edge>();
     }
 
     /**
      * 
      */
-    private ArrayList<Vertex> vertex;
+    private ArrayList<Vertex> vertexList;
 
     /**
      * 
      */
-    private ArrayList<Edge> edge;
+    private ArrayList<Edge> edgeList;
 
 
 
@@ -33,8 +33,8 @@ public class Graph {
      * if the graph already contains v, it is unchanged
      */
     public void addVertex(Vertex v) {
-        if (!vertex.contains(v))
-        vertex.add(v);
+        if (!vertexList.contains(v))
+        vertexList.add(v);
     }
 
     /**
@@ -44,11 +44,11 @@ public class Graph {
      * it is unchanged
      */
     public void addEdge(Edge e) {
-        if(!edge.contains(e)
+        if(!edgeList.contains(e)
            && !e.getVertex1().equals(e.getVertex2())
-           && vertex.contains(e.getVertex1())
-           && vertex.contains(e.getVertex2()))
-        edge.add(e);
+           && vertexList.contains(e.getVertex1())
+           && vertexList.contains(e.getVertex2()))
+        edgeList.add(e);
         e.getVertex1().addEdge(e);
         e.getVertex2().addEdge(e);
         }
@@ -61,11 +61,11 @@ public class Graph {
      * if v was connected to any edges, they are removed
      */
     public void removeVertex(Vertex v) {
-        if(vertex.contains(v)){
+        if(vertexList.contains(v)){
             ArrayList<Edge> n = new ArrayList<>(v.getNeighbour());
             for (Edge e : n)
                 removeEdge(e);
-            vertex.remove(v);
+            vertexList.remove(v);
         }
     }
 
@@ -74,23 +74,50 @@ public class Graph {
      * @return
      */
     public void removeEdge(Edge e) {
-        edge.remove(e);
+        edgeList.remove(e);
         e.getVertex1().removeEdge(e);
         e.getVertex2().removeEdge(e);
     }
 
-    public ArrayList<Edge> getEdge() {
-        return edge;
+    public ArrayList<Edge> getEdgeList() {
+        return edgeList;
     }
 
-    public ArrayList<Vertex> getVertex(){
-        return vertex;
+    public ArrayList<Vertex> getVertexList(){
+        return vertexList;
     }
 
-    public Vertex getVertex(Entity e){ // NECESSARIO PER COSTRUIRE IL GRAFO
+    /**
+     * @param Entity e
+     * @return vertex associated with e (that contains e)
+     * returns null if no vertex contains e
+     */
+
+    public Vertex getVertex(Entity e){
         
-        // TODO : ITERARE SULL'ARRAY DI VERTICI E RESTITUIRE IL VETTORE CORRISPONDENTE ALL'ENTITA' PRESA IN INGRESSO
-        return vertex.get(0); //PROVVISORIO
+        for (Vertex v : vertexList){
+            if (e.equals(v.getEntity()))
+                return v;
+        }
+        return null;
+    }
+
+    /**
+     * @param Vertex v
+     * @param Vertex w, order of the parameters does not matter
+     * @return edge that connects vertices v and w
+     * returns null if v and w are not connected
+     */  
+    public Edge getEdge(Vertex v, Vertex w){
+
+        for (Edge e : edgeList)
+            if (v.equals(e.getVertex1())||v.equals(e.getVertex2()))
+                if (e.getConnVertex(v).equals(w))
+                return e;
+            
+        
+        return null;
+
     }
 
 }
