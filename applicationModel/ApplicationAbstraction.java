@@ -74,7 +74,7 @@ public abstract class ApplicationAbstraction {
     /**
      * 
      */
-    protected abstract ArrayList<CoOccurrenceMatrix> buildCoMat(ArrayList<ApplicationAbstraction> aa);
+    public abstract ArrayList<CoOccurrenceMatrix> buildCoMat(ArrayList<ApplicationAbstraction> aa);
     /**
      * add a coValue to the correct matrix
      * @param Coupling c 
@@ -98,7 +98,7 @@ public abstract class ApplicationAbstraction {
      * @param Type type the type of the co-occurrency matrix
      * @return the mapper of the matrix
      */
-    public HashMap<Entity, Integer> getCoMapper(Type type) { //TODO : SERVE PUBLIC *******************************************************************
+    public HashMap<Entity, Integer> getCoMapper(Type type) {
         return mapper.get(type).getMapper();
     }
 
