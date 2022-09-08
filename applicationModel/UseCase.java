@@ -6,7 +6,7 @@ import java.util.*;
  * 
  */
 public class UseCase extends ApplicationAbstraction {
-
+    //TODO aggiungere alle varie classi derivate, chiamate a buildMatrices automatiche quando possibile (costruttore o passaggio di lista)
     /**
      * 
      * @param id the id of the use case
@@ -27,12 +27,14 @@ public class UseCase extends ApplicationAbstraction {
      * @param id the id of the use case
      * @param f the frequency of the use case
      * @param aa list of  End Points
+     * 
      */
     public UseCase(String id, float f, ArrayList<EndPoint> epl){
         this(id,f);
         this.endPointList = new ArrayList<EndPoint>();
         for(int i = 0; i< epl.size(); i++)
             this.endPointList.add(epl.get(i));
+        
     }
 
     /**
@@ -41,10 +43,12 @@ public class UseCase extends ApplicationAbstraction {
      * @param f the frequency of the use case
      * @param aa list of  End Points
      * @param strat the strategy to build the matrices
+     * automatically creates the matrices
      */
     public UseCase(String id, float f,ArrayList<EndPoint> epl, BuildCoMatStrategy strat){
         this(id,f,epl);
         this.strategy = strat;
+        buildMatrices();
     }
 
     /**
@@ -83,7 +87,7 @@ public class UseCase extends ApplicationAbstraction {
      * 
      * @return the list of endpoint objects
      */
-    public ArrayList<EndPoint> getEndpointList(){ //TODO forse conviene metterle abstract in ApplicationAbstraction
+    public ArrayList<EndPoint> getEndpointList(){ 
         return this.endPointList;
     }
 
@@ -102,7 +106,7 @@ public class UseCase extends ApplicationAbstraction {
      * 
      */
    @Override
-   protected ArrayList<CoOccurrenceMatrix> buildCoMat(ArrayList<ApplicationAbstraction> aa) {//TODO serve davvero?
+   public ArrayList<CoOccurrenceMatrix> buildCoMat(ArrayList<ApplicationAbstraction> aa) {//TODO serve davvero?
        return strategy.buildCoMat(aa);
    }
 

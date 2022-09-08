@@ -31,10 +31,12 @@ public class BusinessLogic extends ApplicationAbstraction {
      * @param id
      * @param ucl
      * @param strat
+     * automatically build matrices
      */
     public BusinessLogic(String id, ArrayList<UseCase> ucl, BuildCoMatStrategy strat) {
         this(id, ucl);
         this.strategy = strat;
+        buildMatrices();
     }
 
 
@@ -50,7 +52,7 @@ public class BusinessLogic extends ApplicationAbstraction {
     }
    
     @Override
-    protected ArrayList<CoOccurrenceMatrix> buildCoMat(ArrayList<ApplicationAbstraction> aa){ //TODO serve davvero?
+    public ArrayList<CoOccurrenceMatrix> buildCoMat(ArrayList<ApplicationAbstraction> aa){ //TODO serve davvero?
             return strategy.buildCoMat(aa);
     }
 
