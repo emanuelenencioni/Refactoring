@@ -10,11 +10,10 @@ public abstract class ApplicationAbstraction {
     /**
      * Default constructor
      */
-    public ApplicationAbstraction(String id, float f,BuildCoMatStrategy strategy) {
+    public ApplicationAbstraction(String id, float f) {
         mapper = new HashMap<Type, CoOccurrenceMatrix>();
         this.ID = id;
         this.frequency = f;
-        this.strategy = strategy;
     }
 
     /**
@@ -53,28 +52,7 @@ public abstract class ApplicationAbstraction {
     public HashMap<Type, CoOccurrenceMatrix>getMapper(){
         return mapper;
     }
-
-    /**
-     * function that set the new strategy
-     * @param strat the new strategy
-     */
-    public void setStrategy(BuildCoMatStrategy strat){
-        this.strategy = strat;
-    }
-
-    /**
-     * 
-     * @return the strategy
-     */
-    public BuildCoMatStrategy getStrategy(){
-        return strategy;
-    }
-        
-
-    /**
-     * 
-     */
-    public abstract ArrayList<CoOccurrenceMatrix> buildCoMat(ArrayList<ApplicationAbstraction> aa);
+ 
     /**
      * add a coValue to the correct matrix
      * @param Coupling c 
@@ -105,7 +83,7 @@ public abstract class ApplicationAbstraction {
     /**
      * mapper to map type with the cooccurrence matrix
      */
-    protected HashMap<Type, CoOccurrenceMatrix> mapper; // TODO : PERCHE' PROTECTED? SERVE? O SI PUO' METTERE PRIVATE?
+    protected HashMap<Type, CoOccurrenceMatrix> mapper; 
     /**
      * frequency of the ApplicationAbstraction
      */
@@ -114,5 +92,4 @@ public abstract class ApplicationAbstraction {
      * 
      */
     private String ID;
-    protected BuildCoMatStrategy strategy; //TODO è ok metterlo protected?
 }

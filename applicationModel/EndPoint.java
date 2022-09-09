@@ -15,7 +15,7 @@ public class EndPoint extends ApplicationAbstraction {
      * automatically creates the matrices
      */
     public EndPoint(ArrayList<Coupling> cl, String ID, float freq){
-        super(ID, freq, null);
+        super(ID, freq);
         this.coupList = new ArrayList<Coupling>();
         for(int i = 0; i< cl.size(); i++)
             this.coupList.add(cl.get(i));
@@ -67,10 +67,6 @@ public class EndPoint extends ApplicationAbstraction {
         return coupList.remove(idx);
     }
 
-    @Override
-    public ArrayList<CoOccurrenceMatrix> buildCoMat(ArrayList<ApplicationAbstraction> aa) {
-        return null;
-    }
     /**
      * coupling list 
      */

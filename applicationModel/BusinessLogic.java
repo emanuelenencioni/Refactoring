@@ -12,7 +12,7 @@ public class BusinessLogic extends ApplicationAbstraction {
      * @param id the id of the Business Logic
      */
     public BusinessLogic(String id) {
-        super(id, 1, null);
+        super(id, 1);
     }
 
     /**
@@ -42,19 +42,25 @@ public class BusinessLogic extends ApplicationAbstraction {
 
     @Override
     public void buildMatrices() {
-        ArrayList<ApplicationAbstraction> aa = new ArrayList<>();
-        for (UseCase uc : useCaseList) {
-            aa.add(uc);
+        if(useCaseList.size() > 0 && strategy != null){
+            ArrayList<ApplicationAbstraction> aa = new ArrayList<>();
+            for (UseCase uc : useCaseList) {
+                aa.add(uc);
+            }
+            for(CoOccurrenceMatrix coc : strategy.buildCoMat(aa))
+                this.mapper.put(coc.getType(), coc);
         }
-        ArrayList<CoOccurrenceMatrix>  list = buildCoMat(aa);
-        for(CoOccurrenceMatrix coc : list)
-            this.mapper.put(coc.getType(), coc);
-    }
-   
-    @Override
-    public ArrayList<CoOccurrenceMatrix> buildCoMat(ArrayList<ApplicationAbstraction> aa){ //TODO serve davvero?
-            return strategy.buildCoMat(aa);
     }
 
+    /**
+     * function that set the new strategy to build the matrices
+     * @param s the new strategy
+     */
+    public void setStrategy(BuildCoMatStrategy s){
+        this.strategy = s;
+    }
+
+
     ArrayList<UseCase> useCaseList;
+    BuildCoMatStrategy strategy;
 }

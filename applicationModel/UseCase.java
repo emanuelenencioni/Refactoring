@@ -12,7 +12,7 @@ public class UseCase extends ApplicationAbstraction {
      * @param id the id of the use case
      */
     public UseCase(String id){
-        super(id, 1, null);
+        super(id, 1);
     }
     /**
      * 
@@ -20,7 +20,7 @@ public class UseCase extends ApplicationAbstraction {
      * @param f the frequency of the use case
      */
     public UseCase(String id, float f) {
-        super(id, f, null);
+        super(id, f);
     }
     /**
      * 
@@ -72,6 +72,14 @@ public class UseCase extends ApplicationAbstraction {
     }
 
     /**
+     * function that set the new strategy to build the matrices
+     * @param s the new strategy
+     */
+    public void setStrategy(BuildCoMatStrategy s){
+        this.strategy = s;
+    }
+
+    /**
      * function that remove an endpoint object from the list
      * @param idx the index of the endpoint object
      * @return the endpount object removed
@@ -93,22 +101,17 @@ public class UseCase extends ApplicationAbstraction {
 
     @Override
     public void buildMatrices() {
-        ArrayList<ApplicationAbstraction> aa = new ArrayList<>();
-        for (EndPoint ep : endPointList) {
-            aa.add(ep);
+        if(endPointList.size() > 0 && strategy != null){
+            ArrayList<ApplicationAbstraction> aa = new ArrayList<>();
+            for (EndPoint ep : endPointList) {
+                aa.add(ep);
+            }
+            for(CoOccurrenceMatrix coc : strategy.buildCoMat(aa))
+                this.mapper.put(coc.getType(), coc);
         }
-        ArrayList<CoOccurrenceMatrix>  list = buildCoMat(aa);
-        for(CoOccurrenceMatrix coc : list)
-            this.mapper.put(coc.getType(), coc);
     }
 
-    /**
-     * 
-     */
-   @Override
-   public ArrayList<CoOccurrenceMatrix> buildCoMat(ArrayList<ApplicationAbstraction> aa) {//TODO serve davvero?
-       return strategy.buildCoMat(aa);
-   }
 
    private ArrayList<EndPoint> endPointList; 
+   private BuildCoMatStrategy strategy;
 }
