@@ -43,6 +43,11 @@ public class GraphManager {
     private Graph graph;
 
     /**
+     * Here is stored the result of the simplification function called (simplifyGraph/myBestSolution/findBestSolution)
+     */
+    private Graph simplifiedGraph;
+
+    /**
      * Container of the CoOccurrence Matrices used to build the graph
      */
     private ApplicationAbstraction matContainer;
@@ -93,7 +98,7 @@ public class GraphManager {
      * Create graph from the list of Co-Occurrence matrixes given in ApplicationAbstraction matContainer
      * @return true if graph has been created, false if matContainer is not set
      */
-    public boolean createGraph() {
+    private boolean createGraph() {
         // TODO implement here
         if (matContainer == null)
             return false;
@@ -149,28 +154,20 @@ public class GraphManager {
     }
 
     /**
-     * Call simplifyGraph of the Strategy set, passing the Graph as a parameter
-     * @return return the simplified graph
-     */
-    public Graph simplifyGraph() {
-        // TODO implement here
-
-        if (graphStrategy == null)
-            return null;
-        
-        //INVOCARE simplifyGraph usando la graphStrategy preimpostata
-        return graphStrategy.simplifyGraph(this.graph); //RETURN il grafo restituito dalla funzione simplifyGraph
-    }
-
-    /**
      * Find the best Graph cut that minimize the loss value
      * @param Graph g 
      * @param LossFunctionStrategy lf 
      * @return return the Graph that minimize the loss value
      */
-    public Graph findBestSolution(LossFunctionStrategy lf) {
+    public Float findBestSolution() {
         // TODO implement here
 
+        if (this.graphStrategy == null)
+            return null;
+
+        if (this.graph == null)
+            return null;
+        
         //SETTARE il valore della lossFunction al massimo
         float bestLossValue = Float.MAX_VALUE;
         float currentLossValue;
@@ -183,7 +180,7 @@ public class GraphManager {
             SimplifyGraphStrategy s = simplifyGraphFactory.createSimplifyGraphStrategy(t);
 
             //INVOCARE myBestSolution della ConcreteStrategy (che invocherà il suo simplifyGraph variando i suoi parametri)
-            currentGraph = s.myBestSolution(this.graph, lf);
+            currentGraph = s.myBestSolution(this.graph, this.lossStrategy);
 
             //CALCOLARE il lossValue utilizzando la lossFunction
             currentLossValue = lossStrategy.lossFunction(this.graph, currentGraph);
@@ -191,26 +188,36 @@ public class GraphManager {
             //CONFRONTARE il valore ottenuto con il lossValue attuale e sostituirlo in caso fosse migliore
             if (Float.compare(currentLossValue, bestLossValue) < 0){
                 bestGraph = currentGraph;
+                bestLossValue = currentLossValue;
             }
 
         }
 
-        return bestGraph;
+        this.simplifiedGraph = bestGraph;
+
+        return bestLossValue;
     }
 
     /**
-     * Call the lossFunction of the LossFunctionStrategy set
+     * Simplify the graph using the SimplifyGraphStrategy set and return the loss value of this simplification
      * @param Graph g 
      * @param Graph sg 
      * @return return the loss value between GraphManager graph g and an other graph sg
      */
-    public float computeLossValue(Graph sg) { // TODO : SERVE O SI TOGLIE?? PENSARE A SimplifyAndCompute che fa tutto in automatico
+    public Float simplifyAndComputeLoss() {
         // TODO implement here
 
-        //TODO : controllare che i due grafi abbiano le stesse entità
+        if (this.graphStrategy == null)
+            return null;
+
+        if (this.graph == null)
+            return null;
+        
+        //INVOCARE simplifyGraph usando la graphStrategy preimpostata
+        this.simplifiedGraph = graphStrategy.simplifyGraph(this.graph); //RETURN il grafo restituito dalla funzione simplifyGraph
 
         // INVOCARE lossFunction della Strategia di Loss settata e ritornare il suo valore
-        return lossStrategy.lossFunction(this.graph, sg);
+        return lossStrategy.lossFunction(this.graph, this.simplifiedGraph);
     }
 
     /**
@@ -240,14 +247,23 @@ public class GraphManager {
      * @param LossFunctionStrategy lf 
      * @return
      */
-    public Graph myBestSolution(Graph g, LossFunctionStrategy lf) {
-        // TODO0 implement here
-        return null;
+    public Float myBestSolution() {
+        // TODO implement here
+
+        if (this.graphStrategy == null)
+            return null;
+
+        if (this.graph == null)
+            return null;
+
+        this.simplifiedGraph = this.graphStrategy.myBestSolution(this.graph, this.lossStrategy);
+        return this.lossStrategy.lossFunction(this.graph, this.simplifiedGraph);
     }
 
     public void setApplicationAbstraction(ApplicationAbstraction mc){
         
         this.matContainer = mc;
+        this.createGraph();
         return;
 
     }
@@ -273,6 +289,18 @@ public class GraphManager {
     public void setWeightQQ(float weightQQ){
 
         this.weightQQ = weightQQ;
+
+    }
+
+    public Graph getGraph(){
+
+        return this.graph;
+
+    }
+
+    public void setGraph(Graph g){
+
+        this.graph = g;
 
     }
 }
