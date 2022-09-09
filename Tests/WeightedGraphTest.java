@@ -18,7 +18,7 @@ public class WeightedGraphTest{
         Vertex v1 = new Vertex(e1);
         Vertex v2 = new Vertex(e2);
 
-        assertEquals(false,v1.equals(v2));
+        assertEquals(false, v1.equals(v2));
         v1 = new Vertex(e2);
         assertEquals(true, v1.equals(v2));
     }
@@ -39,6 +39,7 @@ public class WeightedGraphTest{
             edList.add(new Edge(i+1, vxList.get(i), vxList.get(i+5)));
         
         assertEquals(true, edList.get(0).getConnVertex(vxList.get(0)).equals(vxList.get(5)));
+        assertEquals(true, edList.get(0).getConnVertex(vxList.get(5)).equals(vxList.get(0)));
         assertNull(edList.get(0).getConnVertex(vxList.get(1)));
 
         assertEquals(false, edList.get(0).equals(edList.get(1)));
@@ -61,6 +62,8 @@ public class WeightedGraphTest{
             g.addVertex(vxList.get(i));
             
     }
+
+    assertEquals(vxList.get(0), g.getVertex(new Entity ("en0")));
     
     for (int i=0; i<vxList.size(); i++){
         for(int j=0; j<vxList.size(); j++){
@@ -71,28 +74,29 @@ public class WeightedGraphTest{
 
     for (Edge e : edList)
         g.addEdge(e);
-    
-    assertEquals(6, g.getEdge().size());
-    assertEquals(4, g.getVertex().size());
 
-    int eSize = g.getEdge().size();
-    int vSize = g.getVertex().size();
+    assertEquals(6, g.getEdgeList().size());
+    assertEquals(4, g.getVertexList().size());
+    
+
+    int eSize = g.getEdgeList().size();
+    int vSize = g.getVertexList().size();
 
     g.addVertex(new Vertex(new Entity("en0")));
     g.addEdge(new Edge(1, vxList.get(1), vxList.get(0)));
     g.addEdge(new Edge(1, vxList.get(0), vxList.get(0)));
     g.addEdge(new Edge(1, vxList.get(0), new Vertex(new Entity("entity"))));
 
-    assertEquals(vSize, g.getVertex().size());
-    assertEquals(eSize, g.getEdge().size());
+    assertEquals(vSize, g.getVertexList().size());
+    assertEquals(eSize, g.getEdgeList().size());
 
     g.removeEdge(edList.get(0));
 
-    assertEquals(eSize-1, g.getEdge().size());
+    assertEquals(eSize-1, g.getEdgeList().size());
     g.removeVertex(vxList.get(0));
 
-    assertFalse(g.getVertex().contains(vxList.get(0)));
-    assertEquals(eSize-3, g.getEdge().size());
+    assertFalse(g.getVertexList().contains(vxList.get(0)));
+    assertEquals(eSize-3, g.getEdgeList().size());
       
     }
 

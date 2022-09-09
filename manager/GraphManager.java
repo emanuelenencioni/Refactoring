@@ -303,4 +303,11 @@ public class GraphManager {
         this.graph = g;
 
     }
+
+    public void setDomainModel(DomainModel domainModel){
+
+        this.domainModel=domainModel;
+        
+    }
+
 }

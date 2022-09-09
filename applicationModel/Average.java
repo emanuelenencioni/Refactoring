@@ -38,7 +38,7 @@ public class Average implements BuildCoMatStrategy {
                     for(int j=0; j< entityList.length; j++){
                         int idx1 = (i+j)%entityList.length;
                         if(idx1!=i && app.getCoValue(type, entityList[i], entityList[idx1]) != 0.f){
-                            Coupling coupling = new Coupling(entityList[i], entityList[idx1], type, app.getCoValue(type, entityList[i], entityList[idx1]) * app.getFrequency()); //TODO verificare se bisogna moltiplicare per la frequenza solo quando si hanno più corrispondenze, o sempre.
+                            Coupling coupling = new Coupling(entityList[i], entityList[idx1], type, app.getCoValue(type, entityList[i], entityList[idx1]) * app.getFrequency());
                             
                             idx = checkCoupList(coupList, coupling); 
                             if(idx >= 0) //check if there is already a coupling in the list with the same entities, if true it sum the value to the previous one

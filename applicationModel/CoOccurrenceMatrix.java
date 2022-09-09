@@ -45,40 +45,40 @@ public class CoOccurrenceMatrix {
         }
     }
     /**
-     * add a coupling to the co-occurrence matrix
+     * add a coupling to the co-occurrence matrix only if they are the same type
      * @param Entity source the source of the coupling, row
      * @param Entity dest  destination of the coupling, column
      * @param value value of the coupling
      */
-    public void addCoValue(Entity source,Entity dest, float value) { //TODO non c'è il controllo del tipo, capire se è ok o no
-        int size = cOMatrix.length;
-        if(!isInMatrix(source))
-            mapper.put(source, size++);
-        
-        if(!isInMatrix(dest))
-            mapper.put(dest, size++);
-        if(size > cOMatrix.length){
-            float[][] x = cOMatrix.clone();
+    public void addCoValue(Type type, Entity source,Entity dest, float value) { 
+        if(type == this.type){    
+            int size = cOMatrix.length;
+            if(!isInMatrix(source))
+                mapper.put(source, size++);
             
-        
-            cOMatrix = new float[size][size];
-            for(int i = 0; i < x.length; i++){
-                for(int j = 0; j < x.length; j++){
-                    cOMatrix[i][j] = x[i][j];
+            if(!isInMatrix(dest))
+                mapper.put(dest, size++);
+            if(size > cOMatrix.length){
+                float[][] x = cOMatrix.clone();
+                
+            
+                cOMatrix = new float[size][size];
+                for(int i = 0; i < x.length; i++){
+                    for(int j = 0; j < x.length; j++){
+                        cOMatrix[i][j] = x[i][j];
+                    }
                 }
+            
             }
-        
+            cOMatrix[mapper.get(source)][mapper.get(dest)] = value;
         }
-        cOMatrix[mapper.get(source)][mapper.get(dest)] = value;
     }
     /**
-     * add a coupling to the co-occurrence matrix only if they are the same type
+     * add a coupling to the co-occurrence matrix 
      * @param c
      */
     public void addCoValue(Coupling c){
-        if(c.getType() == this.type){
-            addCoValue(c.getSrcEntity(), c.getDestEntity(), c.getCoOccurrence());
-        }
+        addCoValue(c.getType(), c.getSrcEntity(), c.getDestEntity(), c.getCoOccurrence());
     }
 
     /**

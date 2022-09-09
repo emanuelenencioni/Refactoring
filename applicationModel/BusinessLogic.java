@@ -8,28 +8,59 @@ import java.util.*;
 public class BusinessLogic extends ApplicationAbstraction {
 
     /**
-     * Default constructor
+     * 
+     * @param id the id of the Business Logic
      */
-    public BusinessLogic() {
+    public BusinessLogic(String id) {
+        super(id, 1);
     }
-
-
-
 
     /**
      * 
+     * @param id the id of the Business Logic
+     * @param ucl the array
      */
-    public void buildCoMat(ArrayList<UseCase> uc): ArrayList<CoOccurrenceMatrix>() {
-        // TODO implement here
+    public BusinessLogic(String id, ArrayList<UseCase> ucl) {
+        this(id);
+        for(int i = 0; i< ucl.size(); i++)
+            this.useCaseList.add(ucl.get(i));
     }
 
     /**
-     * @param BuildCoMatStrategyBL strategyId 
-     * @return
+     * 
+     * @param id
+     * @param ucl
+     * @param strat
+     * automatically build matrices
      */
-    public void setStrategy(void BuildCoMatStrategyBL strategyId) {
-        // TODO implement here
-        return null;
+    public BusinessLogic(String id, ArrayList<UseCase> ucl, BuildCoMatStrategy strat) {
+        this(id, ucl);
+        this.strategy = strat;
+        buildMatrices();
     }
 
+
+    @Override
+    public void buildMatrices() {
+        if(useCaseList.size() > 0 && strategy != null){
+            ArrayList<ApplicationAbstraction> aa = new ArrayList<>();
+            for (UseCase uc : useCaseList) {
+                aa.add(uc);
+            }
+            for(CoOccurrenceMatrix coc : strategy.buildCoMat(aa))
+                this.mapper.put(coc.getType(), coc);
+        }
+    }
+
+    /**
+     * function that set the new strategy to build the matrices
+     * @param s the new strategy
+     */
+    public void setStrategy(BuildCoMatStrategy s){
+        this.strategy = s;
+    }
+
+
+    ArrayList<UseCase> useCaseList;
+    BuildCoMatStrategy strategy;
 }
