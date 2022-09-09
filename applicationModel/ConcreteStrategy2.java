@@ -14,17 +14,13 @@ public class ConcreteStrategy2 implements BuildCoMatStrategy {
     }
 
     /**
+     * @return 
      * 
      */
-    public void buildCoMat(ArrayList<ApplicationAbstraction> aa)() {
+    public ArrayList<CoOccurrenceMatrix> buildCoMat(ArrayList<ApplicationAbstraction> aa) {
         // TODO implement here
     }
 
-    /**
-     * 
-     */
-    public void buildCoMat(ArrayList<ApplicationAbstraction> aa)() {
-        // TODO implement here
-    }
+    
 
 }
