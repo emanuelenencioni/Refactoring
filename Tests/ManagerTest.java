@@ -107,6 +107,36 @@ public class ManagerTest {
         assertEquals(0.5f, e03.getWeight(), 0.00005);
         
     }
-    
+
+    @Test
+    public void testSimplifyWithKruskal(){
+        SimplifyWithKruskal swk = new SimplifyWithKruskal();
+        ArrayList<Vertex> vl = new ArrayList<>();
+        ArrayList<Edge> el = new ArrayList<>();
+        for(int i = 0; i<5; i++){
+            vl.add(new Vertex(new Entity("E"+i)));
+        }
+        Edge e1 =  new Edge(0.15f, vl.get(0), vl.get(1));
+        Edge e2 =  new Edge(0.7f, vl.get(0), vl.get(2));
+        Edge e3 = new Edge(0.3f, vl.get(2), vl.get(3));
+        Edge e4 = new Edge(0.1f, vl.get(1), vl.get(3));
+        Edge e5 = new Edge(0.5f, vl.get(1), vl.get(4));
+        Edge e6 = new Edge(0.2f, vl.get(3), vl.get(4));
+        el.add(0,e1);
+        el.add(1,e2);
+        el.add(2,e3);
+        el.add(3,e4);
+        el.add(4,e5);
+        el.add(5,e6);
+
+        ArrayList<Edge> el2 = swk.KruskalAlgorithm(el, vl);
+        
+        assertEquals(true, el2.contains(e1));
+        assertEquals(false, el2.contains(e2));
+        assertEquals(true, el2.contains(e3));
+        assertEquals(true, el2.contains(e4));
+        assertEquals(false, el2.contains(e5));
+        assertEquals(true, el2.contains(e6));
+    }
     
 }
