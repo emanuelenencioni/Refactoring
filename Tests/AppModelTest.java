@@ -48,16 +48,16 @@ public class AppModelTest{
         assertNull(cm.getValue(el.get(0),new Entity("E10")));
 
         Entity z = new Entity("E30");
-        cm.addCoValue(el.get(0), z, 0.5f);
+        cm.addCoValue(Type.CC, el.get(0), z, 0.5f);
         
         float x1 = (float) cm.getValue(el.get(0), z);
         assertEquals(0.5,x1 , 0.00005f);
 
         Entity z1 = new Entity("E50");
         Entity y1 = new Entity("E60"); 
-        cm.addCoValue(z1,y1,0.7f);
+        cm.addCoValue(Type.CC, z1,y1,0.7f);
         assertEquals(0.7f,(float) cm.getValue(z1, y1), 0.00005);
-        cm.addCoValue(y1,z1,0.9f);
+        cm.addCoValue(Type.CC, y1,z1,0.9f);
         assertEquals(0.9f,(float) cm.getValue(y1, z1), 0.00005);
     }
 
