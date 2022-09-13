@@ -20,7 +20,4 @@ public class ConcreteStrategy2 implements BuildCoMatStrategy {
     public ArrayList<CoOccurrenceMatrix> buildCoMat(ArrayList<ApplicationAbstraction> aa) {
         // TODO implement here
     }
-
-    
-
 }
