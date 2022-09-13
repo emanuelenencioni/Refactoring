@@ -17,24 +17,69 @@ public class GraphManager {
      */
     public GraphManager() {
 
-        graph = new Graph();
-        matContainer = null;
+        this.graph = new Graph();
+        this.matContainer = null;
 
-        weightCC = 1;
-        weightCQ = 1;
-        weightQC = 1;
-        weightQQ = 1;
+        this.weightCC = 1;
+        this.weightCQ = 1;
+        this.weightQC = 1;
+        this.weightQQ = 1;
         
-        simplifyGraphFactory = new SimplifyGraphFactory();
+        this.simplifyGraphFactory = new SimplifyGraphFactory();
 
-        graphStrategy = null;
-        lossStrategy = null;
+        this.graphStrategy = null;
+        this.lossStrategy = null;
+        this.domainModel = null;
+        this.simplifiedGraph = null;
 
     }
 
-    // TODO : FARE COSTRUTTORE CON TUTTI GLI ATTRIBUTI IN INGRESSO
 
-    // TODO : FARE UN COSTRUTTORE CHE PRENDE IN INGRESSO UN GRAFO
+    /**
+     * Constructor that receives all attributes
+     */
+    public GraphManager(ApplicationAbstraction mc, float wCC, float wCQ, float wQC, float wQQ, SimplifyGraphStrategy sgs, LossFunctionStrategy lfs, DomainModel dm){
+
+        this.domainModel = dm;
+        this.matContainer = mc;
+        this.weightCC = wCC;
+        this.weightCQ = wCQ;
+        this.weightQC = wQC;
+        this.weightQQ = wQQ;
+        this.graphStrategy = sgs;
+        this.lossStrategy = lfs;
+
+        if(!createGraph()){
+            this.graph = null;
+        }
+
+        this.simplifyGraphFactory = new SimplifyGraphFactory();
+
+        this.simplifiedGraph = null;
+
+    }
+
+    /**
+     * Constructor that receives a graph
+     */
+    public GraphManager(Graph g){
+
+        this.graph = g;
+
+        this.matContainer = null;
+        this.graphStrategy = null;
+        this.lossStrategy = null;
+        this.domainModel = null;
+        this.simplifiedGraph = null;
+
+        this.weightCC = 1;
+        this.weightCQ = 1;
+        this.weightQC = 1;
+        this.weightQQ = 1;
+        
+        this.simplifyGraphFactory = new SimplifyGraphFactory();
+
+    }
 
 
     /**
@@ -96,20 +141,23 @@ public class GraphManager {
 
     /**
      * Create graph from the list of Co-Occurrence matrixes given in ApplicationAbstraction matContainer
-     * @return true if graph has been created, false if matContainer is not set
+     * @return true if graph has been created, false if matContainer or domainModel is not set
      */
     private boolean createGraph() {
-        // TODO implement here
-        if (matContainer == null)
+        
+        if (this.matContainer == null)
+            return false;
+
+        if (this.domainModel == null)
             return false;
         
         // CREARE tutti i vertici scorrendo la lista delle entità
-        ArrayList<Entity> entitiesList = domainModel.getEntityList();
+        ArrayList<Entity> entitiesList = this.domainModel.getEntityList();
 
         for (Entity x : entitiesList){
 
             Vertex v = new Vertex(x);
-            graph.addVertex(v);
+            this.graph.addVertex(v);
 
         }
         
@@ -124,21 +172,21 @@ public class GraphManager {
 
             for (Entity c : entitiesList){
 
-                if(j > i){ // perché la matrice dev'essere triangolare
+                if(j > i){ // perché ad ogni iterazione si prende gli elementi a coppie riga-colonna, colonna-riga
 
 
                 
                 edgeWeight = //NUMERATORE
-                                (weightCC*(matContainer.getCoValue(Type.CC, r, c) + matContainer.getCoValue(Type.CC, c, r)) + 
-                                weightCQ*(matContainer.getCoValue(Type.CQ, r, c) + matContainer.getCoValue(Type.CQ, c, r)) + 
-                                weightQC*(matContainer.getCoValue(Type.QC, r, c) + matContainer.getCoValue(Type.QC, c, r)) + 
-                                weightQQ*(matContainer.getCoValue(Type.QQ, r, c) + matContainer.getCoValue(Type.QQ, c, r)))/(
+                                (this.weightCC*(this.matContainer.getCoValue(Type.CC, r, c) + this.matContainer.getCoValue(Type.CC, c, r)) + 
+                                this.weightCQ*(this.matContainer.getCoValue(Type.CQ, r, c) + this.matContainer.getCoValue(Type.CQ, c, r)) + 
+                                this.weightQC*(this.matContainer.getCoValue(Type.QC, r, c) + this.matContainer.getCoValue(Type.QC, c, r)) + 
+                                this.weightQQ*(this.matContainer.getCoValue(Type.QQ, r, c) + this.matContainer.getCoValue(Type.QQ, c, r)))/(
                                 //DENOMINATORE
-                                2*weightCC + 2*weightCQ + 2*weightQC + 2*weightQQ
+                                2*this.weightCC + 2*this.weightCQ + 2*this.weightQC + 2*this.weightQQ
                                 );
 
-                Edge e = new Edge(edgeWeight, graph.getVertex(r), graph.getVertex(c));
-                graph.addEdge(e);
+                Edge e = new Edge(edgeWeight, this.graph.getVertex(r), this.graph.getVertex(c));
+                this.graph.addEdge(e);
 
                 }
                 
@@ -154,13 +202,10 @@ public class GraphManager {
     }
 
     /**
-     * Find the best Graph cut that minimize the loss value
-     * @param Graph g 
-     * @param LossFunctionStrategy lf 
-     * @return return the Graph that minimize the loss value
+     * Find the best Graph cut that minimizes the loss value and save the best graph in simplifiedGraph attribute
+     * @return return the loss value of the best graph cut
      */
     public Float findBestSolution() {
-        // TODO implement here
 
         if (this.graphStrategy == null)
             return null;
@@ -177,13 +222,13 @@ public class GraphManager {
         for (SimplifyGraphType t : SimplifyGraphType.values()){
 
             //GENERARE la SimplifyGraphStrategy con la SimplifyGraphFactory passando il SimplifyGraphType
-            SimplifyGraphStrategy s = simplifyGraphFactory.createSimplifyGraphStrategy(t);
+            SimplifyGraphStrategy s = this.simplifyGraphFactory.createSimplifyGraphStrategy(t);
 
             //INVOCARE myBestSolution della ConcreteStrategy (che invocherà il suo simplifyGraph variando i suoi parametri)
             currentGraph = s.myBestSolution(this.graph, this.lossStrategy);
 
             //CALCOLARE il lossValue utilizzando la lossFunction
-            currentLossValue = lossStrategy.lossFunction(this.graph, currentGraph);
+            currentLossValue = this.lossStrategy.lossFunction(this.graph, currentGraph);
 
             //CONFRONTARE il valore ottenuto con il lossValue attuale e sostituirlo in caso fosse migliore
             if (Float.compare(currentLossValue, bestLossValue) < 0){
@@ -199,13 +244,10 @@ public class GraphManager {
     }
 
     /**
-     * Simplify the graph using the SimplifyGraphStrategy set and return the loss value of this simplification
-     * @param Graph g 
-     * @param Graph sg 
-     * @return return the loss value between GraphManager graph g and an other graph sg
+     * Simplify the graph using the SimplifyGraphStrategy set and save the result in simplifiedGraph attribute
+     * @return return the loss value of the simplification made
      */
     public Float simplifyAndComputeLoss() {
-        // TODO implement here
 
         if (this.graphStrategy == null)
             return null;
@@ -214,41 +256,40 @@ public class GraphManager {
             return null;
         
         //INVOCARE simplifyGraph usando la graphStrategy preimpostata
-        this.simplifiedGraph = graphStrategy.simplifyGraph(this.graph); //RETURN il grafo restituito dalla funzione simplifyGraph
+        this.simplifiedGraph = this.graphStrategy.simplifyGraph(this.graph); //RETURN il grafo restituito dalla funzione simplifyGraph
 
         // INVOCARE lossFunction della Strategia di Loss settata e ritornare il suo valore
-        return lossStrategy.lossFunction(this.graph, this.simplifiedGraph);
+        return this.lossStrategy.lossFunction(this.graph, this.simplifiedGraph);
     }
 
     /**
+     * Set the Strategy to simplify the Graph
      * @param SimplifyGraphStrategy sgs 
-     * @return
      */
     public void setSimplifyGraphStrategy(SimplifyGraphStrategy sgs) {
-        // TODO implement here
+
         this.graphStrategy = sgs;
 
         return;
     }
 
     /**
+     * Set the Strategy to compute the loss value
      * @param LossFunctionStrategy lfs 
-     * @return
      */
     public void setLossFunctionStrategy(LossFunctionStrategy lfs) {
-        // TODO implement here
+
         this.lossStrategy = lfs;
 
         return;
     }
 
     /**
-     * @param Graph g 
-     * @param LossFunctionStrategy lf 
-     * @return
+     * Calculate the best graph cut for a specific SimplifyGraphStrategy set, varying the internal parameters of the Strategy 
+     * and save the best graph in the attribute simplifiedGraph
+     * @return the loss value for the best graph cut. Save the best graph in the attribute simplifiedGraph
      */
     public Float myBestSolution() {
-        // TODO implement here
 
         if (this.graphStrategy == null)
             return null;
@@ -260,6 +301,10 @@ public class GraphManager {
         return this.lossStrategy.lossFunction(this.graph, this.simplifiedGraph);
     }
 
+    /**
+     * Set the co-occurrence matrix container
+     * @param ApplicationAbstraction mc
+     */
     public void setApplicationAbstraction(ApplicationAbstraction mc){
         
         this.matContainer = mc;
@@ -268,45 +313,73 @@ public class GraphManager {
 
     }
 
-    public void setWeightCC(float weightCC){
+    /**
+     * Set the weight of co-occurrence matrix CC
+     * @param float wCC
+     */
+    public void setWeightCC(float wCC){
 
-        this.weightCC = weightCC;
+        this.weightCC = wCC;
 
     }
     
-    public void setWeightCQ(float weightCQ){
+    /**
+     * Set the weight of co-occurrence matrix CQ
+     * @param float wCQ
+     */
+    public void setWeightCQ(float wCQ){
 
-        this.weightCQ = weightCQ;
-
-    }
-
-    public void setWeightQC(float weightQC){
-
-        this.weightQC = weightQC;
+        this.weightCQ = wCQ;
 
     }
 
-    public void setWeightQQ(float weightQQ){
+    /**
+     * Set the weight of co-occurrence matrix QC
+     * @param float wQC
+     */
+    public void setWeightQC(float wQC){
 
-        this.weightQQ = weightQQ;
+        this.weightQC = wQC;
 
     }
 
+    /**
+     * Set the weight of co-occurrence matrix QQ
+     * @param float wQQ
+     */
+    public void setWeightQQ(float wQQ){
+
+        this.weightQQ = wQQ;
+
+    }
+
+    /**
+     * Get the GraphManager graph
+     * @return the GraphManager graph
+     */
     public Graph getGraph(){
 
         return this.graph;
 
     }
 
+    /**
+     * Set the GraphManager graph
+     * @param Graph g
+     */
     public void setGraph(Graph g){
 
         this.graph = g;
 
     }
 
-    public void setDomainModel(DomainModel domainModel){
+    /**
+     * Set the DomainModel
+     * @param DomainModel dm
+     */
+    public void setDomainModel(DomainModel dm){
 
-        this.domainModel=domainModel;
+        this.domainModel = dm;
         
     }
 
