@@ -11,6 +11,12 @@ public class Edge {
         this.vertex1 = v1;
         this.vertex2 = v2;
     }
+    
+    public Edge(Edge e){
+        this.vertex1 = new Vertex(e.getVertex1());
+        this.vertex2 = new Vertex(e.getVertex2());
+        this.weight = e.weight;
+    }
 
 
     /**

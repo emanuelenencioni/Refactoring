@@ -14,6 +14,15 @@ public class Vertex {
         neighbour = new ArrayList<Edge>();
     }
 
+    public Vertex(Vertex v){
+        this.entity = v.entity;
+        this.neighbour = new ArrayList<Edge>();   
+        for(Edge e : v.neighbour)
+
+            this.neighbour.add(new Edge(e));
+        this.entity = new Entity(v.entity);
+    }
+
     /**
      * @param Edge e 
      * @return
