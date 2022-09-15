@@ -13,7 +13,7 @@ public class SimplifyWithKruskal implements SimplifyGraphStrategy {
      */
     public SimplifyWithKruskal() {
         this.ms = new MergeSort();
-        this.max_entity_per_service = 3;
+        this.max_entity_per_service = 3; //to define
         this.numb_partition = 5;
     }
 
@@ -37,8 +37,27 @@ public class SimplifyWithKruskal implements SimplifyGraphStrategy {
 
     @Override
     public Graph myBestSolution(Graph g, LossFunctionStrategy lf) {
-        
-        return null;
+        float best = 1000;
+        Graph result = null;
+        float delta = 0;
+        int random = 0;
+        Double T = 0.;
+        Random rand = new Random();
+        for(int i = 1; i< 1000; i++){
+                result = simplifyGraph(g);
+                random = rand.nextInt(8);
+                T = this.schedule(i);
+                choosePath(random);
+                delta =  lf.lossFunction(g, result) - best;
+                if(delta < 0)
+                    best = lf.lossFunction(g, result);
+
+                else if(rand.nextDouble() <= Math.pow(Math.E, delta/T)){
+                    best = lf.lossFunction(g, result);
+                }
+                
+        }
+        return result;
     }
     
     public ArrayList<Edge> Kruskal(ArrayList<Edge>edgeList, ArrayList<Vertex> vertexList) {
@@ -218,10 +237,45 @@ public class SimplifyWithKruskal implements SimplifyGraphStrategy {
         return index;
     }
 
+    /**
+     * function used to change the value of the hyperparams of the algorithm
+     * @param route
+     */
+    private void choosePath(int route){
+        if(route == 0){
+            this.max_entity_per_service--;
+            this.numb_partition--;
+        }
+        else if(route == 1){
+            this.max_entity_per_service++;
+            
+        }
+        else if(route == 2){
+            this.numb_partition++;
+        }
+        else if(route == 3){
+            this.numb_partition--;
+        }
+        else if(route == 4){
+            this.max_entity_per_service--;
+        }
+        else if(route == 5){
+            this.max_entity_per_service++;
+            this.numb_partition--;
+        }
+        else if(route == 6){
+            this.max_entity_per_service--;
+            this.numb_partition++;
+        }
+        else if(route == 7){
+            this.max_entity_per_service++;
+            this.numb_partition++;
+        }
+    }
 
-
-
-
+    private Double schedule(int t){
+        return (this.T0/Math.log(t + alpha));
+    }
 
 
 
@@ -314,4 +368,6 @@ public class SimplifyWithKruskal implements SimplifyGraphStrategy {
     private MergeSort ms;
     private int numb_partition;
     private int max_entity_per_service;
+    private int T0;
+    private float alpha;
 }
