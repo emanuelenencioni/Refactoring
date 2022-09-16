@@ -141,11 +141,36 @@ public class ManagerTest {
         assertEquals(false, sg.getEdgeList().contains(e4));
         assertEquals(true, sg.getEdgeList().contains(e5));
         assertEquals(true, sg.getEdgeList().contains(e6));
+        
+        assertEquals(e2, sg.getVertexList().get(0).getNeighbour().get(0));
+        assertEquals(1,sg.getVertexList().get(0).getNeighbour().size());
+
+        assertEquals(e2, sg.getVertexList().get(2).getNeighbour().get(0));
+        assertEquals(2,sg.getVertexList().get(2).getNeighbour().size());
+
+        assertEquals(e3, sg.getVertexList().get(2).getNeighbour().get(1));
+        assertEquals(2,sg.getVertexList().get(2).getNeighbour().size());
+
+        assertEquals(e3, sg.getVertexList().get(3).getNeighbour().get(0));
+        assertEquals(2,sg.getVertexList().get(3).getNeighbour().size());
+
+        assertEquals(e5, sg.getVertexList().get(1).getNeighbour().get(0));
+        assertEquals(1,sg.getVertexList().get(1).getNeighbour().size());
+
+        assertEquals(e5, sg.getVertexList().get(4).getNeighbour().get(0));
+        assertEquals(2,sg.getVertexList().get(4).getNeighbour().size());
+
+        assertEquals(e6, sg.getVertexList().get(3).getNeighbour().get(1));
+        assertEquals(2,sg.getVertexList().get(3).getNeighbour().size());
+
+        assertEquals(e6, sg.getVertexList().get(4).getNeighbour().get(1));
+        assertEquals(2,sg.getVertexList().get(4).getNeighbour().size());
+
     }
 
     @Test
     public void simplifyWithKruskal(){
-        SimplifyWithKruskal swk = new SimplifyWithKruskal();
+        SimplifyWithKruskal swk = new SimplifyWithKruskal(3, 3);
         ArrayList<Vertex> vl = new ArrayList<>();
         ArrayList<Edge> el = new ArrayList<>();
         for(int i = 0; i<10; i++){
@@ -184,8 +209,31 @@ public class ManagerTest {
             g.addEdge(e);
         }
         Graph sg = swk.simplifyGraph(g);
-
-        // da finire
+    
+        assertEquals(true, contains(sg, el.get(0)));
+        assertEquals(true, contains(sg, el.get(1)));
+        assertEquals(true, contains(sg, el.get(2)));
+        assertEquals(false, contains(sg, el.get(3)));
+        assertEquals(false, contains(sg, el.get(4)));
+        assertEquals(true, contains(sg, el.get(5)));
+        assertEquals(true, contains(sg, el.get(6)));
+        assertEquals(false, contains(sg, el.get(7)));
+        assertEquals(true, contains(sg, el.get(8)));
+        assertEquals(false, contains(sg, el.get(9)));
+        assertEquals(false, contains(sg, el.get(10)));
+        assertEquals(false, contains(sg, el.get(11)));
+        assertEquals(true, contains(sg, el.get(12)));
+        assertEquals(false, contains(sg, el.get(13)));
+        assertEquals(true, contains(sg, el.get(14)));
     }
     
+
+    private boolean contains(Graph g, Edge e){
+        for(Edge e1 : g.getEdgeList()){
+            if(e1.equals(e)){
+                return true;
+            }
+        }
+        return false;
+    }
 }
