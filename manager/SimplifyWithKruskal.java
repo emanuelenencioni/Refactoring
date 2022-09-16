@@ -23,8 +23,8 @@ public class SimplifyWithKruskal implements SimplifyGraphStrategy {
      */
     public SimplifyWithKruskal(int n, int s) {
         this.ms = new MergeSort();
-        this.max_entity_per_service = 2; //to define
-        this.numb_partition = 3;
+        this.max_entity_per_service = s; //to define
+        this.numb_partition = n;
     }
 
     @Override
@@ -38,7 +38,8 @@ public class SimplifyWithKruskal implements SimplifyGraphStrategy {
             sg.removeEdge(sg.getEdgeList().get(0));
             n = depthFirstSearch(sg);
         }
-        return reduceCluster(sg, this.max_entity_per_service);
+        reAddEdge(g, reduceCluster(sg, this.max_entity_per_service));
+        return sg;
     }
 
     @Override
@@ -240,8 +241,39 @@ public class SimplifyWithKruskal implements SimplifyGraphStrategy {
                 DFSUtil(e.getConnVertex(v),visited);
         }
     }
- 
+    /**
+     * function that re-add the deleted edge from kruskal, mantaining the connected components splitted
+     * @param g
+     * @param sg
+     */
+    private void reAddEdge(Graph g, Graph sg){
+          // Mark all the vertices as not visited(set as
+        // false by default in java)
+        HashMap<Vertex, Boolean> visited = new HashMap<>();
+        HashMap<Vertex, Boolean> counted = new HashMap<>();
 
+        for(Vertex v : sg.getVertexList()){
+            visited.put(v, false);
+            counted.put(v, false);
+        }
+        
+        // Call the recursive helper function to print DFS traversal
+        // starting from all vertices one by one
+        for (Vertex v : sg.getVertexList())
+            if ( !visited.get(v)){
+                DFSUtil(v, visited);
+                for(Vertex v1 : visited.keySet())
+                    if(visited.get(v1) && !counted.get(v1)){
+                        counted.put(v1, true);
+                        for(Vertex v2 : visited.keySet())
+                            if(!v1.equals(v2) && !counted.get(v2) && visited.get(v2)){
+                                Edge e = g.getEdge(v1, v2);
+                                sg.addEdge(e);
+                                counted.put(v2, true);
+                            }
+                    }
+            }
+    }
 
 
     private int min(ArrayList<Edge> el){
