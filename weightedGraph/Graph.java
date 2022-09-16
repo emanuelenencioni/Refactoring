@@ -14,20 +14,16 @@ public class Graph {
         vertexList = new ArrayList<Vertex>();
         edgeList = new ArrayList<Edge>();
     }
-
-    public Graph(ArrayList<Vertex> vl, ArrayList<Edge> el){
-        this.vertexList = new ArrayList<Vertex>();
-        this.edgeList = new ArrayList<Edge>();
-        for(int i = 0; i < vl.size(); i++){
-            this.vertexList.add(new Vertex(vl.get(i)));
-        }
-        for(int i = 0; i < el.size(); i++){
-            this.edgeList.add(new Edge(el.get(i)));
-        }
-    }
     
     public Graph(Graph g){
-        this(g.vertexList, g.edgeList);
+        this.vertexList = new ArrayList<Vertex>();
+        this.edgeList = new ArrayList<Edge>();
+        for(int i = 0; i < g.getVertexList().size(); i++){
+            this.vertexList.add(new Vertex(g.getVertexList().get(i)));
+        }
+        for(int i = 0; i < g.getEdgeList().size(); i++){
+            this.edgeList.add(new Edge(getEdgeList().get(i)));
+        }
     }
 
     /**
