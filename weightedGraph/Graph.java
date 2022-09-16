@@ -14,15 +14,26 @@ public class Graph {
         vertexList = new ArrayList<Vertex>();
         edgeList = new ArrayList<Edge>();
     }
-    
+
     public Graph(Graph g){
         this.vertexList = new ArrayList<Vertex>();
         this.edgeList = new ArrayList<Edge>();
         for(int i = 0; i < g.getVertexList().size(); i++){
-            this.vertexList.add(new Vertex(g.getVertexList().get(i)));
+            addVertex(new Vertex(g.getVertexList().get(i).getEntity()));
+
         }
+        Vertex  v2 = null;
+        Vertex v1 = null;
         for(int i = 0; i < g.getEdgeList().size(); i++){
-            this.edgeList.add(new Edge(getEdgeList().get(i)));
+            for(Vertex v : vertexList){
+                if(v.equals(g.getEdgeList().get(i).getVertex1()))
+                    v1 = v;
+                
+                if(v.equals(g.getEdgeList().get(i).getVertex2()))
+                    v2 = v;
+            }
+            if(v1 != null && v2 != null)
+                addEdge(new Edge(g.getEdgeList().get(i).getWeight(), v1, v2));
         }
     }
 
@@ -45,7 +56,7 @@ public class Graph {
      */
     public void addVertex(Vertex v) {
         if (!vertexList.contains(v))
-        vertexList.add(v);
+            vertexList.add(v);
     }
 
     /**
@@ -59,9 +70,9 @@ public class Graph {
            && !e.getVertex1().equals(e.getVertex2())
            && vertexList.contains(e.getVertex1())
            && vertexList.contains(e.getVertex2()))
-        edgeList.add(e);
-        e.getVertex1().addEdge(e);
-        e.getVertex2().addEdge(e);
+            edgeList.add(e);
+            e.getVertex1().addEdge(e);
+            e.getVertex2().addEdge(e);
         }
     
     
