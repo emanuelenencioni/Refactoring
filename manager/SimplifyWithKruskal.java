@@ -20,10 +20,9 @@ public class SimplifyWithKruskal implements SimplifyGraphStrategy {
     @Override
     public Graph simplifyGraph(Graph g) {
         Graph sg = Kruskal(g);
-        ArrayList<Vertex> vList = new ArrayList<>();
         
         ms.sort(sg.getEdgeList(), 0, sg.getEdgeList().size()-1);
-        reverse(sg.getEdgeList());
+        
         int n = 1;
         while(n<= numb_partition) {
             sg.removeEdge(sg.getEdgeList().get(0));
@@ -81,10 +80,21 @@ public class SimplifyWithKruskal implements SimplifyGraphStrategy {
         }
         Graph sg = new Graph();
         for(Vertex v : g.getVertexList()){
-            sg.addVertex(v);
+            Vertex v1 = new Vertex(v.getEntity());
+            sg.addVertex(v1);
         }
-        for(Edge e : fel){
-            sg.addEdge(e);
+        Vertex v1 = null;
+        Vertex v2 = null;
+        for(int i = 0; i < fel.size(); i++){
+            for(Vertex v : sg.getVertexList()){
+                if(v.equals(fel.get(i).getVertex1()))
+                    v1 = v;
+                
+                if(v.equals(fel.get(i).getVertex2()))
+                    v2 = v;
+            }
+            if(v1 != null && v2 != null)
+                sg.addEdge(new Edge(fel.get(i).getWeight(), v1, v2));
         }
         return sg;
       }
@@ -166,7 +176,7 @@ public class SimplifyWithKruskal implements SimplifyGraphStrategy {
         for (Vertex v : g.getVertexList())
             if ( !visited.get(v)){
                 DFSUtil(v, visited);
-                count +=1;
+                count ++;
             }
         return count;
     }
@@ -182,12 +192,12 @@ public class SimplifyWithKruskal implements SimplifyGraphStrategy {
         // false by default in java)
         HashMap<Vertex, Boolean> visited = new HashMap<>();
         HashMap<Vertex, Integer> counter = new HashMap<>();
-        
+        HashMap<Vertex, Boolean> counted = new HashMap<>();
         int count = 0;
 
         for(Vertex v : g.getVertexList()){
             visited.put(v, false);
-            
+            counted.put(v, false);
         }
         
         // Call the recursive helper function to print DFS traversal
@@ -195,13 +205,14 @@ public class SimplifyWithKruskal implements SimplifyGraphStrategy {
         for (Vertex v : g.getVertexList())
             if ( !visited.get(v)){
                 DFSUtil(v, visited);
-                for(Vertex v1 : visited.keySet()){
-                    if(visited.get(v1))
+                for(Vertex v1 : visited.keySet())
+                    if(visited.get(v1) && !counted.get(v1)){
                         count++;
-
-                    counter.put(v, count);
-                    count = 0;
-                }
+                        counted.put(v1, true);
+                    }
+                
+                counter.put(v, count);
+                count = 0;
             }
         return counter;
     }
