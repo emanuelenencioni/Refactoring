@@ -13,7 +13,17 @@ public class SimplifyWithKruskal implements SimplifyGraphStrategy {
      */
     public SimplifyWithKruskal() {
         this.ms = new MergeSort();
-        this.max_entity_per_service = 3; //to define
+        this.max_entity_per_service = 5; 
+        this.numb_partition = 4; //TODO da discutere, varia molto a seconda del progetto, magari mettere un valore che dipende da quante entità si hanno in gioco?
+    }
+    /**
+     * constructor fot test for deciding the params
+     * @param n number of partition
+     * @param s max entity per partition
+     */
+    public SimplifyWithKruskal(int n, int s) {
+        this.ms = new MergeSort();
+        this.max_entity_per_service = 2; //to define
         this.numb_partition = 3;
     }
 
@@ -110,10 +120,6 @@ public class SimplifyWithKruskal implements SimplifyGraphStrategy {
                         value = counter.get(v);
                         Edge e = eList.remove(min(eList));  //we delete the less significative edge
                         sg.removeEdge(e);
-                        Vertex v1 = e.getVertex1();
-                        Vertex v2 = e.getVertex2();
-                        v1.removeEdge(e);
-                        v2.removeEdge(e);
                         e.getVertex2().removeEdge(e);
                         counter = DFSCounter(sg);
                         if(counter.get(v) == value){
