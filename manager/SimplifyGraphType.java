@@ -4,6 +4,6 @@ package manager;
  * 
  */
 public enum SimplifyGraphType {
-    ConcreteStrategy1,
+    MSTClustering,
     ConcreteStrategy2
 }

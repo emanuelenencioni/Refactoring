@@ -6,12 +6,12 @@ import weightedGraph.*;
 /**
  * 
  */
-public class SimplifyWithKruskal implements SimplifyGraphStrategy {
+public class MSTClustering implements SimplifyGraphStrategy {
 
     /**
      * Default constructor
      */
-    public SimplifyWithKruskal() {
+    public MSTClustering() {
         this.ms = new MergeSort();
         this.max_entity_per_service = 5; 
         this.numb_partition = 4; //TODO da discutere, varia molto a seconda del progetto, magari mettere un valore che dipende da quante entità si hanno in gioco?
@@ -21,7 +21,7 @@ public class SimplifyWithKruskal implements SimplifyGraphStrategy {
      * @param n number of partition
      * @param s max entity per partition
      */
-    public SimplifyWithKruskal(int n, int s) {
+    public MSTClustering(int n, int s) {
         this.ms = new MergeSort();
         this.max_entity_per_service = s; //to define
         this.numb_partition = n;

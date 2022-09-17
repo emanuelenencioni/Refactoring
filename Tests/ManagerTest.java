@@ -110,7 +110,7 @@ public class ManagerTest {
 
     @Test
     public void testKruskal(){
-        SimplifyWithKruskal swk = new SimplifyWithKruskal();
+        MSTClustering swk = new MSTClustering();
         ArrayList<Vertex> vl = new ArrayList<>();
         ArrayList<Edge> el = new ArrayList<>();
         for(int i = 0; i<5; i++){
@@ -170,7 +170,7 @@ public class ManagerTest {
 
     @Test
     public void simplifyWithKruskal(){
-        SimplifyWithKruskal swk = new SimplifyWithKruskal(3, 3);
+        MSTClustering swk = new MSTClustering(3, 3);
         ArrayList<Vertex> vl = new ArrayList<>();
         ArrayList<Edge> el = new ArrayList<>();
         for(int i = 0; i<10; i++){
