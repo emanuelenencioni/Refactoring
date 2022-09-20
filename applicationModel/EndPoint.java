@@ -21,12 +21,28 @@ public class EndPoint extends ApplicationAbstraction {
             this.coupList.add(cl.get(i));
         buildMatrices();
     }
+    
+    /**
+     * 
+     * @param ID
+     * @param freq
+     */
+    public EndPoint(String ID, float freq){
+        super(ID, freq);
+        this.coupList = new ArrayList<Coupling>();
+    }
 
     /**
      * Function that build the co occurrence matrices from the coupling list
      */
     @Override
-    public void buildMatrices() {
+    public void buildMatrices(){
+        try{
+            checkList();
+        }catch(Exception ex){
+            System.err.println("Error - 2 coupling with same Entities with different value in the list");
+        }
+        
         for (Type type : Type.values()) {
             ArrayList<Coupling> cl = new ArrayList<Coupling>();
             for(int i = 0; i < coupList.size(); i++){
@@ -44,7 +60,13 @@ public class EndPoint extends ApplicationAbstraction {
      * @param c the coupling to append
      */
     public void addCoupling(Coupling c){
-        coupList.add(c);
+        int count = 0;
+        for(Coupling c1 : coupList)
+            if(c1.hasSameEntities(c))
+                count++;
+                
+        if(count == 0)
+            coupList.add(c);
     }
 
     /**
@@ -66,10 +88,29 @@ public class EndPoint extends ApplicationAbstraction {
     public Coupling removeCoupling(int idx){
         return coupList.remove(idx);
     }
+   /**
+    * function that check if there are double couplings or if there are more cuupling with different coupling value
+    * @throws CouplingException exception that means there are 2 coupling with different value of coupling in the list
+    */
+    private void checkList() throws CouplingException{
+        for(int i = 0; i< coupList.size(); i++){
+            for(int j = 0; j< coupList.size(); j++){
+                if(i != j){
+                    if(coupList.get(i).equals(coupList.get(j))){
+                        coupList.remove(coupList.get(j));
+                        j--;
+                    }
+                    if(coupList.get(i).hasSameEntitiesAndType(coupList.get(j)))
+                        throw new CouplingException();
+                }
+            }
+        }
+    }
 
     /**
      * coupling list 
      */
     private ArrayList<Coupling> coupList; 
+
 
 }
