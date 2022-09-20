@@ -15,6 +15,8 @@ public class MSTClustering implements SimplifyGraphStrategy {
         this.ms = new MergeSort();
         this.max_entity_per_service = 5; 
         this.numb_partition = 4; //TODO da discutere, varia molto a seconda del progetto, magari mettere un valore che dipende da quante entità si hanno in gioco?
+        this.T0 = 1000;
+        this.alpha = 1;
     }
     /**
      * constructor fot test for deciding the params
@@ -25,6 +27,8 @@ public class MSTClustering implements SimplifyGraphStrategy {
         this.ms = new MergeSort();
         this.max_entity_per_service = s; //to define
         this.numb_partition = n;
+        this.T0 = 1000;
+        this.alpha = 1;
     }
 
     @Override
@@ -34,7 +38,7 @@ public class MSTClustering implements SimplifyGraphStrategy {
         ms.sort(sg.getEdgeList(), 0, sg.getEdgeList().size()-1);
         
         int n = 1;
-        while(n<= numb_partition) {
+        while(n< numb_partition) {
             sg.removeEdge(sg.getEdgeList().get(0));
             n = depthFirstSearch(sg);
         }
@@ -54,7 +58,7 @@ public class MSTClustering implements SimplifyGraphStrategy {
                 result = simplifyGraph(g);
                 random = rand.nextInt(8);
                 T = this.schedule(i);
-                choosePath(random);
+                choosePath(random, g);
                 delta =  lf.lossFunction(g, result) - best;
                 if(delta < 0)
                     best = lf.lossFunction(g, result);
@@ -268,8 +272,10 @@ public class MSTClustering implements SimplifyGraphStrategy {
                         for(Vertex v2 : visited.keySet())
                             if(!v1.equals(v2) && !counted.get(v2) && visited.get(v2)){
                                 Edge e = g.getEdge(v1, v2);
-                                sg.addEdge(e);
-                                counted.put(v2, true);
+                                if(e != null){
+                                    sg.addEdge(e);
+                                    counted.put(v2, true);
+                                }
                             }
                     }
             }
@@ -293,8 +299,8 @@ public class MSTClustering implements SimplifyGraphStrategy {
      * function used to change the value of the hyperparams of the algorithm
      * @param route
      */
-    private void choosePath(int route){
-        if(route == 0){
+    private void choosePath(int route, Graph g){
+        if(route == 0 && max_entity_per_service > 1 && numb_partition > 1){
             this.max_entity_per_service--;
             this.numb_partition--;
         }
@@ -302,31 +308,31 @@ public class MSTClustering implements SimplifyGraphStrategy {
             this.max_entity_per_service++;
             
         }
-        else if(route == 2){
+        else if(route == 2 && numb_partition < g.getVertexList().size()){
             this.numb_partition++;
         }
-        else if(route == 3){
+        else if(route == 3 && numb_partition > 1){
             this.numb_partition--;
         }
-        else if(route == 4){
+        else if(route == 4 && max_entity_per_service > 1){
             this.max_entity_per_service--;
         }
-        else if(route == 5){
+        else if(route == 5 && numb_partition > 1){
             this.max_entity_per_service++;
             this.numb_partition--;
         }
-        else if(route == 6){
+        else if(route == 6 && numb_partition < g.getVertexList().size() && max_entity_per_service > 1){
             this.max_entity_per_service--;
             this.numb_partition++;
         }
-        else if(route == 7){
+        else if(route == 7  && numb_partition < g.getVertexList().size()){
             this.max_entity_per_service++;
             this.numb_partition++;
         }
     }
 
     private Double schedule(int t){
-        return (this.T0/Math.log(t + alpha));
+        return (this.T0/Math.log(alpha));
     }
 
 
