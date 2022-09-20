@@ -106,6 +106,10 @@ public class Coupling {
                 && e.entity2.equals(this.entity2);
     }
 
+    public boolean hasSameEntitiesAndType(Coupling c){
+        return  this.hasSameEntities(c) && this.type == c.type;
+    }
+
     /**
      * 
      */
