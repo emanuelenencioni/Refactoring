@@ -21,7 +21,7 @@ public class EndPoint extends ApplicationAbstraction {
             this.coupList.add(cl.get(i));
         buildMatrices();
     }
-    
+
     /**
      * 
      * @param ID
@@ -39,18 +39,17 @@ public class EndPoint extends ApplicationAbstraction {
     public void buildMatrices(){
         try{
             checkList();
+            for (Type type : Type.values()) {
+                ArrayList<Coupling> cl = new ArrayList<Coupling>();
+                for(int i = 0; i < coupList.size(); i++){
+                    if(coupList.get(i).getType() == type){
+                        cl.add(coupList.get(i));
+                    }
+                    mapper.put(type, new CoOccurrenceMatrix(type, cl));
+                }
+            }
         }catch(Exception ex){
             System.err.println("Error - 2 coupling with same Entities with different value in the list");
-        }
-        
-        for (Type type : Type.values()) {
-            ArrayList<Coupling> cl = new ArrayList<Coupling>();
-            for(int i = 0; i < coupList.size(); i++){
-                if(coupList.get(i).getType() == type){
-                    cl.add(coupList.get(i));
-                }
-                mapper.put(type, new CoOccurrenceMatrix(type, cl));
-            }
         }
     }
 
