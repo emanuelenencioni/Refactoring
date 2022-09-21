@@ -1,7 +1,7 @@
 package manager;
 
-import java.util.*;
-import weightedGraph.Graph;
+
+import weightedGraph.*;
 
 /**
  * 
@@ -21,8 +21,15 @@ public class LossStrategy1 implements LossFunctionStrategy {
      * higher value means more information was lost
      */
     public float lossFunction(Graph g, Graph sg) {
-        // TODO implement here
-        return 0.0f;
+        float g_sum = 0;
+        float sg_sum = 0;
+        for(Edge e : g.getEdgeList())
+            g_sum += e.getWeight();
+    
+        for(Edge e : sg.getEdgeList())
+            sg_sum += e.getWeight();
+    
+        return  (g_sum - sg_sum)/g.getEdgeList().size();
     }
 
 }

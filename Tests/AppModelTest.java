@@ -1,6 +1,7 @@
 package Tests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 import applicationModel.*;
@@ -42,6 +43,9 @@ public class AppModelTest{
             cl.add(new Coupling(el.get(i), el.get(i+10), Type.CC, i));
             
         CoOccurrenceMatrix cm = new CoOccurrenceMatrix(Type.CC, cl);
+        CoOccurrenceMatrix cm2 = new CoOccurrenceMatrix(Type.CC, cl);
+        assertTrue(cm.equals(cm2));
+        assertTrue(!cm.equals(null));
         Float x =  cm.getValue(el.get(0), el.get(10));
         
         assertEquals(0, x.intValue());
@@ -72,14 +76,23 @@ public class AppModelTest{
             cl.add(new Coupling(el.get(i), el.get(i+10), Type.CC, i));
             cl.add(new Coupling(el.get(i+10), el.get(i), Type.CC, i+10));
         }
+        cl.add(new Coupling(el.get(0), el.get(10), Type.CC,100));
         ApplicationAbstraction aa = new EndPoint(cl, "EP1", 0.5f);
+        assertNull(aa.getMapper().get(Type.CC));
+        cl.remove(cl.size()-1);
+        aa = new EndPoint(cl, "EP1", 0.5f);
+
         assertEquals(0.5, aa.getFrequency(), 0.0005);
         assertEquals("EP1", aa.getID());
-        aa.buildMatrices();
+       
         assertEquals(5, (float) aa.getMapper().get(Type.CC).getValue(el.get(5), el.get(15)), 0.000005);
         assertEquals(15, (float) aa.getMapper().get(Type.CC).getValue(el.get(15), el.get(5)), 0.00005);
         assertEquals(0, (float) aa.getMapper().get(Type.CC).getValue(el.get(0), el.get(10)), 0.000005);
         assertEquals(10, (float) aa.getMapper().get(Type.CC).getValue(el.get(10), el.get(0)), 0.000005);
+
+        ApplicationAbstraction aa2 = new EndPoint(cl, "EP1", 0.5f);
+        assertTrue(aa.equals(aa2));
+        assertTrue(!aa.equals(null));
     }
 
     @Test
@@ -128,6 +141,7 @@ public class AppModelTest{
         epList.add(new EndPoint(cl, "EP1", 0.5f));
         epList.add(new EndPoint(cl, "EP2", 0.25f));
         epList.add(new EndPoint(cl2, "EP2", 0.15f));
+        epList.add(new EndPoint(cl2,"EP2",0.15f));
         for(int i = 0; i< epList.size(); i++)
             epList.get(i).buildMatrices();
         UseCase uc = new UseCase("UC1", 1, epList);
@@ -141,5 +155,10 @@ public class AppModelTest{
             assertEquals(value, cocm.getValue(el.get(i), el.get(i+10)), 0.00001f);
             assertEquals(value1, cocm.getValue(el.get(i+10),el.get(i)),0.00001f);
         }
+        UseCase uc2 = new UseCase("UC1", 1, epList);
+        assertTrue(!uc.equals(uc2));
+        assertTrue(!uc.equals(null));
+        UseCase uc3 = new UseCase("UC1", 1, epList, new Average());
+        assertTrue(uc.equals(uc3));
     }
 }

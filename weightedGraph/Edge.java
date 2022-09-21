@@ -12,7 +12,6 @@ public class Edge {
         this.vertex2 = v2;
     }
 
-
     /**
      * @param Vertex v one of the vertices connected by the edge
      * @return the vertex connected to v by the edge

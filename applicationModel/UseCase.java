@@ -101,6 +101,7 @@ public class UseCase extends ApplicationAbstraction {
 
     @Override
     public void buildMatrices() {
+        checkEndPointList();
         if(endPointList.size() > 0 && strategy != null){
             ArrayList<ApplicationAbstraction> aa = new ArrayList<>();
             for (EndPoint ep : endPointList) {
@@ -111,6 +112,33 @@ public class UseCase extends ApplicationAbstraction {
         }
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if(!(obj instanceof UseCase)){
+            return false;
+        }
+        UseCase c = (UseCase) obj;
+    
+    return this.getCoMapper(Type.CC).equals(c.getCoMapper(Type.CC)) && 
+        this.getCoMapper(Type.CQ).equals(c.getCoMapper(Type.CQ)) &&  
+        this.getCoMapper(Type.QC).equals(c.getCoMapper(Type.QC)) &&
+        this.getCoMapper(Type.QQ).equals(c.getCoMapper(Type.QQ)) &&
+        this.getID().equals(c.getID()) && this.getFrequency() == c.getFrequency();
+    }
+
+    private void checkEndPointList(){
+        for(int i = 0; i < endPointList.size(); i++){
+            for(int j = 0; j < endPointList.size(); j++){
+                if(j != i && endPointList.get(i).equals(endPointList.get(j))){
+                    endPointList.remove(j);
+                    j--;
+                }
+            }
+        }
+    }
 
    private ArrayList<EndPoint> endPointList; 
    private BuildCoMatStrategy strategy;

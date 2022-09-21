@@ -1,6 +1,5 @@
 package manager;
 
-import java.util.*;
 
 /**
  * 
@@ -21,8 +20,8 @@ public class SimplifyGraphFactory {
     public SimplifyGraphStrategy createSimplifyGraphStrategy(SimplifyGraphType t) {
 
         switch (t) {
-            case ConcreteStrategy1:
-                return new ConcreteStrategy1();
+            case MSTClustering:
+                return new MSTClustering();
 
             case ConcreteStrategy2:
                 return new ConcreteStrategy2();
