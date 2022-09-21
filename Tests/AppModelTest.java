@@ -1,6 +1,7 @@
 package Tests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 import applicationModel.*;
@@ -42,6 +43,8 @@ public class AppModelTest{
             cl.add(new Coupling(el.get(i), el.get(i+10), Type.CC, i));
             
         CoOccurrenceMatrix cm = new CoOccurrenceMatrix(Type.CC, cl);
+        CoOccurrenceMatrix cm2 = new CoOccurrenceMatrix(Type.CC, cl);
+        assertTrue(cm.equals(cm2));
         Float x =  cm.getValue(el.get(0), el.get(10));
         
         assertEquals(0, x.intValue());
@@ -85,6 +88,9 @@ public class AppModelTest{
         assertEquals(15, (float) aa.getMapper().get(Type.CC).getValue(el.get(15), el.get(5)), 0.00005);
         assertEquals(0, (float) aa.getMapper().get(Type.CC).getValue(el.get(0), el.get(10)), 0.000005);
         assertEquals(10, (float) aa.getMapper().get(Type.CC).getValue(el.get(10), el.get(0)), 0.000005);
+
+        ApplicationAbstraction aa2 = new EndPoint(cl, "EP1", 0.5f);
+        assertTrue(aa.equals(aa2));
     }
 
     @Test
