@@ -42,6 +42,7 @@ public class BusinessLogic extends ApplicationAbstraction {
 
     @Override
     public void buildMatrices() {
+        checkUseCaseList();
         if(useCaseList.size() > 0 && strategy != null){
             ArrayList<ApplicationAbstraction> aa = new ArrayList<>();
             for (UseCase uc : useCaseList) {
@@ -61,7 +62,12 @@ public class BusinessLogic extends ApplicationAbstraction {
     }
 
     private void checkUseCaseList(){
-        for
+        for(int i = 0; i< useCaseList.size(); i++)
+            for(int j = 0; j< useCaseList.size(); j++)
+                if(useCaseList.get(i).equals(useCaseList.get(j))){
+                    useCaseList.remove(j);
+                    j--;
+                }
     }
 
     ArrayList<UseCase> useCaseList;
