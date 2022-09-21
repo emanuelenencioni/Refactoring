@@ -60,6 +60,9 @@ public class BusinessLogic extends ApplicationAbstraction {
         this.strategy = s;
     }
 
+    private void checkUseCaseList(){
+        for
+    }
 
     ArrayList<UseCase> useCaseList;
     BuildCoMatStrategy strategy;
