@@ -30,8 +30,6 @@ public class CoOccurrenceMatrix {
                 
                 if(!isInMatrix(cl.get(i).getDestEntity()))
                     mapper.put(cl.get(i).getDestEntity(), map_index++);
-                
-
             }
         }
         this.cOMatrix = new float[mapper.size()][mapper.size()];
@@ -109,6 +107,41 @@ public class CoOccurrenceMatrix {
     public Type getType(){
         return type;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if(!(obj instanceof CoOccurrenceMatrix)){
+            return false;
+        }
+        CoOccurrenceMatrix c = (CoOccurrenceMatrix) obj;
+        boolean equal = true;
+        for(Entity e : mapper.keySet()){
+            for(Entity e1 :mapper.keySet()){
+                if(!e.equals(e1)){
+                    equal = false;
+                }
+                else{
+                    equal = true;
+                    break;
+                }
+            }
+            if(!equal)
+                return false;
+        }
+        for(int i = 0; i< this.mapper.size();i++){
+            for(int j = 0; j< this.mapper.size();j++){
+                if(cOMatrix[i][j] != c.cOMatrix[i][j])
+                    return false;
+            }
+        }
+        return  this.type == c.type;
+        
+    }
+
+
     /**
      * function that check if an entity is already in the matrix, 
      * @param e entity to check
