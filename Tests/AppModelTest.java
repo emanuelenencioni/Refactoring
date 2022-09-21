@@ -139,6 +139,7 @@ public class AppModelTest{
         epList.add(new EndPoint(cl, "EP1", 0.5f));
         epList.add(new EndPoint(cl, "EP2", 0.25f));
         epList.add(new EndPoint(cl2, "EP2", 0.15f));
+        epList.add(new EndPoint(cl2,"EP2",0.15f));
         for(int i = 0; i< epList.size(); i++)
             epList.get(i).buildMatrices();
         UseCase uc = new UseCase("UC1", 1, epList);
