@@ -45,6 +45,7 @@ public class AppModelTest{
         CoOccurrenceMatrix cm = new CoOccurrenceMatrix(Type.CC, cl);
         CoOccurrenceMatrix cm2 = new CoOccurrenceMatrix(Type.CC, cl);
         assertTrue(cm.equals(cm2));
+        assertTrue(!cm.equals(null));
         Float x =  cm.getValue(el.get(0), el.get(10));
         
         assertEquals(0, x.intValue());
@@ -91,6 +92,7 @@ public class AppModelTest{
 
         ApplicationAbstraction aa2 = new EndPoint(cl, "EP1", 0.5f);
         assertTrue(aa.equals(aa2));
+        assertTrue(!aa.equals(null));
     }
 
     @Test
@@ -153,5 +155,10 @@ public class AppModelTest{
             assertEquals(value, cocm.getValue(el.get(i), el.get(i+10)), 0.00001f);
             assertEquals(value1, cocm.getValue(el.get(i+10),el.get(i)),0.00001f);
         }
+        UseCase uc2 = new UseCase("UC1", 1, epList);
+        assertTrue(!uc.equals(uc2));
+        assertTrue(!uc.equals(null));
+        UseCase uc3 = new UseCase("UC1", 1, epList, new Average());
+        assertTrue(uc.equals(uc3));
     }
 }
