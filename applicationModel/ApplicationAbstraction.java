@@ -59,7 +59,8 @@ public abstract class ApplicationAbstraction {
      * 
      */
     protected void addCoValue(Coupling c) {
-        mapper.get(c.getType()).addCoValue(c);
+        if(mapper.size() > 0)
+            mapper.get(c.getType()).addCoValue(c);
     }
 
     /**
@@ -68,8 +69,11 @@ public abstract class ApplicationAbstraction {
      * @param Entity e2 
      * @return
      */
-    public float getCoValue(Type type, Entity e1, Entity e2) {
-        return mapper.get(type).getValue(e1, e2);
+    public Float getCoValue(Type type, Entity e1, Entity e2) {
+        if(mapper.size() > 0)
+            return mapper.get(type).getValue(e1, e2);
+        else
+            return null;
     }
 
     /**
@@ -77,7 +81,12 @@ public abstract class ApplicationAbstraction {
      * @return the mapper of the matrix
      */
     public HashMap<Entity, Integer> getCoMapper(Type type) {
-        return mapper.get(type).getMapper();
+        if(mapper.size() > 0)
+            return mapper.get(type).getMapper();
+        
+        else
+            return null;
+        
     }
 
     /**
