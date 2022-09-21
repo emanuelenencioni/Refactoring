@@ -112,6 +112,23 @@ public class UseCase extends ApplicationAbstraction {
         }
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if(!(obj instanceof UseCase)){
+            return false;
+        }
+        UseCase c = (UseCase) obj;
+    
+    return this.getCoMapper(Type.CC).equals(c.getCoMapper(Type.CC)) && 
+        this.getCoMapper(Type.CQ).equals(c.getCoMapper(Type.CQ)) &&  
+        this.getCoMapper(Type.QC).equals(c.getCoMapper(Type.QC)) &&
+        this.getCoMapper(Type.QQ).equals(c.getCoMapper(Type.QQ)) &&
+        this.getID().equals(c.getID()) && this.getFrequency() == c.getFrequency();
+    }
+
     private void checkEndPointList(){
         for(int i = 0; i < endPointList.size(); i++){
             for(int j = 0; j < endPointList.size(); j++){
