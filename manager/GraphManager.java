@@ -18,8 +18,6 @@ public class GraphManager {
     public GraphManager() {
 
         this.graph = new Graph();
-        this.matContainer = null;
-
         this.weightCC = 1;
         this.weightCQ = 1;
         this.weightQC = 1;
@@ -27,6 +25,7 @@ public class GraphManager {
         
         this.simplifyGraphFactory = new SimplifyGraphFactory();
 
+        this.matContainer = null;
         this.graphStrategy = null;
         this.lossStrategy = null;
         this.domainModel = null;
@@ -50,7 +49,7 @@ public class GraphManager {
         this.lossStrategy = lfs;
 
         if(!createGraph()){
-            this.graph = null;
+            this.graph = null; // TODO : togliere boolean?
         }
 
         this.simplifyGraphFactory = new SimplifyGraphFactory();
@@ -140,7 +139,7 @@ public class GraphManager {
 
 
     /**
-     * Create graph from the list of Co-Occurrence matrixes given in ApplicationAbstraction matContainer
+     * Create graph from the list of Co-Occurrence matrices given in ApplicationAbstraction matContainer
      * @return true if graph has been created, false if matContainer or domainModel is not set
      */
     private boolean createGraph() {
@@ -308,7 +307,7 @@ public class GraphManager {
     public void setApplicationAbstraction(ApplicationAbstraction mc){
         
         this.matContainer = mc;
-        this.createGraph();
+        this.createGraph(); // TODO : decidere se mettere createGraph void o boolean
         return;
 
     }
