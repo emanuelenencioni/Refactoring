@@ -45,8 +45,9 @@ public class EndPoint extends ApplicationAbstraction {
                     if(coupList.get(i).getType() == type){
                         cl.add(coupList.get(i));
                     }
-                    mapper.put(type, new CoOccurrenceMatrix(type, cl));
+                    
                 }
+                mapper.put(type, new CoOccurrenceMatrix(type, cl));
             }
         }catch(Exception ex){
             System.err.println("Error - 2 coupling with same Entities with different value in the list");

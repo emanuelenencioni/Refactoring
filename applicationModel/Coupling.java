@@ -107,7 +107,7 @@ public class Coupling {
     }
 
     public boolean hasSameEntitiesAndType(Coupling c){
-        return  this.hasSameEntities(c) && this.type == c.type;
+        return  this.hasSameEntities(c) && this.type == c.type && this.coOccurrence != c.coOccurrence;
     }
 
     /**
