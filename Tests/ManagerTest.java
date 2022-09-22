@@ -170,7 +170,7 @@ public class ManagerTest {
 
     @Test
     public void simplifyWithKruskal(){
-        MSTClustering swk = new MSTClustering(3, 3);
+        MSTClustering swk = new MSTClustering(4, 3);
         ArrayList<Vertex> vl = new ArrayList<>();
         ArrayList<Edge> el = new ArrayList<>();
         for(int i = 0; i<10; i++){
@@ -229,7 +229,7 @@ public class ManagerTest {
     
     @Test
     public void testLossFunction(){
-        MSTClustering swk = new MSTClustering(3, 3);
+        MSTClustering swk = new MSTClustering(4, 3);
         ArrayList<Vertex> vl = new ArrayList<>();
         ArrayList<Edge> el = new ArrayList<>();
         for(int i = 0; i<10; i++){
@@ -271,6 +271,54 @@ public class ManagerTest {
         LossFunctionStrategy sfs = new LossStrategy1();
         assertEquals(0.067333, sfs.lossFunction(g, sg), 0.0005);
     }
+
+    @Test
+    public void testMyBestSolutionKruskal() {
+        MSTClustering swk = new MSTClustering(3, 3);
+        ArrayList<Vertex> vl = new ArrayList<>();
+        ArrayList<Edge> el = new ArrayList<>();
+        for(int i = 0; i<10; i++){
+            vl.add(new Vertex(new Entity("E"+i)));
+        }
+        
+        el.add(new Edge(0.15f, vl.get(0), vl.get(1)));
+        el.add(new Edge(0.5f, vl.get(0), vl.get(3)));
+        el.add(new Edge(0.7f, vl.get(3), vl.get(1)));
+        el.add(new Edge(0.3f, vl.get(1), vl.get(4)));
+        el.add(new Edge(0.05f, vl.get(1), vl.get(2)));
+        el.add(new Edge(0.8f, vl.get(2), vl.get(4)));
+        el.add(new Edge(0.9f, vl.get(2), vl.get(5)));
+        el.add(new Edge(0.1f, vl.get(3), vl.get(4)));
+        el.add(new Edge(0.3f, vl.get(4), vl.get(5)));
+        el.add(new Edge(0.01f, vl.get(4), vl.get(8)));
+        el.add(new Edge(0.15f, vl.get(5), vl.get(8)));
+        el.add(new Edge(0.1f, vl.get(5), vl.get(9)));
+        el.add(new Edge(0.5f, vl.get(8), vl.get(9)));
+        el.add(new Edge(0.3f, vl.get(7), vl.get(8)));
+        el.add(new Edge(0.5f, vl.get(6), vl.get(7)));
+        
+        for(Vertex v : vl){
+            for(Edge e : el){
+                if(e.getVertex1().equals(v) || e.getVertex2().equals(v)){
+                    v.addEdge(e);
+                }
+            }
+        }
+
+        Graph g = new Graph();
+        for(Vertex v : vl){
+            g.addVertex(v);
+        }
+        for(Edge e : el){
+            g.addEdge(e);
+        }
+
+        LossFunctionStrategy sfs = new LossStrategy1();       
+        Graph sg = swk.myBestSolution(g, sfs);
+        System.out.println(sfs.lossFunction(g, sg));
+
+    }
+
 
     private boolean contains(Graph g, Edge e){
         for(Edge e1 : g.getEdgeList()){
