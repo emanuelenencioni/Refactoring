@@ -7,6 +7,7 @@ import org.junit.Test;
 import manager.*;
 import weightedGraph.*;
 import applicationModel.EndPoint;
+import applicationModel.ApplicationAbstraction;
 import applicationModel.Coupling;
 import applicationModel.DomainModel;
 import applicationModel.Entity;
@@ -67,7 +68,7 @@ public class ManagerTest {
 
         }
 
-        EndPoint ep = new EndPoint(cpList, "ep", 1.f);
+        ApplicationAbstraction ep = new EndPoint(cpList, "ep", 1.f);
         ep.buildMatrices();
 
         manager.setApplicationAbstraction(ep);
@@ -76,14 +77,14 @@ public class ManagerTest {
         manager.setWeightQC(0.5f);
         manager.setWeightQQ(0.25f);
 
-        assertEquals(true, manager.createGraph());
+        // assertEquals(true, manager.getGraph()); // TODO : createGraph è privato
 
         Graph g = manager.getGraph();
 
         assertEquals(4, g.getVertexList().size());
         assertEquals(6, g.getEdgeList().size());
 
-        Vertex vx = new Vertex(new Entity("en50"));
+        // Vertex vx = new Vertex(new Entity("en50"));
         Edge e01 = g.getEdge(g.getVertexList().get(0), g.getVertexList().get(1));
         Edge e23 = g.getEdge(g.getVertexList().get(2), g.getVertexList().get(3));
         Edge e03 = g.getEdge(g.getVertexList().get(0), g.getVertexList().get(3));
@@ -107,6 +108,8 @@ public class ManagerTest {
         assertEquals(0.5f, e03.getWeight(), 0.00005);
         
     }
+
+    // TODO : Replicare test sopra usando gli altri due costruttori
 
     @Test
     public void testKruskal(){
