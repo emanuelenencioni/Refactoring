@@ -50,25 +50,37 @@ public class MSTClustering implements SimplifyGraphStrategy {
     public Graph myBestSolution(Graph g, LossFunctionStrategy lf) {
         float best = 1000;
         Graph result = null;
+        Graph best_result = null;
         float delta = 0;
-        int random = 0;
         Double T = 0.;
         Random rand = new Random();
-        for(int i = 1; i< 1000; i++){
+        int last_n = 0;
+        int last_s = 0;
+        int best_n = 0;
+        int best_s = 0;
+         for(int i = 1; i< 1000; i++){
+                T = this.T0/Math.log(i + alpha);
+                last_n = numb_partition;
+                last_s = max_entity_per_service;
+                choosePath(rand, g);
                 result = simplifyGraph(g);
-                random = rand.nextInt(8);
-                T = this.schedule(i);
-                choosePath(random, g);
                 delta =  lf.lossFunction(g, result) - best;
-                if(delta < 0)
+                   if(delta < 0){
                     best = lf.lossFunction(g, result);
-
-                else if(rand.nextDouble() <= Math.pow(Math.E, delta/T)){
-                    best = lf.lossFunction(g, result);
+                    best_result = result;
+                    best_s = max_entity_per_service;
+                    best_n = numb_partition;
                 }
-                
+                else 
+                    if(rand.nextDouble() > Math.pow(Math.E, delta/T)){
+                        numb_partition = last_n;
+                        max_entity_per_service = last_s ;
+                    }
         }
-        return result;
+        numb_partition = best_n;
+        max_entity_per_service = best_s;
+        System.out.println("numb partition: "+numb_partition+" max entity per microservice: "+max_entity_per_service);
+        return best_result;
     }
     
     public Graph Kruskal(Graph g) {
@@ -120,7 +132,7 @@ public class MSTClustering implements SimplifyGraphStrategy {
             for(Vertex v : counter.keySet())
                 if(counter.get(v) > s){
                     ArrayList<Edge> eList = v.getNeighbour();
-                    while(counter.get(v) > s){
+                    while(counter.get(v) > s && eList.size()>0){
                         
                         value = counter.get(v);
                         Edge e = eList.remove(min(eList));  //we delete the less significative edge
@@ -299,8 +311,41 @@ public class MSTClustering implements SimplifyGraphStrategy {
      * function used to change the value of the hyperparams of the algorithm
      * @param route
      */
-    private void choosePath(int route, Graph g){
-        if(route == 0 && max_entity_per_service > 1 && numb_partition > 1){
+    private void choosePath(Random rand, Graph g){
+        ArrayList<Integer> routes = new ArrayList<Integer>();
+        for(int i = 0; i<=7;i++){
+            routes.add(i,i);
+        }
+        if(numb_partition == (g.getVertexList().size()-1)){
+            routes.remove(7);
+            routes.remove(6);
+            routes.remove(2);
+        }
+        if(numb_partition == 1){
+            routes.remove(0);
+            routes.remove(3);
+            routes.remove(5);
+        }
+
+        if(max_entity_per_service == (g.getVertexList().size()-1)){
+            for(int i = 0; i< routes.size();i++)
+                if(routes.get(i) == 1 || routes.get(i) == 5 || routes.get(i) == 1) {
+                    routes.remove(i);
+                    i--;
+                }
+        }
+
+        if(max_entity_per_service == 2){
+            for(int i = 0; i< routes.size();i++)
+                if(routes.get(i) == 0 || routes.get(i) == 3 || routes.get(i) == 6){
+                    routes.remove(i);
+                    i--;
+                }
+        }
+
+        int route = routes.get(rand.nextInt(routes.size()));
+
+        if(route == 0){
             this.max_entity_per_service--;
             this.numb_partition--;
         }
@@ -308,39 +353,29 @@ public class MSTClustering implements SimplifyGraphStrategy {
             this.max_entity_per_service++;
             
         }
-        else if(route == 2 && numb_partition < g.getVertexList().size()){
+        else if(route == 2){
             this.numb_partition++;
         }
-        else if(route == 3 && numb_partition > 1){
+        else if(route == 3){
             this.numb_partition--;
         }
-        else if(route == 4 && max_entity_per_service > 1){
+        else if(route == 4){
             this.max_entity_per_service--;
         }
-        else if(route == 5 && numb_partition > 1){
+        else if(route == 5){
             this.max_entity_per_service++;
             this.numb_partition--;
         }
-        else if(route == 6 && numb_partition < g.getVertexList().size() && max_entity_per_service > 1){
+        else if(route == 6){
             this.max_entity_per_service--;
             this.numb_partition++;
         }
-        else if(route == 7  && numb_partition < g.getVertexList().size()){
+        else if(route == 7){
             this.max_entity_per_service++;
             this.numb_partition++;
         }
     }
-
-    private Double schedule(int t){
-        return (this.T0/Math.log(alpha));
-    }
-
-
-
-
-
-
-
+    
     class MergeSort {
     // Merges two subarrays of el.
     // First subarray is el[l..m]

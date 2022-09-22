@@ -272,7 +272,7 @@ public class ManagerTest {
         }
         Graph sg = swk.simplifyGraph(g);
         LossFunctionStrategy sfs = new LossStrategy1();
-        assertEquals(0.067333, sfs.lossFunction(g, sg), 0.0005);
+        assertEquals(0.067333, sfs.lossFunction(g, sg), 0.000001);
     }
 
     @Test
