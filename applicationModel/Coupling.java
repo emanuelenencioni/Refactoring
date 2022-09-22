@@ -93,7 +93,7 @@ public class Coupling {
         
         return c.entity1.equals(this.entity1) 
                 && c.entity2.equals(this.entity2) 
-                && this.coOccurrence == c.coOccurrence;
+                && this.coOccurrence == c.coOccurrence && this.type == c.type;
     }
 
     /**
