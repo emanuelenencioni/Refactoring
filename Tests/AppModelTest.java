@@ -14,9 +14,11 @@ public class AppModelTest{
         Entity e1 = new Entity("E1");
         Entity e2 = new Entity("E2");
 
-        assertEquals(false,e1.equals(e2));
+        assertTrue(!e1.equals(e2));
         e1 = new Entity(e2);
-        assertEquals(true, e1.equals(e2));
+        assertTrue(e1.equals(e2));
+        e1 = new Entity("E2");
+        assertTrue(e1.equals(e2));
     }
     @Test
     public void testCoupling(){
@@ -25,6 +27,13 @@ public class AppModelTest{
         Coupling c = new Coupling(e1, e2, Type.CC, .76f);
         Coupling c2 = new Coupling(new Entity("E3"), new Entity("E4"),Type.CC, .5f);
         assertEquals(false, c.equals(c2));
+        c2 = new Coupling(e1, e2, Type.CQ, 0.76f);
+        assertEquals(false, c.equals(c2));
+        c2 = new Coupling(e1, e2, Type.CC, 0.2f);
+        assertTrue(!c.equals(c2));
+        assertTrue(c.equals(new Coupling(new Entity("E1"), new Entity("E2"), Type.CC, .76f)));
+        c2 = new Coupling(e1, new Entity("E3"), Type.CC, .76f);
+        assertTrue(!c.equals(c2));
         assertEquals(Type.CC, c.getType());
         assertEquals(e1,c.getSrcEntity());
         assertEquals(e2, c.getDestEntity()); 
@@ -35,17 +44,23 @@ public class AppModelTest{
     @Test
     public void testCoOccurrenceMatrix(){
         ArrayList<Coupling> cl = new ArrayList<Coupling>();
+        ArrayList<Coupling> cl2 = new ArrayList<Coupling>();
         ArrayList<Entity> el = new ArrayList<Entity>();
         for(int i=0;i<20;i++)
             el.add(new Entity("E"+i));
         
-        for(int i=0;i<10;i++)
+        for(int i=0;i<10;i++){
             cl.add(new Coupling(el.get(i), el.get(i+10), Type.CC, i));
-            
+            cl2.add(new Coupling(el.get(i), el.get(i+10), Type.CQ, i));
+        }
         CoOccurrenceMatrix cm = new CoOccurrenceMatrix(Type.CC, cl);
         CoOccurrenceMatrix cm2 = new CoOccurrenceMatrix(Type.CC, cl);
+        CoOccurrenceMatrix cm3 = new CoOccurrenceMatrix(Type.CQ, cl2);
         assertTrue(cm.equals(cm2));
+        assertTrue(!cm.equals(cm3));
         assertTrue(!cm.equals(null));
+        cm.addCoValue(new Coupling(el.get(3),el.get(10),Type.CC, 0.25f));
+        assertTrue(!cm.equals(cm2));
         Float x =  cm.getValue(el.get(0), el.get(10));
         
         assertEquals(0, x.intValue());
@@ -63,6 +78,9 @@ public class AppModelTest{
         assertEquals(0.7f,(float) cm.getValue(z1, y1), 0.00005);
         cm.addCoValue(Type.CC, y1,z1,0.9f);
         assertEquals(0.9f,(float) cm.getValue(y1, z1), 0.00005);
+
+
+
     }
 
     @Test

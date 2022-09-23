@@ -131,6 +131,9 @@ public class CoOccurrenceMatrix {
             if(!equal)
                 return false;
         }
+        if(this.mapper.size() != c.mapper.size()){
+            return false;
+        }
         for(int i = 0; i< this.mapper.size();i++){
             for(int j = 0; j< this.mapper.size();j++){
                 if(cOMatrix[i][j] != c.cOMatrix[i][j])
