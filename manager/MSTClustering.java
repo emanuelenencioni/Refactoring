@@ -316,18 +316,22 @@ public class MSTClustering implements SimplifyGraphStrategy {
         for(int i = 0; i<=7;i++){
             routes.add(i,i);
         }
-        if(numb_partition == (g.getVertexList().size()-1)){
-            routes.remove(7);
-            routes.remove(6);
-            routes.remove(2);
+        if(numb_partition >= (g.getVertexList().size()-1)){
+            for(int i = 0; i< routes.size();i++)
+                if(routes.get(i) == 7 || routes.get(i) == 6 || routes.get(i) == 2) {
+                    routes.remove(i);
+                    i--;
+                }
         }
-        if(numb_partition == 1){
-            routes.remove(0);
-            routes.remove(3);
-            routes.remove(5);
+        if(numb_partition <= 1){
+            for(int i = 0; i< routes.size();i++)
+                if(routes.get(i) == 0 || routes.get(i) == 3 || routes.get(i) == 5) {
+                    routes.remove(i);
+                    i--;
+                }
         }
 
-        if(max_entity_per_service == (g.getVertexList().size()-1)){
+        if(max_entity_per_service >= (g.getVertexList().size()-1)){
             for(int i = 0; i< routes.size();i++)
                 if(routes.get(i) == 1 || routes.get(i) == 5 || routes.get(i) == 1) {
                     routes.remove(i);
@@ -335,7 +339,7 @@ public class MSTClustering implements SimplifyGraphStrategy {
                 }
         }
 
-        if(max_entity_per_service == 2){
+        if(max_entity_per_service <= 2){
             for(int i = 0; i< routes.size();i++)
                 if(routes.get(i) == 0 || routes.get(i) == 3 || routes.get(i) == 6){
                     routes.remove(i);
