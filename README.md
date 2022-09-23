@@ -48,8 +48,10 @@ Elenchiamo di seguito possibili implementazioni aggiuntive per questo Software:
 ## Design Patterns
 
 ## Disposizione delle classi nei package
-
+Di seguito proponiamo il Class Diagram sviluppato:
+    "Class diagram"
 # **Unit Test**
-
+Siccome ogni classe è fortemente collegata alle altre, è stata presa la decisione di testare la maggior parte del codice per evitare il maggior numero di bugs.
+Per testare il corretto funzionamento delle varie classi, sono stati realizzati vari test per tutte le classi. Nel progetto è stato usato il framework JUnit 4.13.2.
 # **Sequence Diagram**
 
