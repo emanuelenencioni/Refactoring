@@ -239,21 +239,21 @@ public class ManagerTest {
             vl.add(new Vertex(new Entity("E"+i)));
         }
         
-        el.add(new Edge(0.15f, vl.get(0), vl.get(1)));
+        el.add(new Edge(0.14f, vl.get(0), vl.get(1)));
         el.add(new Edge(0.5f, vl.get(0), vl.get(3)));
         el.add(new Edge(0.7f, vl.get(3), vl.get(1)));
-        el.add(new Edge(0.3f, vl.get(1), vl.get(4)));
+        el.add(new Edge(0.25f, vl.get(1), vl.get(4)));
         el.add(new Edge(0.05f, vl.get(1), vl.get(2)));
         el.add(new Edge(0.8f, vl.get(2), vl.get(4)));
         el.add(new Edge(0.9f, vl.get(2), vl.get(5)));
         el.add(new Edge(0.1f, vl.get(3), vl.get(4)));
-        el.add(new Edge(0.3f, vl.get(4), vl.get(5)));
+        el.add(new Edge(0.35f, vl.get(4), vl.get(5)));
         el.add(new Edge(0.01f, vl.get(4), vl.get(8)));
         el.add(new Edge(0.15f, vl.get(5), vl.get(8)));
-        el.add(new Edge(0.1f, vl.get(5), vl.get(9)));
-        el.add(new Edge(0.5f, vl.get(8), vl.get(9)));
+        el.add(new Edge(0.12f, vl.get(5), vl.get(9)));
+        el.add(new Edge(0.55f, vl.get(8), vl.get(9)));
         el.add(new Edge(0.3f, vl.get(7), vl.get(8)));
-        el.add(new Edge(0.5f, vl.get(6), vl.get(7)));
+        el.add(new Edge(0.52f, vl.get(6), vl.get(7)));
         
         for(Vertex v : vl){
             for(Edge e : el){
@@ -272,7 +272,7 @@ public class ManagerTest {
         }
         Graph sg = swk.simplifyGraph(g);
         LossFunctionStrategy sfs = new LossStrategy1();
-        assertEquals(0.067333, sfs.lossFunction(g, sg), 0.000001);
+        assertEquals(0.065333, sfs.lossFunction(g, sg), 0.000001);
     }
 
     @Test
