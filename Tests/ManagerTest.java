@@ -1,7 +1,5 @@
 package Tests;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
 import manager.*;
@@ -318,8 +316,7 @@ public class ManagerTest {
 
         LossFunctionStrategy sfs = new LossStrategy1();       
         Graph sg = swk.myBestSolution(g, sfs);
-        System.out.println(sfs.lossFunction(g, sg));
-
+        assertEquals(0.027333386, sfs.lossFunction(g, sg), 0.0001);
     }
 
 
