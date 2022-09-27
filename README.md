@@ -52,7 +52,7 @@ Di seguito proponiamo il Class Diagram sviluppato:
     "Class diagram"
 # **Unit Test**
 Siccome ogni classe è fortemente collegata alle altre, è stata presa la decisione di testare la maggior parte del codice per evitare il maggior numero di bugs. Nel progetto è stato usato il framework JUnit 4.13.2.
-# **AppModelTest**
+### **AppModelTest**
 In questa classe di test sono state testate tutte le classi appartenenti al package **ApplicationModel**. In particolare sono stati testati i metodi di creazione delle matrici, e selezione della strategia a livello di EndPoint e di UseCase. A livello di BusinessLogic non è stato eseguito alcun test poichè risulterebbero ripetitivi.
 ![](doc/test_img/appmodelTest_1.png)
 ![](doc/test_img/appmodelTest_2.png)
