@@ -59,5 +59,10 @@ In questa classe di test sono state testate tutte le classi appartenenti al pack
 ![](doc/test_img/appmodelTest_3.png)
 ![](doc/test_img/appmodelTest_4.png)
 ![](doc/test_img/appmodelTest_5.png)
+
+### **WeightedGraphTest**
+Classe di test per il grafo pesato. Essendo una struttura abbsastanza complessa, è stato valutato utile eseguire dei test su queste classi.
+![](doc/test_img/weightedGraphTest_1.png)
+![](doc/test_img/weightedGraphTest_2.png)
 # **Sequence Diagram**
 
