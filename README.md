@@ -64,5 +64,14 @@ In questa classe di test sono state testate tutte le classi appartenenti al pack
 Classe di test per il grafo pesato. Essendo una struttura abbsastanza complessa, è stato valutato utile eseguire dei test su queste classi.
 ![](doc/test_img/weightedGraphTest_1.png)
 ![](doc/test_img/weightedGraphTest_2.png)
-# **Sequence Diagram**
 
+### **ManagerTest**
+Classe di test per tutta la parte di creazione del grafo e semplificazione del grafo. Test molto importanti in quanto verificano la correttezza matematica delle varie strategie utilizzate.
+![](doc/test_img/managerTest_1.png)
+![](doc/test_img/managerTest_2.png)
+![](doc/test_img/managerTest_3.png)
+![](doc/test_img/managerTest_4.png)
+![](doc/test_img/managerTest_5.png)
+![](doc/test_img/managerTest_6.png)
+
+# **Sequence Diagram**
