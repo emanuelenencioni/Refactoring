@@ -1,5 +1,5 @@
  
-package applicationModel;
+package src.applicationModel;
 
 import java.util.*;
 
