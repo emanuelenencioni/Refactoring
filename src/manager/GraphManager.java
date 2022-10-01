@@ -82,62 +82,6 @@ public class GraphManager {
     }
 
 
-    /**
-     * Graph resulting from associations between entities in CoOccurrence Matrices
-     */
-    private Graph graph;
-
-    /**
-     * Here is stored the result of the simplification function called (simplifyGraph/myBestSolution/findBestSolution)
-     */
-    private Graph simplifiedGraph;
-
-    /**
-     * Container of the CoOccurrence Matrices used to build the graph
-     */
-    private ApplicationAbstraction matContainer;
-
-    /**
-     * Weight of CoOccurrence Matrix CC
-     */
-    private float weightCC;
-
-    /**
-     * Weight of CoOccurrence Matrix CQ
-     */
-    private float weightCQ;
-
-    /**
-     * Weight of CoOccurrence Matrix QC
-     */
-    private float weightQC;
-
-    /**
-     * Weight of CoOccurrence Matrix QQ
-     */
-    private float weightQQ;
-
-    /**
-     * Factory that produces each SimplifyGraphStetegy
-     */
-    private SimplifyGraphFactory simplifyGraphFactory;
-
-    /**
-     * Strategy used to simplify the Graph
-     */
-    private SimplifyGraphStrategy graphStrategy;
-
-    /**
-     * Streategy used to calculate the Loss Function
-     */
-    private LossFunctionStrategy lossStrategy;
-
-    /**
-     * Domain model of the ApplicationModel
-     */
-    private DomainModel domainModel;
-
-
 
     /**
      * Create graph from the list of Co-Occurrence matrices given in ApplicationAbstraction matContainer
@@ -382,5 +326,60 @@ public class GraphManager {
         this.domainModel = dm;
         
     }
+
+    /**
+     * Graph resulting from associations between entities in CoOccurrence Matrices
+     */
+    private Graph graph;
+
+    /**
+     * Here is stored the result of the simplification function called (simplifyGraph/myBestSolution/findBestSolution)
+     */
+    private Graph simplifiedGraph;
+
+    /**
+     * Container of the CoOccurrence Matrices used to build the graph
+     */
+    private ApplicationAbstraction matContainer;
+
+    /**
+     * Weight of CoOccurrence Matrix CC
+     */
+    private float weightCC;
+
+    /**
+     * Weight of CoOccurrence Matrix CQ
+     */
+    private float weightCQ;
+
+    /**
+     * Weight of CoOccurrence Matrix QC
+     */
+    private float weightQC;
+
+    /**
+     * Weight of CoOccurrence Matrix QQ
+     */
+    private float weightQQ;
+
+    /**
+     * Factory that produces each SimplifyGraphStetegy
+     */
+    private SimplifyGraphFactory simplifyGraphFactory;
+
+    /**
+     * Strategy used to simplify the Graph
+     */
+    private SimplifyGraphStrategy graphStrategy;
+
+    /**
+     * Streategy used to calculate the Loss Function
+     */
+    private LossFunctionStrategy lossStrategy;
+
+    /**
+     * Domain model of the ApplicationModel
+     */
+    private DomainModel domainModel;
 
 }
