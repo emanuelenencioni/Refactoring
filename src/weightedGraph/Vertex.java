@@ -1,7 +1,8 @@
 package src.weightedGraph;
 
 import java.util.*;
-import applicationModel.Entity;
+
+import src.applicationModel.Entity;
 
 /**
  * 
