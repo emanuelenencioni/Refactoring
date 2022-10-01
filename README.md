@@ -35,8 +35,6 @@ Elenchiamo di seguito possibili implementazioni aggiuntive per questo Software:
 
 ## Use Case Template
 
-## Mockups (?)
-
 # **Progettazione ed Implementazione**
 
 ## Scelte implementative e considerazioni
@@ -46,6 +44,8 @@ Elenchiamo di seguito possibili implementazioni aggiuntive per questo Software:
 ## Classi ed Interfacce
 
 ## Design Patterns
+
+
 
 ## Disposizione delle classi nei package
 Di seguito proponiamo il Class Diagram sviluppato:
@@ -73,5 +73,3 @@ Classe di test per tutta la parte di creazione del grafo e semplificazione del g
 ![](doc/test_img/managerTest_4.png)
 ![](doc/test_img/managerTest_5.png)
 ![](doc/test_img/managerTest_6.png)
-
-# **Sequence Diagram**
