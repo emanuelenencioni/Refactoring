@@ -1,7 +1,8 @@
-package manager;
+package src.manager;
 
 import java.util.*;
-import weightedGraph.*;
+
+import src.weightedGraph.*;
 
 /**
  * 
