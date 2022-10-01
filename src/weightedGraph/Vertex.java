@@ -1,4 +1,4 @@
-package weightedGraph;
+package src.weightedGraph;
 
 import java.util.*;
 import applicationModel.Entity;

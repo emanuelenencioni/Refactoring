@@ -1,6 +1,6 @@
-package manager;
+package src.manager;
 
-import weightedGraph.Graph;
+import src.weightedGraph.Graph;
 
 /**
  * 

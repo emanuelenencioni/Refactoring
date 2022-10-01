@@ -1,10 +1,11 @@
-package manager;
+package src.manager;
 
 import java.util.*;
-import weightedGraph.*;
+
 import applicationModel.ApplicationAbstraction;
 import applicationModel.Entity;
 import applicationModel.Type;
+import src.weightedGraph.*;
 import applicationModel.DomainModel;
 
 /**

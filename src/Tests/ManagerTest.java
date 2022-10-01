@@ -1,9 +1,10 @@
-package Tests;
+package src.Tests;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
-import manager.*;
-import weightedGraph.*;
+
+import src.manager.*;
+import src.weightedGraph.*;
 import applicationModel.EndPoint;
 import applicationModel.ApplicationAbstraction;
 import applicationModel.Coupling;

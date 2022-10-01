@@ -1,7 +1,7 @@
-package manager;
+package src.manager;
 
 
-import weightedGraph.*;
+import src.weightedGraph.*;
 
 /**
  * 
