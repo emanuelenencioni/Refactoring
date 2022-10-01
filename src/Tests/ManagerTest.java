@@ -3,14 +3,14 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import src.applicationModel.ApplicationAbstraction;
+import src.applicationModel.Coupling;
+import src.applicationModel.DomainModel;
+import src.applicationModel.EndPoint;
+import src.applicationModel.Entity;
+import src.applicationModel.Type;
 import src.manager.*;
 import src.weightedGraph.*;
-import applicationModel.EndPoint;
-import applicationModel.ApplicationAbstraction;
-import applicationModel.Coupling;
-import applicationModel.DomainModel;
-import applicationModel.Entity;
-import applicationModel.Type;
 
 import java.util.*;
 
@@ -270,7 +270,7 @@ public class ManagerTest {
             g.addEdge(e);
         }
         Graph sg = swk.simplifyGraph(g);
-        LossFunctionStrategy sfs = new LossStrategy1();
+        LossFunctionStrategy sfs = new CutSum();
         assertEquals(0.065333, sfs.lossFunction(g, sg), 0.000001);
     }
 
@@ -315,7 +315,7 @@ public class ManagerTest {
             g.addEdge(e);
         }
 
-        LossFunctionStrategy sfs = new LossStrategy1();       
+        LossFunctionStrategy sfs = new CutSum();       
         Graph sg = swk.myBestSolution(g, sfs);
         assertEquals(0.027333386, sfs.lossFunction(g, sg), 0.0001);
     }

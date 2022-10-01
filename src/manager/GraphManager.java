@@ -2,11 +2,11 @@ package src.manager;
 
 import java.util.*;
 
-import applicationModel.ApplicationAbstraction;
-import applicationModel.Entity;
-import applicationModel.Type;
+import src.applicationModel.ApplicationAbstraction;
+import src.applicationModel.DomainModel;
+import src.applicationModel.Entity;
+import src.applicationModel.Type;
 import src.weightedGraph.*;
-import applicationModel.DomainModel;
 
 /**
  * 

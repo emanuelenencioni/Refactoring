@@ -5,7 +5,7 @@ import static org.junit.Assert.assertNull;
 
 import org.junit.Test;
 
-import applicationModel.Entity;
+import src.applicationModel.Entity;
 import src.weightedGraph.*;
 
 import java.util.*;

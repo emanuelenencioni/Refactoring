@@ -1,6 +1,7 @@
 
 import java.util.*;
-import applicationModel.*;
+
+import src.applicationModel.*;
 
 /**
  * 

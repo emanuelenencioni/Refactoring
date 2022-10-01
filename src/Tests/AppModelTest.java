@@ -4,7 +4,9 @@ import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
-import applicationModel.*;
+
+import src.applicationModel.*;
+
 import java.util.*;
 
 public class AppModelTest{
