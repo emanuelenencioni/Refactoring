@@ -52,5 +52,26 @@ Di seguito proponiamo il Class Diagram sviluppato:
     "Class diagram"
 # **Unit Test**
 Siccome ogni classe è fortemente collegata alle altre, è stata presa la decisione di testare la maggior parte del codice per evitare il maggior numero di bugs. Nel progetto è stato usato il framework JUnit 4.13.2.
-# **Sequence Diagram**
+### **AppModelTest**
+In questa classe di test sono state testate tutte le classi appartenenti al package **ApplicationModel**. In particolare sono stati testati i metodi di creazione delle matrici, e selezione della strategia a livello di EndPoint e di UseCase. A livello di BusinessLogic non è stato eseguito alcun test poichè risulterebbero ripetitivi.
+![](doc/test_img/appmodelTest_1.png)
+![](doc/test_img/appmodelTest_2.png)
+![](doc/test_img/appmodelTest_3.png)
+![](doc/test_img/appmodelTest_4.png)
+![](doc/test_img/appmodelTest_5.png)
 
+### **WeightedGraphTest**
+Classe di test per il grafo pesato. Essendo una struttura abbsastanza complessa, è stato valutato utile eseguire dei test su queste classi.
+![](doc/test_img/weightedGraphTest_1.png)
+![](doc/test_img/weightedGraphTest_2.png)
+
+### **ManagerTest**
+Classe di test per tutta la parte di creazione del grafo e semplificazione del grafo. Test molto importanti in quanto verificano la correttezza matematica delle varie strategie utilizzate.
+![](doc/test_img/managerTest_1.png)
+![](doc/test_img/managerTest_2.png)
+![](doc/test_img/managerTest_3.png)
+![](doc/test_img/managerTest_4.png)
+![](doc/test_img/managerTest_5.png)
+![](doc/test_img/managerTest_6.png)
+
+# **Sequence Diagram**
