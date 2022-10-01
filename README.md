@@ -32,7 +32,7 @@ Elenchiamo di seguito possibili implementazioni aggiuntive per questo Software:
 # **Requisiti**
 
 ## Use Case
-
+![](doc/diagram_imgs/useCaseDiagram.png)
 ## Use Case Template
 
 # **Progettazione ed Implementazione**
