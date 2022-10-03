@@ -1,6 +1,8 @@
 package src.weightedGraph;
 
 import java.util.*;
+import org.graphstream.graph.*;
+import org.graphstream.graph.implementations.SingleGraph;
 
 import src.applicationModel.Entity;
 
@@ -140,6 +142,22 @@ public class Graph {
         
         return null;
 
+    }
+
+    public void visualizeGraph(){
+        org.graphstream.graph.Graph graph = new SingleGraph("");
+        
+        for(int i = 0; i<vertexList.size();i++){
+            graph.addNode(vertexList.get(i).getEntity().getName());
+            graph.getNode(i).setAttribute("ui.label", graph.getNode(i).getId());
+        }
+        for(int i = 0;i<edgeList.size();i++){
+            graph.addEdge(edgeList.get(i).getVertex1().getEntity().getName()+edgeList.get(i).getVertex2().getEntity().getName(), edgeList.get(i).getVertex1().getEntity().getName(), edgeList.get(i).getVertex2().getEntity().getName());
+            graph.getEdge(i).setAttribute("ui.label", edgeList.get(i).getWeight());
+        }
+        graph.setAttribute("ui.stylesheet", "node { text-background-mode: rounded-box;  fill-color: black; size: 30px, 35px; text-background-color: black; text-color: white;} edge{text-mode: normal;text-background-mode: rounded-box; text-background-color: yellow;}");
+        System.setProperty("org.graphstream.ui", "swing");
+        graph.display();
     }
 
 }
