@@ -159,5 +159,4 @@ public class Graph {
         System.setProperty("org.graphstream.ui", "swing");
         graph.display();
     }
-
 }
