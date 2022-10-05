@@ -1,0 +1,5 @@
+ENTITIES LIST: Write the entities name under this line. There must be one entity name per line (This means that the names are separated by a "\n").
+en0
+en1
+en2
+en3

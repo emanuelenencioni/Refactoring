@@ -70,6 +70,8 @@ public class ManagerTest {
         ApplicationAbstraction ep = new EndPoint(cpList, "ep", 1.f);
         ep.buildMatrices();
 
+        //TODO: dopo aver fatto buildMatrices su EndPoint bisogna passare da UseCase e Business Logic..
+
         manager.setApplicationAbstraction(ep);
         manager.setWeightCC(1.f);
         manager.setWeightCQ(0.75f);
