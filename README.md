@@ -45,6 +45,23 @@ Elenchiamo di seguito possibili implementazioni aggiuntive per questo Software:
 
 ## Design Patterns
 
+All'interno del progetto abbiamo fatto uso dei seguenti Design Pattern:
+
+- Strategy
+
+- Factory
+
+### STRATEGY
+
+Lo **Strategy** è un Design Pattern comportamentale che permette di cambiare il comportamento di una classe a runtime, cambiando l'algortmo utilizzato per svolgere ua determinata mansione.
+Abbiamo scelto di utilizzare il Design Pattern Strategy al fine di offrire all'utente la possibilità di effettuare numerose scelte, in particolare sugli algoritmi di semplificazione del grafo, di valutazione della loss e di costruzione delle matrici di cooccorrenza.
+In questo modo viene anche offerta all'utente la possibilità di effettuare delle valutazioni sui risultati provenienti dall'utilizzo di particolari combinazioni di algoritmi.
+
+
+### FACTORY
+
+Il **Factory** è un Design Pattern creazionale che permette di istanziare oggetti più facilmente, senza dover specificare i dettagli.
+Abbiamo deciso di utilizzare il Design Pattern Factory al fine di rendere più elegante, ordinata ed agevole la creazione automatica delle differenti strategie di semplificazione del grafo. In particolare viene utilizzato all'interno del metodo "findBestSolution()" della classe GraphManager, in quanto questo metodo necessita di utilizzare tutte le diverse streategie di semplificazione del grafo, al fine di trovare la strategia che minimizza il valore della loss.
 
 
 ## Disposizione delle classi nei package
