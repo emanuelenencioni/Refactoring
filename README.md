@@ -34,7 +34,9 @@ Elenchiamo di seguito possibili implementazioni aggiuntive per questo Software:
 ## Use Case
 ![](doc/diagram_imgs/useCaseDiagram.png)
 ## Use Case Template
-
+![](doc/diagram_imgs/UseCaseTemplate-1.jpg)
+![](doc/diagram_imgs/UseCaseTemplate-2.jpg)
+![](doc/diagram_imgs/UseCaseTemplate-3.jpg)
 # **Progettazione ed Implementazione**
 
 ## Scelte implementative e considerazioni
@@ -62,11 +64,7 @@ In questo modo viene anche offerta all'utente la possibilità di effettuare dell
 
 Il **Factory** è un Design Pattern creazionale che permette di istanziare oggetti più facilmente, senza dover specificare i dettagli.
 Abbiamo deciso di utilizzare il Design Pattern Factory al fine di rendere più elegante, ordinata ed agevole la creazione automatica delle differenti strategie di semplificazione del grafo. In particolare viene utilizzato all'interno del metodo "findBestSolution()" della classe GraphManager, in quanto questo metodo necessita di utilizzare tutte le diverse streategie di semplificazione del grafo, al fine di trovare la strategia che minimizza il valore della loss.
-
-
-## Disposizione delle classi nei package
-Di seguito proponiamo il Class Diagram sviluppato:
-    "Class diagram"
+    
 # **Unit Test**
 Siccome ogni classe è fortemente collegata alle altre, è stata presa la decisione di testare la maggior parte del codice per evitare il maggior numero di bugs. Nel progetto è stato usato il framework JUnit 4.13.2.
 ### **AppModelTest**
