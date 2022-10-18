@@ -51,10 +51,15 @@ Qui possiamo vedere l'interfaccia principale dell'applicativo, permette di inser
 ![](doc/mockups_imgs/visualize.png)
 
 Nella fase di inserimento si prevede un ordine prestabilito: Entity, Couplings, EndPoints, UseCases e infine BusinessLogic. I bottoni saranno disattivati finché non sarà rispettato l'ordine di precedenza. Ognuno dei bottoni dell'interfaccia principale apre una nuova finestra che permette di inserire uno o più elementi di quel tipo. Di seguito sono riportate le varie interfaccie per gli input.
+
 ![](doc/mockups_imgs/InputEntity.png)
+
 ![](doc/mockups_imgs/inputCoupling.png)
+
 ![](doc/mockups_imgs/InputEndPoint.png)
+
 ![](doc/mockups_imgs/inputUseCase.png)
+
 ![](doc/mockups_imgs/InputBusinessLogic.png)
 
 Una volta eseguito tutto l'input (almeno fino ad EndPoint), verrà attivato il tasto **Compute Microservices** che permetterà di cominciare la procedura atta a semplificare l'applicazione monolitica in ingresso in una possibile applicazione a microservizi. Una volta premuto il tasto, comparirà la seguente finestra:
