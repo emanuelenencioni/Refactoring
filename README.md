@@ -44,7 +44,30 @@ Elenchiamo di seguito possibili implementazioni aggiuntive per questo Software:
 ## Class Diagram
 
 ## Classi ed Interfacce
+## Mockups
+Di seguito vengono proposti dei mockups di una possibile implemetazione di un front-end. 
+![](doc/mockups_imgs/mainFrame.png)
+Qui possiamo vedere l'interfaccia principale dell'applicativo, permette di inserire i vari elementi di una applicazione, salvare l'applicazione caricata così da facilitarne il caricamento per usi futuri e visualizzare tutti gli oggetti dell'applicazione. 
+![](doc/mockups_imgs/visualize.png)
 
+Nella fase di inserimento si prevede un ordine prestabilito: Entity, Couplings, EndPoints, UseCases e infine BusinessLogic. I bottoni saranno disattivati finché non sarà rispettato l'ordine di precedenza. Ognuno dei bottoni dell'interfaccia principale apre una nuova finestra che permette di inserire uno o più elementi di quel tipo. Di seguito sono riportate le varie interfaccie per gli input.
+![](doc/mockups_imgs/InputEntity.png)
+![](doc/mockups_imgs/inputCoupling.png)
+![](doc/mockups_imgs/InputEndPoint.png)
+![](doc/mockups_imgs/inputUseCase.png)
+![](doc/mockups_imgs/InputBusinessLogic.png)
+Una volta eseguito tutto l'input (almeno fino ad EndPoint), verrà attivato il tasto **Compute Microservices** che permetterà di cominciare la procedura atta a semplificare l'applicazione monolitica in ingresso in una possibile applicazione a microservizi. Una volta premuto il tasto, comparirà la seguente finestra:
+![](doc/mockups_imgs/selectLevel.png)
+Questa è una finestra che permette di scegliere a quale livello (EndPoint, UseCase o BusinessLogic) eseguire l'algoritmo di semplificazione. In caso di **EndPoint** o **UseCase** verrà anche attivato il menù a tendina che permetterà di scegliere su quali, tra gli **EndPoint** o gli **UseCase** , eseguire l'algoritmo di semplificazione. Inoltre Vengono poi aggiunti dei pesi a descrizione dell'utente sui vari tipi di co-occorrenza (lasciarli vuoti significa = 1). 
+Una volta inserite tutte le informazioni, cliccando su next, si procede nella prossima finestra:
+![](doc/mockups_imgs/computeMicroservices.png)
+Qui si apre la scelta di quale loss function usare ( se sono state implementate), oppure quale strategia di semplificazione usare. Infine, a discapito dell'utente, è possibile scegliere mediante i 3 tasti a sinistra, il tipo di semplificazione: I primi due tasti dipendono dalla scelta della strategia di semplificazione e dalla loss function perciò saranno attivati solo quando entrambe saranno state scelte. L'ultimo dipende solo dalla loss function perciò basta la scelta di quest'ultima per poter attivare il bottone **Best semplification**. 
+Una volta premuto una delle 3 scelte, si aprirà la seguente finestra:
+![](doc/mockups_imgs/microservices.png)
+dove si potrà visualizzare in forma di grafo, il prima (a sx) e il dopo (a dx) della trasformazione in microservizi, riportando sulla destra il punteggio della loss function. 
+
+
+###
 ## Design Patterns
 
 All'interno del progetto abbiamo fatto uso dei seguenti Design Pattern:
