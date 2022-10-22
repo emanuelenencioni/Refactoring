@@ -63,6 +63,7 @@ Nella fase di inserimento si prevede un ordine prestabilito: Entity, Couplings, 
 ![](doc/mockups_imgs/InputBusinessLogic.png)
 
 Una volta eseguito tutto l'input (almeno fino ad EndPoint), verrà attivato il tasto **Compute Microservices** che permetterà di cominciare la procedura atta a semplificare l'applicazione monolitica in ingresso in una possibile applicazione a microservizi. Una volta premuto il tasto, comparirà la seguente finestra:
+
 ![](doc/mockups_imgs/selectLevel.png)
 
 Questa è una finestra che permette di scegliere a quale livello (EndPoint, UseCase o BusinessLogic) eseguire l'algoritmo di semplificazione. In caso di **EndPoint** o **UseCase** verrà anche attivato il menù a tendina che permetterà di scegliere su quali, tra gli **EndPoint** o gli **UseCase** , eseguire l'algoritmo di semplificazione. Inoltre Vengono poi aggiunti dei pesi a descrizione dell'utente sui vari tipi di co-occorrenza (lasciarli vuoti significa = 1). 
