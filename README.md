@@ -120,3 +120,6 @@ Classe di test per tutta la parte di creazione del grafo e semplificazione del g
 ![](doc/test_img/managerTest_4.png)
 ![](doc/test_img/managerTest_5.png)
 ![](doc/test_img/managerTest_6.png)
+### **Sequence Diagram**
+Di seguito riportiamo lo scenario di interazione applicazione/utente della parte di semplificazione del grafo.
+![](doc/diagram_imgs/sequenceDiagram.png)
