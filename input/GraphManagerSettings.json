@@ -1,0 +1,4 @@
+{
+    "simpifyGraphStrategy" : "MSTClustering",
+    "lossFunctionStrategy" : "CutSum"
+}

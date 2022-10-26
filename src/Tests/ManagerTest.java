@@ -27,7 +27,6 @@ public class ManagerTest {
         }
         
         DomainModel dm = new DomainModel(enList);
-        //TODO rivedere questa istruzione quando ci sarà un costruttore di graphManager che setta i parametri
         manager.setDomainModel(dm);
         
         
@@ -70,15 +69,11 @@ public class ManagerTest {
         ApplicationAbstraction ep = new EndPoint(cpList, "ep", 1.f);
         ep.buildMatrices();
 
-        //TODO: dopo aver fatto buildMatrices su EndPoint bisogna passare da UseCase e Business Logic..
-
         manager.setApplicationAbstraction(ep);
         manager.setWeightCC(1.f);
         manager.setWeightCQ(0.75f);
         manager.setWeightQC(0.5f);
         manager.setWeightQQ(0.25f);
-
-        // assertEquals(true, manager.getGraph()); // TODO : createGraph è privato
 
         Graph g = manager.getGraph();
 
@@ -109,8 +104,6 @@ public class ManagerTest {
         assertEquals(0.5f, e03.getWeight(), 0.00005);
         
     }
-
-    // TODO : Replicare test sopra usando gli altri due costruttori
 
     @Test
     public void testKruskal(){

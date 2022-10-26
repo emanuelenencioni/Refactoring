@@ -15,6 +15,13 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import src.manager.LossFunctionFactory;
+import src.manager.LossFunctionStrategy;
+import src.manager.LossFunctionType;
+import src.manager.SimplifyGraphFactory;
+import src.manager.SimplifyGraphStrategy;
+import src.manager.SimplifyGraphType;
+
 
 public class InputManager {
     
@@ -22,6 +29,7 @@ public class InputManager {
     public InputManager(){
 
         buildMatricesFactory = new BuildMatricesFactory();
+        simplifyGraphFactory = new SimplifyGraphFactory();
 
     }
 
@@ -279,13 +287,90 @@ public class InputManager {
 
     }
 
+    public SimplifyGraphStrategy getSimplifyGraphStrategy(){
+
+        JSONParser parser = new JSONParser();
+        SimplifyGraphStrategy simplifyGraphStrategy = null;
+        
+        try {
+
+            JSONObject inputSimplifyStrategy = (JSONObject) parser.parse(new FileReader(inputPath + graphMangerSettings));
+
+            // STRATEGY
+            String strategyName = (String) inputSimplifyStrategy.get("simpifyGraphStrategy");
+
+            SimplifyGraphType strategyType = SimplifyGraphType.valueOf(strategyName);
+            
+            boolean correctSGType = false;
+            for (SimplifyGraphType t : SimplifyGraphType.values()){
+                if (strategyType == t){
+                    correctSGType = true;
+                }
+            }
+            
+            if (!correctSGType){
+                System.err.println("incorrect SimplifyGraphStrategy");
+            }
+            
+            simplifyGraphStrategy = simplifyGraphFactory.createSimplifyGraphStrategy(strategyType);
+            
+
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+            System.err.println("Errore input file JSON");
+        }
+
+        return simplifyGraphStrategy;
+
+    }
+
+    public LossFunctionStrategy getLossFucntioStrategy(){
+
+        JSONParser parser = new JSONParser();
+        LossFunctionStrategy lossFunctionStrategy = null;
+        
+        try {
+
+            JSONObject inputLossStrategy = (JSONObject) parser.parse(new FileReader(inputPath + graphMangerSettings));
+
+            // STRATEGY
+            String strategyName = (String) inputLossStrategy.get("lossFunctionStrategy");
+
+            LossFunctionType strategyType = LossFunctionType.valueOf(strategyName);
+            
+            boolean correctLFType = false;
+            for (LossFunctionType t : LossFunctionType.values()){
+                if (strategyType == t){
+                    correctLFType = true;
+                }
+            }
+            
+            if (!correctLFType){
+                System.err.println("incorrect LossFunctionStrategy");
+            }
+            
+            lossFunctionStrategy = lossFunctionFactory.createLossFunctiontrategy(strategyType);
+            
+
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+            System.err.println("Errore input file JSON");
+        }
+
+        return lossFunctionStrategy;
+
+    }
+
     private String inputPath = "./input/";
     private String entities = "Entities.json";
     private String endPoints = "EndPoints.json";
     private String useCases = "UseCases.json";
     private String businessLogic = "BusinessLogic.json";
+    private String graphMangerSettings = "GraphManagerSettings.json";
 
     BuildMatricesFactory buildMatricesFactory;
+    SimplifyGraphFactory simplifyGraphFactory;
+    LossFunctionFactory lossFunctionFactory;
  
 
 

@@ -5,6 +5,7 @@ import src.applicationModel.EndPoint;
 import src.applicationModel.Entity;
 import src.applicationModel.InputManager;
 import src.applicationModel.UseCase;
+import src.manager.GraphManager;
 
 /**
  * 
@@ -32,6 +33,12 @@ public class mainclass {
 
     System.out.println(businessLogic.getID() + " " + businessLogic.getFrequency());
 
+    GraphManager graphManager = new GraphManager();
+
+    graphManager.setSimplifyGraphStrategy(im.getSimplifyGraphStrategy());
+
+    graphManager.setLossFunctionStrategy(im.getLossFucntioStrategy());
+    
 
     // JSON GENERATOR
     // ArrayList<Entity> enList = new ArrayList<>();
