@@ -30,6 +30,7 @@ public class InputManager {
 
         buildMatricesFactory = new BuildMatricesFactory();
         simplifyGraphFactory = new SimplifyGraphFactory();
+        lossFunctionFactory = new LossFunctionFactory();
 
     }
 
