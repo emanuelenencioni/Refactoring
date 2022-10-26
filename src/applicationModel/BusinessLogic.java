@@ -13,6 +13,7 @@ public class BusinessLogic extends ApplicationAbstraction {
      */
     public BusinessLogic(String id) {
         super(id, 1);
+        useCaseList = new ArrayList<UseCase>();
     }
 
     /**
@@ -22,7 +23,7 @@ public class BusinessLogic extends ApplicationAbstraction {
      */
     public BusinessLogic(String id, ArrayList<UseCase> ucl) {
         this(id);
-        for(int i = 0; i< ucl.size(); i++)
+        for(int i = 0; i < ucl.size(); i++)
             this.useCaseList.add(ucl.get(i));
     }
 
