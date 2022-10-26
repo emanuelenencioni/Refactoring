@@ -40,6 +40,9 @@ Elenchiamo di seguito possibili implementazioni aggiuntive per questo Software:
 ## Scelte implementative e considerazioni
 
 ## Class Diagram
+Di seguito proponiamo il Class Diagram sviluppato:
+"Class diagram"
+
 
 ## Classi ed Interfacce
 
@@ -65,8 +68,8 @@ Abbiamo deciso di utilizzare il Design Pattern Factory al fine di rendere più e
 
 
 ## Disposizione delle classi nei package
-Di seguito proponiamo il Class Diagram sviluppato:
-    "Class diagram"
+
+
 # **Unit Test**
 Siccome ogni classe è fortemente collegata alle altre, è stata presa la decisione di testare la maggior parte del codice per evitare il maggior numero di bugs. Nel progetto è stato usato il framework JUnit 4.13.2.
 ### **AppModelTest**
