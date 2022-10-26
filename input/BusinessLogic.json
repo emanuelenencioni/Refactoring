@@ -1,7 +1,6 @@
 {
 
-    "ID" : "uc1",
-    "frequency" : 0.55,
+    "ID" : "businessLogic",
     "buildMatStrategy" : "Average"
 
 }

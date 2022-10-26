@@ -240,6 +240,48 @@ public class InputManager {
 
     }
 
+    public BusinessLogic getBusinessLogic(ArrayList<UseCase> fullUseCaseList){
+
+        JSONParser parser = new JSONParser();
+        BusinessLogic bl = null;
+
+        try {
+
+            JSONObject blObject = (JSONObject) parser.parse(new FileReader(inputPath + businessLogic));
+            
+            // ID
+            String ID = (String) blObject.get("ID");
+
+            // BUILD CO-MAT STRATEGY
+            String bmStrategy = (String) blObject.get("buildMatStrategy");
+            BuildMatricesType bmType = BuildMatricesType.valueOf(bmStrategy);
+            
+            boolean correctBMType = false;
+            for (BuildMatricesType t : BuildMatricesType.values()){
+                if (bmType == t){
+                    correctBMType = true;
+                }
+            }
+            
+            if (!correctBMType){
+                System.err.println("incorrect buildCoMatStrategy for BusinessLogic: " + ID);
+            }
+            
+            BuildCoMatStrategy buildCoMatStrategy = buildMatricesFactory.createBuildCoMatStrategy(bmType);
+
+            bl = new BusinessLogic(ID, fullUseCaseList, buildCoMatStrategy);
+        
+
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+            System.err.println("Errore input file JSON");
+        }
+
+        return bl;
+
+
+    }
+
     private String inputPath = "./input/";
     private String entities = "Entities.json";
     private String endPoints = "EndPoints.json";

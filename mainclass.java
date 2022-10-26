@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+import src.applicationModel.BusinessLogic;
 import src.applicationModel.EndPoint;
 import src.applicationModel.Entity;
 import src.applicationModel.InputManager;
@@ -27,7 +28,9 @@ public class mainclass {
 
     ArrayList<UseCase> useCaseList = im.getUseCaseList(endPointList);
 
-    
+    BusinessLogic businessLogic = im.getBusinessLogic(useCaseList);
+
+    System.out.println(businessLogic.getID() + " " + businessLogic.getFrequency());
 
 
     // JSON GENERATOR
