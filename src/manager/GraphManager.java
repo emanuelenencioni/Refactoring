@@ -49,8 +49,8 @@ public class GraphManager {
         this.graphStrategy = sgs;
         this.lossStrategy = lfs;
 
-        if(!createGraph()){
-            this.graph = null; // TODO : togliere boolean?
+        if(!this.createGraph()){
+            this.graph = null;
         }
 
         this.simplifyGraphFactory = new SimplifyGraphFactory();
@@ -252,7 +252,7 @@ public class GraphManager {
     public void setApplicationAbstraction(ApplicationAbstraction mc){
         
         this.matContainer = mc;
-        this.createGraph(); // TODO : decidere se mettere createGraph void o boolean
+        this.createGraph();
         return;
 
     }

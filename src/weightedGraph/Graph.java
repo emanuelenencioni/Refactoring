@@ -1,7 +1,6 @@
 package src.weightedGraph;
 
 import java.util.*;
-import org.graphstream.graph.*;
 import org.graphstream.graph.implementations.SingleGraph;
 
 import src.applicationModel.Entity;
