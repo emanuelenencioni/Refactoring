@@ -1,0 +1,27 @@
+[
+
+    {
+
+        "ID" : "uc1",
+        "frequency" : 0.55,
+        "buildMatStrategy" : "Average",
+        "endPointList" : [
+            "ep1",
+            "ep2"
+        ]
+
+    },
+
+    {
+
+        "ID" : "uc2",
+        "frequency" : 0.45,
+        "buildMatStrategy" : "Average",
+        "endPointList" : [
+            "ep1",
+            "ep3"
+        ]
+
+    }
+
+]
