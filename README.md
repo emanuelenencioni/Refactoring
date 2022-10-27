@@ -99,10 +99,10 @@ In questo modo viene anche offerta all'utente la possibilità di effettuare dell
 ### FACTORY
 
 Il **Factory** è un Design Pattern creazionale che permette di istanziare oggetti più facilmente, senza dover specificare i dettagli.
-Abbiamo deciso di utilizzare il Design Pattern Factory al fine di rendere più elegante, ordinata ed agevole la creazione automatica delle differenti strategie di semplificazione del grafo e di costruzione delle matrici di co-occorrenza.
+Abbiamo deciso di utilizzare il Design Pattern Factory al fine di rendere più elegante, ordinata ed agevole la creazione automatica delle differenti strategie di semplificazione del grafo, di costruzione delle matrici di co-occorrenza e di costruzione delle funzioni di loss.
 In particolare viene utilizzato:
 - all'interno del metodo "findBestSolution()" della classe GraphManager, in quanto questo metodo necessita di utilizzare tutte le diverse streategie di semplificazione del grafo, al fine di trovare la strategia che minimizza il valore della loss. 
-- all'interno della classe InputManager, per ottimizzare la creazione delle strategie di costruzione delle matrici di co-occorrenza a partire dall'input dei file JSON.
+- all'interno della classe InputManager, per ottimizzare la creazione delle strategie di costruzione delle matrici di co-occorrenza e delle strategie di calcolo della loss, a partire dall'input dei file JSON.
 
 
 ## Disposizione delle classi nei package
