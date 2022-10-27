@@ -231,8 +231,7 @@ public class InputManager {
 
                 }
 
-                UseCase useCase = new UseCase(ID, frequency, endPointList);
-                useCase.setStrategy(buildCoMatStrategy);
+                UseCase useCase = new UseCase(ID, frequency, endPointList, buildCoMatStrategy);
                 useCaseList.add(useCase);
 
             }
@@ -295,10 +294,10 @@ public class InputManager {
         
         try {
 
-            JSONObject inputSimplifyStrategy = (JSONObject) parser.parse(new FileReader(inputPath + graphMangerSettings));
+            JSONObject graphSettingsObject = (JSONObject) parser.parse(new FileReader(inputPath + graphMangerSettings));
 
             // STRATEGY
-            String strategyName = (String) inputSimplifyStrategy.get("simpifyGraphStrategy");
+            String strategyName = (String) graphSettingsObject.get("simpifyGraphStrategy");
 
             SimplifyGraphType strategyType = SimplifyGraphType.valueOf(strategyName);
             
@@ -325,17 +324,17 @@ public class InputManager {
 
     }
 
-    public LossFunctionStrategy getLossFucntioStrategy(){
+    public LossFunctionStrategy getLossFucntionStrategy(){
 
         JSONParser parser = new JSONParser();
         LossFunctionStrategy lossFunctionStrategy = null;
         
         try {
 
-            JSONObject inputLossStrategy = (JSONObject) parser.parse(new FileReader(inputPath + graphMangerSettings));
+            JSONObject graphSettingsObject = (JSONObject) parser.parse(new FileReader(inputPath + graphMangerSettings));
 
             // STRATEGY
-            String strategyName = (String) inputLossStrategy.get("lossFunctionStrategy");
+            String strategyName = (String) graphSettingsObject.get("lossFunctionStrategy");
 
             LossFunctionType strategyType = LossFunctionType.valueOf(strategyName);
             
@@ -361,6 +360,57 @@ public class InputManager {
         return lossFunctionStrategy;
 
     }
+
+    public Float getWeight(Type type){
+
+        JSONParser parser = new JSONParser();
+        Float weight = null;
+
+        try {
+
+            JSONObject graphSettingsObject = (JSONObject) parser.parse(new FileReader(inputPath + graphMangerSettings));
+
+            // WEIGHT
+            switch (type){
+
+                case CC:
+                    double weightCCDouble = (double) graphSettingsObject.get("weightCC");
+                    weight = (float) weightCCDouble;
+                    break;
+
+                case CQ:
+                    double weightCQDouble = (double) graphSettingsObject.get("weightCQ");
+                    weight = (float) weightCQDouble;
+                    break;
+
+                case QC:
+                    double weightQCDouble = (double) graphSettingsObject.get("weightQC");
+                    weight = (float) weightQCDouble;
+                    break;
+
+                case QQ:
+                    double weightQQDouble = (double) graphSettingsObject.get("weightQQ");
+                    weight = (float) weightQQDouble;
+                    break;
+                default:
+                    break;
+
+            }
+
+
+        } catch (IOException | ParseException e) {
+            e.printStackTrace();
+            System.err.println("Errore input file JSON");
+        }
+
+        if (weight == null){
+            System.err.println("Error in parsing weight " + Type.CC.toString() + " from file JSON");
+        }
+        
+        return weight;
+
+    }
+    
 
     private String inputPath = "./input/";
     private String entities = "Entities.json";
