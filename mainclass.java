@@ -1,11 +1,14 @@
 import java.util.ArrayList;
 
 import src.applicationModel.BusinessLogic;
+import src.applicationModel.DomainModel;
 import src.applicationModel.EndPoint;
 import src.applicationModel.Entity;
 import src.applicationModel.InputManager;
+import src.applicationModel.Type;
 import src.applicationModel.UseCase;
 import src.manager.GraphManager;
+import src.weightedGraph.Graph;
 
 /**
  * 
@@ -25,6 +28,8 @@ public class mainclass {
 
     ArrayList<Entity> entityList = im.getEntityList();
 
+    DomainModel domainModel = new DomainModel(entityList);
+
     ArrayList<EndPoint> endPointList = im.getEndPointList(entityList);
 
     ArrayList<UseCase> useCaseList = im.getUseCaseList(endPointList);
@@ -33,12 +38,24 @@ public class mainclass {
 
     System.out.println(businessLogic.getID() + " " + businessLogic.getFrequency());
 
-    GraphManager graphManager = new GraphManager();
-
-    graphManager.setSimplifyGraphStrategy(im.getSimplifyGraphStrategy());
-
-    graphManager.setLossFunctionStrategy(im.getLossFucntioStrategy());
+    GraphManager graphManager = new GraphManager(
+                                                businessLogic,
+                                                im.getWeight(Type.CC),
+                                                im.getWeight(Type.CQ),
+                                                im.getWeight(Type.QC),
+                                                im.getWeight(Type.QQ),
+                                                im.getSimplifyGraphStrategy(),
+                                                im.getLossFucntionStrategy(),
+                                                domainModel
+                                                );
     
+    Float lossValue = graphManager.simplifyAndComputeLoss();
+    
+    Graph graph = graphManager.getSimplifiedGraph();
+
+    graph.visualizeGraph();
+
+    System.out.println("The loss value for the simplification made is: " + lossValue);
 
     // JSON GENERATOR
     // ArrayList<Entity> enList = new ArrayList<>();
