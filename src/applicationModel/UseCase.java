@@ -45,7 +45,7 @@ public class UseCase extends ApplicationAbstraction {
      * @param strat the strategy to build the matrices
      * automatically creates the matrices
      */
-    public UseCase(String id, float f,ArrayList<EndPoint> epl, BuildCoMatStrategy strat){
+    public UseCase(String id, float f, ArrayList<EndPoint> epl, BuildCoMatStrategy strat){
         this(id,f,epl);
         this.strategy = strat;
         buildMatrices();
