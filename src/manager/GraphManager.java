@@ -48,9 +48,10 @@ public class GraphManager {
         this.weightQQ = wQQ;
         this.graphStrategy = sgs;
         this.lossStrategy = lfs;
+        this.graph = new Graph();
 
         if(!this.createGraph()){
-            this.graph = null;
+            System.err.println("Error in creating graph");
         }
 
         this.simplifyGraphFactory = new SimplifyGraphFactory();
@@ -325,6 +326,16 @@ public class GraphManager {
 
         this.domainModel = dm;
         
+    }
+
+    /**
+     * Get the GraphManager simplified graph
+     * @return the GraphManager simplified graph
+     */
+    public Graph getSimplifiedGraph(){
+
+        return this.simplifiedGraph;
+
     }
 
     /**
