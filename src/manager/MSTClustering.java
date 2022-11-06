@@ -15,7 +15,7 @@ public class MSTClustering implements SimplifyGraphStrategy {
     public MSTClustering() {
         this.ms = new MergeSort();
         this.max_entity_per_service = 5; 
-        this.numb_partition = 4; //TODO da discutere, varia molto a seconda del progetto, magari mettere un valore che dipende da quante entità si hanno in gioco?
+        this.numb_partition = 4;
         this.T0 = 1000;
         this.alpha = 1;
     }
@@ -59,14 +59,14 @@ public class MSTClustering implements SimplifyGraphStrategy {
         int last_s = 0;
         int best_n = 0;
         int best_s = 0;
-         for(int i = 1; i< 1000; i++){
+        for(int i = 1; i< 1000; i++){
                 T = this.T0/Math.log(i + alpha);
                 last_n = numb_partition;
                 last_s = max_entity_per_service;
                 choosePath(rand, g);
                 result = simplifyGraph(g);
                 delta =  lf.lossFunction(g, result) - best;
-                   if(delta < 0){
+                    if(delta < 0){
                     best = lf.lossFunction(g, result);
                     best_result = result;
                     best_s = max_entity_per_service;
@@ -97,7 +97,7 @@ public class MSTClustering implements SimplifyGraphStrategy {
             vertexSetList.add(set);
         }
         for (Edge e : g.getEdgeList()) {
-           if( findSet(vertexSetList, e.getVertex1()) != findSet(vertexSetList, e.getVertex2()))
+            if( findSet(vertexSetList, e.getVertex1()) != findSet(vertexSetList, e.getVertex2()))
                 fel.add(e);
                 Set<Vertex> x = findSet(vertexSetList, e.getVertex1());
                 Set<Vertex> y = findSet(vertexSetList, e.getVertex2());
@@ -125,9 +125,9 @@ public class MSTClustering implements SimplifyGraphStrategy {
                 sg.addEdge(new Edge(fel.get(i).getWeight(), v1, v2));
         }
         return sg;
-      }
+    }
 
-      private Graph reduceCluster(Graph sg, int s){
+    private Graph reduceCluster(Graph sg, int s){
             HashMap<Vertex, Integer> counter = DFSCounter(sg);
             int value;
             for(Vertex v : counter.keySet())
@@ -146,10 +146,9 @@ public class MSTClustering implements SimplifyGraphStrategy {
                     }
                 }
             return sg;
-      }
+    }
 
-      
-      /**
+    /**
        * look if an item is in a set, if true, return the set that contain the item
        * @param vsl the set of Vertices
        * @param v vertex
@@ -177,7 +176,7 @@ public class MSTClustering implements SimplifyGraphStrategy {
         }
     }
 
-   
+
     // The function to do DFS traversal. It uses recursive DFSUtil()
     /**
      * function that compute the DFS traversal of the graph counting connected components
@@ -249,7 +248,7 @@ public class MSTClustering implements SimplifyGraphStrategy {
     private void DFSUtil(Vertex v, HashMap<Vertex, Boolean> visited) {
         // Mark the current node as visited and print it
         visited.put(v, true);
- 
+
         // Recur for all the vertices adjacent to this vertex
         
         for(Edge e : v.getNeighbour())
@@ -455,7 +454,6 @@ public class MSTClustering implements SimplifyGraphStrategy {
                 merge(el, l, m, r);
             }
         }
-   
     }
 
 
