@@ -72,7 +72,7 @@ public class MSTClustering implements SimplifyGraphStrategy {
                     best_s = max_entity_per_service;
                     best_n = numb_partition;
                 }
-                else 
+                else
                     if(rand.nextDouble() > Math.pow(Math.E, delta/T)){
                         numb_partition = last_n;
                         max_entity_per_service = last_s ;

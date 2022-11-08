@@ -6,7 +6,7 @@ import java.util.*;
  * 
  */
 public class UseCase extends ApplicationAbstraction {
-    //TODO aggiungere alle varie classi derivate, chiamate a buildMatrices automatiche quando possibile (costruttore o passaggio di lista)
+    
     /**
      * 
      * @param id the id of the use case

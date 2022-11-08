@@ -21,10 +21,10 @@ public class LossFunctionFactory {
 
         switch (t) {
             case CutSum:
-                return new CutSum();
+                return new ReverseHuber();
 
             case LossStrategy2:
-                return new LossStrategy2();
+                return new MSE();
 
             default:
                 return null;}
