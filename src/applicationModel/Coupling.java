@@ -110,14 +110,7 @@ public class Coupling {
         return  this.hasSameEntities(c) && this.type == c.type && this.coOccurrence != c.coOccurrence;
     }
 
-    /**
-     * 
-     */
     private Type type;
-
-    /**
-     * 
-     */
     private float coOccurrence;
     private Entity entity1;
     private Entity entity2;

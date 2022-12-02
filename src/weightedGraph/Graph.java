@@ -38,18 +38,6 @@ public class Graph {
         }
     }
 
-    /**
-     * 
-     */
-    private ArrayList<Vertex> vertexList;
-
-    /**
-     * 
-     */
-    private ArrayList<Edge> edgeList;
-
-
-
 
     /**
      * @return
@@ -158,4 +146,10 @@ public class Graph {
         System.setProperty("org.graphstream.ui", "swing");
         graph.display();
     }
+
+
+    private ArrayList<Vertex> vertexList;
+
+    private ArrayList<Edge> edgeList;
+
 }

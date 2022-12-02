@@ -92,7 +92,7 @@ public abstract class ApplicationAbstraction {
     /**
      * mapper to map type with the cooccurrence matrix
      */
-    protected HashMap<Type, CoOccurrenceMatrix> mapper; 
+    protected HashMap<Type, CoOccurrenceMatrix> mapper;
     /**
      * frequency of the ApplicationAbstraction
      */

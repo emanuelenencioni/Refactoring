@@ -71,6 +71,6 @@ public class BusinessLogic extends ApplicationAbstraction {
                 }
     }
 
-    ArrayList<UseCase> useCaseList;
-    BuildCoMatStrategy strategy;
+    private ArrayList<UseCase> useCaseList;
+    private BuildCoMatStrategy strategy;
 }
