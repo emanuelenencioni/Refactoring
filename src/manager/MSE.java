@@ -2,16 +2,17 @@ package src.manager;
 
 import java.util.*;
 
+import src.weightedGraph.Edge;
 import src.weightedGraph.Graph;
 /**
  * 
  */
-public class LossStrategy2 implements LossFunctionStrategy {
+public class MSE implements LossFunctionStrategy {
 
     /**
      * Default constructor
      */
-    public LossStrategy2() {
+    public MSE() {
     }
 
     /**
@@ -21,8 +22,16 @@ public class LossStrategy2 implements LossFunctionStrategy {
      * higher value means more information was lost
      */
     public float lossFunction(Graph g, Graph sg) {
-        // TODO implement here
-        return 0.0f;
+        float g_sum = 0;
+        float sg_sum = 0;
+        
+        for(Edge e : g.getEdgeList())
+            g_sum += e.getWeight()*100;
+    
+        for(Edge e : sg.getEdgeList())
+            sg_sum += e.getWeight()*100;
+        
+        return  (float) (Math.pow((g_sum - sg_sum), 2)/g.getEdgeList().size());
     }
 
 }

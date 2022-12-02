@@ -225,7 +225,7 @@ public class ManagerTest {
     }
     
     @Test
-    public void testLossFunction(){
+    public void testReverseHuber(){
         MSTClustering swk = new MSTClustering(4, 3);
         ArrayList<Vertex> vl = new ArrayList<>();
         ArrayList<Edge> el = new ArrayList<>();
@@ -265,10 +265,53 @@ public class ManagerTest {
             g.addEdge(e);
         }
         Graph sg = swk.simplifyGraph(g);
-        LossFunctionStrategy sfs = new CutSum();
-        assertEquals(0.065333, sfs.lossFunction(g, sg), 0.000001);
+        LossFunctionStrategy sfs = new ReverseHuber();
+        assertEquals(254.8, sfs.lossFunction(g, sg), 0.001);
     }
+    @Test
+    public void testMSE(){
+        MSTClustering swk = new MSTClustering(4, 3);
+        ArrayList<Vertex> vl = new ArrayList<>();
+        ArrayList<Edge> el = new ArrayList<>();
+        for(int i = 0; i<10; i++){
+            vl.add(new Vertex(new Entity("E"+i)));
+        }
+        
+        el.add(new Edge(0.14f, vl.get(0), vl.get(1)));
+        el.add(new Edge(0.5f, vl.get(0), vl.get(3)));
+        el.add(new Edge(0.7f, vl.get(3), vl.get(1)));
+        el.add(new Edge(0.25f, vl.get(1), vl.get(4)));
+        el.add(new Edge(0.05f, vl.get(1), vl.get(2)));
+        el.add(new Edge(0.8f, vl.get(2), vl.get(4)));
+        el.add(new Edge(0.9f, vl.get(2), vl.get(5)));
+        el.add(new Edge(0.1f, vl.get(3), vl.get(4)));
+        el.add(new Edge(0.35f, vl.get(4), vl.get(5)));
+        el.add(new Edge(0.01f, vl.get(4), vl.get(8)));
+        el.add(new Edge(0.15f, vl.get(5), vl.get(8)));
+        el.add(new Edge(0.12f, vl.get(5), vl.get(9)));
+        el.add(new Edge(0.55f, vl.get(8), vl.get(9)));
+        el.add(new Edge(0.3f, vl.get(7), vl.get(8)));
+        el.add(new Edge(0.52f, vl.get(6), vl.get(7)));
+        
+        for(Vertex v : vl){
+            for(Edge e : el){
+                if(e.getVertex1().equals(v) || e.getVertex2().equals(v)){
+                    v.addEdge(e);
+                }
+            }
+        }
 
+        Graph g = new Graph();
+        for(Vertex v : vl){
+            g.addVertex(v);
+        }
+        for(Edge e : el){
+            g.addEdge(e);
+        }
+        Graph sg = swk.simplifyGraph(g);
+        LossFunctionStrategy sfs = new MSE();
+        assertEquals(640.2666, sfs.lossFunction(g, sg), 0.001);
+    }
     @Test
     public void testMyBestSolutionKruskal() {
         MSTClustering swk = new MSTClustering(3, 3);
@@ -310,9 +353,9 @@ public class ManagerTest {
             g.addEdge(e);
         }
 
-        LossFunctionStrategy sfs = new CutSum();       
+        LossFunctionStrategy sfs = new ReverseHuber();       
         Graph sg = swk.myBestSolution(g, sfs);
-        assertEquals(0.027333386, sfs.lossFunction(g, sg), 0.0001);
+        assertEquals(106.5999, sfs.lossFunction(g, sg), 0.0001);
     }
 
 

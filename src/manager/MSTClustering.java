@@ -13,11 +13,7 @@ public class MSTClustering implements SimplifyGraphStrategy {
      * Default constructor
      */
     public MSTClustering() {
-        this.ms = new MergeSort();
-        this.max_entity_per_service = 5; 
-        this.numb_partition = 4;
-        this.T0 = 1000;
-        this.alpha = 1;
+        this(4,5);
     }
     /**
      * constructor fot test for deciding the params
@@ -29,7 +25,7 @@ public class MSTClustering implements SimplifyGraphStrategy {
         this.max_entity_per_service = s; //to define
         this.numb_partition = n;
         this.T0 = 1000;
-        this.alpha = 1;
+        this.alpha = 10f;
     }
 
     @Override
@@ -48,6 +44,9 @@ public class MSTClustering implements SimplifyGraphStrategy {
     }
 
     @Override
+    /**
+     * Optimization algorithm inspired by simulated annealing
+     */
     public Graph myBestSolution(Graph g, LossFunctionStrategy lf) {
         float best = 1000;
         Graph result = null;
@@ -60,23 +59,23 @@ public class MSTClustering implements SimplifyGraphStrategy {
         int best_n = 0;
         int best_s = 0;
         for(int i = 1; i< 1000; i++){
-                T = this.T0/Math.log(i + alpha);
-                last_n = numb_partition;
-                last_s = max_entity_per_service;
-                choosePath(rand, g);
-                result = simplifyGraph(g);
-                delta =  lf.lossFunction(g, result) - best;
-                    if(delta < 0){
-                    best = lf.lossFunction(g, result);
-                    best_result = result;
-                    best_s = max_entity_per_service;
-                    best_n = numb_partition;
+            T = this.T0/Math.log(i + alpha);
+            last_n = numb_partition;
+            last_s = max_entity_per_service;
+            choosePath(rand, g);
+            result = simplifyGraph(g);
+            delta =  lf.lossFunction(g, result) - best;
+            if(delta < 0){
+                best = lf.lossFunction(g, result);
+                best_result = result;
+                best_s = max_entity_per_service;
+                best_n = numb_partition;
+            }
+            else
+                if(rand.nextDouble() > Math.pow(Math.E, -(delta/T))){ //at start we accept solution with greater loss value, then if the 
+                    numb_partition = last_n;
+                    max_entity_per_service = last_s ;
                 }
-                else 
-                    if(rand.nextDouble() > Math.pow(Math.E, delta/T)){
-                        numb_partition = last_n;
-                        max_entity_per_service = last_s ;
-                    }
         }
         numb_partition = best_n;
         max_entity_per_service = best_s;
@@ -323,7 +322,7 @@ public class MSTClustering implements SimplifyGraphStrategy {
                     i--;
                 }
         }
-        if(numb_partition <= 1){
+        if(numb_partition <= 2){
             for(int i = 0; i< routes.size();i++)
                 if(routes.get(i) == 0 || routes.get(i) == 3 || routes.get(i) == 5) {
                     routes.remove(i);
