@@ -88,17 +88,13 @@ public class GraphManager {
      * Create graph from the list of Co-Occurrence matrices given in ApplicationAbstraction matContainer
      * @return true if graph has been created, false if matContainer or domainModel is not set
      */
-    private void createGraph() {
+    private boolean createGraph() {
         
-        if (this.matContainer == null){
-            System.err.println("ApplicationAbstraction not set");
-            return;
-        }
+        if (this.matContainer == null)
+            return false;
 
-        if (this.domainModel == null){
-            System.err.println("DomainModel not set");
-            return;
-        }
+        if (this.domainModel == null)
+            return false;
         
         // CREARE tutti i vertici scorrendo la lista delle entità
         ArrayList<Entity> entitiesList = this.domainModel.getEntityList();
@@ -147,7 +143,7 @@ public class GraphManager {
 
         }
 
-        return;
+        return true;
     }
 
     /**
