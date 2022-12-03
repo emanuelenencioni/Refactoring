@@ -43,17 +43,19 @@ Elenchiamo di seguito possibili implementazioni aggiuntive per questo Software:
 
 ## Class Diagram
 Di seguito proponiamo il Class Diagram sviluppato:
-"Class diagram"
+![](doc/diagram_imgs/classDiagram.png)
 
 
 ## Classi ed Interfacce
 
 ## Mockups
 Di seguito vengono proposti dei mockups di una possibile implemetazione di un front-end. Il software utilizzato è Pencil. 
+<br/>
 ![](doc/mockups_imgs/mainFrame.png)
 Qui possiamo vedere l'interfaccia principale dell'applicativo, permette di inserire i vari elementi di una applicazione, salvare l'applicazione caricata così da facilitarne il caricamento per usi futuri e visualizzare tutti gli oggetti dell'applicazione. 
+<br/>
 ![](doc/mockups_imgs/visualize.png)
-
+<br/>
 Nella fase di inserimento si prevede un ordine prestabilito: Entity, Couplings, EndPoints, UseCases e infine BusinessLogic. I bottoni saranno disattivati finché non sarà rispettato l'ordine di precedenza. Ognuno dei bottoni dell'interfaccia principale apre una nuova finestra che permette di inserire uno o più elementi di quel tipo(apparte per Business Logic di cui se ne prevede una sola). Di seguito sono riportate le varie interfaccie per gli input.
 
 ![](doc/mockups_imgs/InputEntity.png)
