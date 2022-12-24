@@ -18,7 +18,7 @@ public class ReverseHuber implements LossFunctionStrategy {
      * @param Graph g starting graph
      * @param Graph sg simplified version of starting graph
      * @return numeric evaluation of the information lost between the graphs
-     * higher value means more information was lost
+     * higher value means more information was lost //TODO
      */
     public float lossFunction(Graph g, Graph sg) {
         float g_sum = 0;
