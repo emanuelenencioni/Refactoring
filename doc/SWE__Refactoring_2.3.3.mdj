@@ -17689,7 +17689,7 @@
 											"font": "Arial;13;1",
 											"left": 1965,
 											"top": 223,
-											"width": 282.17236328125,
+											"width": 290.84326171875,
 											"height": 13,
 											"text": "LossFunctionFactory"
 										},
@@ -17724,7 +17724,7 @@
 									"font": "Arial;13;0",
 									"left": 1960,
 									"top": 216,
-									"width": 292.17236328125,
+									"width": 300.84326171875,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAGE1RHKJNkF9g4="
@@ -17751,7 +17751,7 @@
 									"font": "Arial;13;0",
 									"left": 1960,
 									"top": 241,
-									"width": 292.17236328125,
+									"width": 300.84326171875,
 									"height": 10
 								},
 								{
@@ -17776,16 +17776,16 @@
 											"font": "Arial;13;0",
 											"left": 1965,
 											"top": 256,
-											"width": 282.17236328125,
+											"width": 290.84326171875,
 											"height": 13,
-											"text": "+createLossFunctiontrategy(LossFunctionType t)",
+											"text": "+createLossFunctionStrategy(LossFunctionType t)",
 											"horizontalAlignment": 0
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 1960,
 									"top": 251,
-									"width": 292.17236328125,
+									"width": 300.84326171875,
 									"height": 23
 								},
 								{
@@ -17825,7 +17825,7 @@
 							"containerChangeable": true,
 							"left": 1960,
 							"top": 216,
-							"width": 292.17236328125,
+							"width": 300.84326171875,
 							"height": 58,
 							"nameCompartment": {
 								"$ref": "AAAAAAGE1RHKJNkEkLA="
@@ -18416,7 +18416,7 @@
 								"$ref": "AAAAAAGE1RHKJNkD1Ag="
 							},
 							"lineStyle": 1,
-							"points": "2252:237;2375:232",
+							"points": "2261:237;2375:232",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAGE1RZxLpnsDSU="
@@ -18724,7 +18724,7 @@
 								"$ref": "AAAAAAGE1Raj5aO8gzQ="
 							},
 							"lineStyle": 1,
-							"points": "1893:289;1964:274",
+							"points": "1893:289;1966:274",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAGE1Rcn3rCq/0Y="
@@ -23676,7 +23676,7 @@
 							"_parent": {
 								"$ref": "AAAAAAGE1RHKI9kBzTU="
 							},
-							"name": "createLossFunctiontrategy",
+							"name": "createLossFunctionStrategy",
 							"parameters": [
 								{
 									"_type": "UMLParameter",
@@ -23684,8 +23684,7 @@
 									"_parent": {
 										"$ref": "AAAAAAGE1RJ85d4nJFw="
 									},
-									"name": "LossFunctionType t",
-									"type": ""
+									"name": "LossFunctionType t"
 								}
 							]
 						}
