@@ -17,7 +17,7 @@ public class ReverseHuber implements LossFunctionStrategy {
     }
 
     /** 
-     * The loss function is calculated as the sum of the weight of the edge in g that are not present in sg if the value of the weight is lesser than a threshold, or as the sume of the squared weight otherwise
+     * This loss function penalizes large errors more severely than small errors, by using the square of the weight for large errors and the weight itself for small errors.
      * @param Graph g starting graph
      * @param Graph sg simplified version of starting graph
      * @return reverse Huber loss function
