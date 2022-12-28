@@ -19,16 +19,14 @@ public class MSE implements LossFunctionStrategy {
      * higher value means more information was lost
      */
     public float lossFunction(Graph g, Graph sg) {
-        float g_sum = 0;
-        float sg_sum = 0;
+        float errorValue = 0;
         
         for(Edge e : g.getEdgeList())
-            g_sum += e.getWeight()*100;
+            if(!sg.getEdgeList().contains(e))
+                errorValue += Math.pow(e.getWeight()*100, 2);
     
-        for(Edge e : sg.getEdgeList())
-            sg_sum += e.getWeight()*100;
         
-        return  (float) (Math.pow((g_sum - sg_sum), 2)/g.getEdgeList().size());
+        return  (float) (errorValue/g.getEdgeList().size());
     }
 
 }

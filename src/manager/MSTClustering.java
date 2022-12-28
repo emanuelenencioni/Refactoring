@@ -48,7 +48,7 @@ public class MSTClustering implements SimplifyGraphStrategy {
      * Optimization algorithm inspired by simulated annealing
      */
     public Graph myBestSolution(Graph g, LossFunctionStrategy lf) {
-        float best = 1000;
+        float best = Integer.MAX_VALUE;
         Graph result = null;
         Graph best_result = null;
         float delta = 0;
