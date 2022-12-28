@@ -13,10 +13,10 @@ public class MSE implements LossFunctionStrategy {
     }
 
     /**
+     * The loss function is calculated as the sum of the squares of the weights of the edges in g * that are not present in sg, divided by the number of edges in g
      * @param Graph g starting graph
      * @param Graph sg simplified version of starting graph
-     * @return numeric evaluation of the information lost between the graphs
-     * higher value means more information was lost
+     * @return Mean Square Error value
      */
     public float lossFunction(Graph g, Graph sg) {
         float errorValue = 0;
