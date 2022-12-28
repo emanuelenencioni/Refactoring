@@ -310,7 +310,7 @@ public class ManagerTest {
         }
         Graph sg = swk.simplifyGraph(g);
         LossFunctionStrategy sfs = new MSE();
-        assertEquals(640.2666, sfs.lossFunction(g, sg), 0.001);
+        assertEquals(134.666, sfs.lossFunction(g, sg), 0.001);
     }
     @Test
     public void testMyBestSolutionKruskal() {
