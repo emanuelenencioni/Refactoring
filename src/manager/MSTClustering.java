@@ -288,7 +288,6 @@ public class MSTClustering implements SimplifyGraphStrategy {
                                 Edge e = g.getEdge(v1, v2);
                                 if(e != null){
                                     sg.addEdge(e);
-                                    counted.put(v2, true);
                                 }
                             }
                     }
