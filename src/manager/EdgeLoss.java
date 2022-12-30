@@ -22,11 +22,23 @@ public class EdgeLoss implements LossFunctionStrategy {
         float sg_sum = 0;
         float psi = 0.5f;
         float loss = 0;
+        int numEntity = 0;
+        float expected = 0.f;
+        int actual = 0;
 
         HashMap<Vertex, Integer> hm = DFSCounter(sg);
 
-        // If the number of connected components is lower, loss value is higher 
-        loss += (sg.getVertexList().size()/hm.size())*10; //TODO
+
+        // x / log (base 2)(x)
+        numEntity = sg.getVertexList().size();
+        expected = numEntity / (float)(Math.log(numEntity) / Math.log(2));
+        actual = hm.size();
+
+        if(actual > expected){
+            loss += Math.pow(Math.E, (2*(actual/expected)));
+        }else{
+            loss += Math.pow(Math.E, (2*(expected/actual)));
+        }
 
 
         float avg = 0.f;
@@ -34,9 +46,9 @@ public class EdgeLoss implements LossFunctionStrategy {
 
             avg = avgCCWeight(v);
             if(avg < psi)
-                loss += avg*100;
+                loss += (1-avg)*100;
             else
-                loss += avg;
+                loss += 1-avg;
 
         }
         
