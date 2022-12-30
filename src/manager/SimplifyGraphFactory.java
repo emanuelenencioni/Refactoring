@@ -23,9 +23,6 @@ public class SimplifyGraphFactory {
             case MSTClustering:
                 return new MSTClustering();
 
-            case ConcreteStrategy2:
-                return new ConcreteStrategy2();
-
             default:
                 return null;}
 

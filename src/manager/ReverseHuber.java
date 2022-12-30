@@ -1,6 +1,8 @@
 package src.manager;
 
 
+import java.util.ArrayList;
+
 import src.weightedGraph.*;
 
 /**
@@ -14,28 +16,43 @@ public class ReverseHuber implements LossFunctionStrategy {
     public ReverseHuber() {
     }
 
-    /**
+    /** 
+     * This loss function penalizes large errors more severely than small errors, by using the square of the weight for large errors and the weight itself for small errors.
      * @param Graph g starting graph
      * @param Graph sg simplified version of starting graph
-     * @return numeric evaluation of the information lost between the graphs
-     * higher value means more information was lost //TODO
+     * @return reverse Huber loss function
      */
     public float lossFunction(Graph g, Graph sg) {
-        float g_sum = 0;
-        float sg_sum = 0;
-        
-        for(Edge e : g.getEdgeList())
-            g_sum += e.getWeight()*100;
-    
-        for(Edge e : sg.getEdgeList())
-            sg_sum += e.getWeight()*100;
-        double th = 0.2*(g_sum - sg_sum);
-        float res = Math.abs(g_sum - sg_sum);
-        if(res <= th){
-            return res;
+        float errorValue = 0;
+        ArrayList<Edge> errorList = new ArrayList<>();
+        for(Edge e : g.getEdgeList()){
+            if(!sg.getEdgeList().contains(e))
+                errorList.add(e);
+                
         }
-        else 
-            return (float) ((Math.pow(res,2) + Math.pow(th, 2))/(2*th));
+        
+        float th = 0.8f*(max(errorList))*100;
+        float wt = 0;
+        for(Edge e : errorList){
+            wt = e.getWeight()*100;
+            if(wt <= th){
+                    errorValue += wt;
+                } else {
+                    errorValue += (wt*wt + th*th)/(2*th);
+                }
+                
+        }
+        return errorValue;
         //return  (g_sum - sg_sum)/g.getEdgeList().size();
+    }
+
+    private float max(ArrayList<Edge> el){
+        if(el.size() == 0)
+            return -1.0f;
+        float max = 0;
+        for(Edge e : el)
+            if(e.getWeight()> max)
+                max = e.getWeight();
+        return max;
     }
 }

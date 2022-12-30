@@ -48,7 +48,7 @@ public class MSTClustering implements SimplifyGraphStrategy {
      * Optimization algorithm inspired by simulated annealing
      */
     public Graph myBestSolution(Graph g, LossFunctionStrategy lf) {
-        float best = 1000;
+        float best = Integer.MAX_VALUE;
         Graph result = null;
         Graph best_result = null;
         float delta = 0;
@@ -58,11 +58,12 @@ public class MSTClustering implements SimplifyGraphStrategy {
         int last_s = 0;
         int best_n = 0;
         int best_s = 0;
+        int lastPath = 0;
         for(int i = 1; i< 1000; i++){
             T = this.T0/Math.log(i + alpha);
             last_n = numb_partition;
             last_s = max_entity_per_service;
-            choosePath(rand, g);
+            lastPath = choosePath(rand, g, lastPath);
             result = simplifyGraph(g);
             delta =  lf.lossFunction(g, result) - best;
             if(delta < 0){
@@ -71,10 +72,12 @@ public class MSTClustering implements SimplifyGraphStrategy {
                 best_s = max_entity_per_service;
                 best_n = numb_partition;
             }
-            else
-                if(rand.nextDouble() > Math.pow(Math.E, -(delta/T))){ //at start we accept solution with greater loss value, then if the 
+            else{
+                if(rand.nextDouble() > Math.pow(Math.E, -(delta/T))){ //at start we accept solution with greater loss value 
                     numb_partition = last_n;
                     max_entity_per_service = last_s ;
+                }else
+                    lastPath = 0;
                 }
         }
         numb_partition = best_n;
@@ -285,7 +288,6 @@ public class MSTClustering implements SimplifyGraphStrategy {
                                 Edge e = g.getEdge(v1, v2);
                                 if(e != null){
                                     sg.addEdge(e);
-                                    counted.put(v2, true);
                                 }
                             }
                     }
@@ -310,11 +312,17 @@ public class MSTClustering implements SimplifyGraphStrategy {
      * function used to change the value of the hyperparams of the algorithm
      * @param route
      */
-    private void choosePath(Random rand, Graph g){
+    private int choosePath(Random rand, Graph g, int lastPath){
+        if(lastPath > 0){
+            routeSelection(lastPath);
+            return lastPath;
+        }
+        
         ArrayList<Integer> routes = new ArrayList<Integer>();
         for(int i = 0; i<=7;i++){
             routes.add(i,i);
         }
+        
         if(numb_partition >= (g.getVertexList().size()-1)){
             for(int i = 0; i< routes.size();i++)
                 if(routes.get(i) == 7 || routes.get(i) == 6 || routes.get(i) == 2) {
@@ -345,9 +353,13 @@ public class MSTClustering implements SimplifyGraphStrategy {
                     i--;
                 }
         }
-
+        
         int route = routes.get(rand.nextInt(routes.size()));
-
+        routeSelection(route);
+        return route;
+    }
+    
+    void routeSelection(int route){
         if(route == 0){
             this.max_entity_per_service--;
             this.numb_partition--;

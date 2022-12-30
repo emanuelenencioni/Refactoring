@@ -13,22 +13,20 @@ public class MSE implements LossFunctionStrategy {
     }
 
     /**
+     * The loss function is calculated as the sum of the squares of the weights of the edges in g * that are not present in sg, divided by the number of edges in g
      * @param Graph g starting graph
      * @param Graph sg simplified version of starting graph
-     * @return numeric evaluation of the information lost between the graphs
-     * higher value means more information was lost
+     * @return Mean Square Error value
      */
     public float lossFunction(Graph g, Graph sg) {
-        float g_sum = 0;
-        float sg_sum = 0;
+        float errorValue = 0;
         
         for(Edge e : g.getEdgeList())
-            g_sum += e.getWeight()*100;
+            if(!sg.getEdgeList().contains(e))
+                errorValue += Math.pow(e.getWeight()*100, 2);
     
-        for(Edge e : sg.getEdgeList())
-            sg_sum += e.getWeight()*100;
         
-        return  (float) (Math.pow((g_sum - sg_sum), 2)/g.getEdgeList().size());
+        return  (float) (errorValue/g.getEdgeList().size());
     }
 
 }

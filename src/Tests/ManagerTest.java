@@ -266,7 +266,7 @@ public class ManagerTest {
         }
         Graph sg = swk.simplifyGraph(g);
         LossFunctionStrategy sfs = new ReverseHuber();
-        assertEquals(254.8, sfs.lossFunction(g, sg), 0.001);
+        assertEquals(98.7708, sfs.lossFunction(g, sg), 0.001);
     }
     @Test
     public void testMSE(){
@@ -310,7 +310,7 @@ public class ManagerTest {
         }
         Graph sg = swk.simplifyGraph(g);
         LossFunctionStrategy sfs = new MSE();
-        assertEquals(640.2666, sfs.lossFunction(g, sg), 0.001);
+        assertEquals(134.666, sfs.lossFunction(g, sg), 0.001);
     }
     @Test
     public void testMyBestSolutionKruskal() {
