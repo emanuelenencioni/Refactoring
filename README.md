@@ -184,10 +184,6 @@ In particolare viene utilizzato:
 - all'interno del metodo "findBestSolution()" della classe GraphManager, in quanto questo metodo necessita di utilizzare tutte le diverse streategie di semplificazione del grafo, al fine di trovare la strategia che minimizza il valore della loss. 
 - all'interno della classe InputManager, per ottimizzare la creazione delle strategie di costruzione delle matrici di co-occorrenza e delle strategie di calcolo della loss, a partire dall'input dei file JSON.
 
-
-## Disposizione delle classi nei package
-
-
 # **Unit Test**
 Siccome ogni classe è fortemente collegata alle altre, è stata presa la decisione di testare la maggior parte del codice per evitare il maggior numero di bugs. Nel progetto è stato usato il framework JUnit 4.13.2.
 ### **AppModelTest**
