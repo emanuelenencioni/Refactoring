@@ -1,0 +1,8 @@
+{
+    "simpifyGraphStrategy" : "MSTClustering",
+    "lossFunctionStrategy" : "EdgeLoss",
+    "weightCC" : 1.0,
+    "weightCQ" : 0.75,
+    "weightQC" : 0.5,
+    "weightQQ" : 0.25
+}

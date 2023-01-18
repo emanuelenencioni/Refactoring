@@ -1,0 +1,778 @@
+[
+    {
+        "ID" : "ep1",
+        "frequency" : 0.33,
+        "coupList" : [
+            {
+                "type" : "CC",
+                "coOccurrence" : 1.0,
+                "entity1" : "en0",
+                "entity2" : "en1"
+            },
+            {
+                "type" : "CQ",
+                "coOccurrence" : 1.0,
+                "entity1" : "en0",
+                "entity2" : "en1"
+            },
+            {
+                "type" : "QC",
+                "coOccurrence" : 1.0,
+                "entity1" : "en0",
+                "entity2" : "en1"
+            },
+            {
+                "type" : "QQ",
+                "coOccurrence" : 1.0,
+                "entity1" : "en0",
+                "entity2" : "en1"
+            },
+            {
+                "type" : "CC",
+                "coOccurrence" : 1.0,
+                "entity1" : "en0",
+                "entity2" : "en2"
+            },
+            {
+                "type" : "CQ",
+                "coOccurrence" : 1.0,
+                "entity1" : "en0",
+                "entity2" : "en2"
+            },
+            {
+                "type" : "QC",
+                "coOccurrence" : 1.0,
+                "entity1" : "en0",
+                "entity2" : "en2"
+            },
+            {
+                "type" : "QQ",
+                "coOccurrence" : 1.0,
+                "entity1" : "en0",
+                "entity2" : "en2"
+            },
+            {
+                "type" : "CC",
+                "coOccurrence" : 1.0,
+                "entity1" : "en0",
+                "entity2" : "en3"
+            },
+            {
+                "type" : "CQ",
+                "coOccurrence" : 1.0,
+                "entity1" : "en0",
+                "entity2" : "en3"
+            },
+            {
+                "type" : "QC",
+                "coOccurrence" : 1.0,
+                "entity1" : "en0",
+                "entity2" : "en3"
+            },
+            {
+                "type" : "QQ",
+                "coOccurrence" : 1.0,
+                "entity1" : "en0",
+                "entity2" : "en3"
+            },
+            {
+                "type" : "CC",
+                "coOccurrence" : 0.5,
+                "entity1" : "en1",
+                "entity2" : "en0"
+            },
+            {
+                "type" : "CQ",
+                "coOccurrence" : 0.5,
+                "entity1" : "en1",
+                "entity2" : "en0"
+            },
+            {
+                "type" : "QC",
+                "coOccurrence" : 0.5,
+                "entity1" : "en1",
+                "entity2" : "en0"
+            },
+            {
+                "type" : "QQ",
+                "coOccurrence" : 0.5,
+                "entity1" : "en1",
+                "entity2" : "en0"
+            },
+            {
+                "type" : "CC",
+                "coOccurrence" : 0.5,
+                "entity1" : "en1",
+                "entity2" : "en2"
+            },
+            {
+                "type" : "CQ",
+                "coOccurrence" : 0.5,
+                "entity1" : "en1",
+                "entity2" : "en2"
+            },
+            {
+                "type" : "QC",
+                "coOccurrence" : 0.5,
+                "entity1" : "en1",
+                "entity2" : "en2"
+            },
+            {
+                "type" : "QQ",
+                "coOccurrence" : 0.5,
+                "entity1" : "en1",
+                "entity2" : "en2"
+            },
+            {
+                "type" : "CC",
+                "coOccurrence" : 0.5,
+                "entity1" : "en1",
+                "entity2" : "en3"
+            },
+            {
+                "type" : "CQ",
+                "coOccurrence" : 0.5,
+                "entity1" : "en1",
+                "entity2" : "en3"
+            },
+            {
+                "type" : "QC",
+                "coOccurrence" : 0.5,
+                "entity1" : "en1",
+                "entity2" : "en3"
+            },
+            {
+                "type" : "QQ",
+                "coOccurrence" : 0.5,
+                "entity1" : "en1",
+                "entity2" : "en3"
+            },
+            {
+                "type" : "CC",
+                "coOccurrence" : 0.25,
+                "entity1" : "en2",
+                "entity2" : "en0"
+            },
+            {
+                "type" : "CQ",
+                "coOccurrence" : 0.25,
+                "entity1" : "en2",
+                "entity2" : "en0"
+            },
+            {
+                "type" : "QC",
+                "coOccurrence" : 0.25,
+                "entity1" : "en2",
+                "entity2" : "en0"
+            },
+            {
+                "type" : "QQ",
+                "coOccurrence" : 0.25,
+                "entity1" : "en2",
+                "entity2" : "en0"
+            },
+            {
+                "type" : "CC",
+                "coOccurrence" : 0.25,
+                "entity1" : "en2",
+                "entity2" : "en1"
+            },
+            {
+                "type" : "CQ",
+                "coOccurrence" : 0.25,
+                "entity1" : "en2",
+                "entity2" : "en1"
+            },
+            {
+                "type" : "QC",
+                "coOccurrence" : 0.25,
+                "entity1" : "en2",
+                "entity2" : "en1"
+            },
+            {
+                "type" : "QQ",
+                "coOccurrence" : 0.25,
+                "entity1" : "en2",
+                "entity2" : "en1"
+            },
+            {
+                "type" : "CC",
+                "coOccurrence" : 0.25,
+                "entity1" : "en2",
+                "entity2" : "en3"
+            },
+            {
+                "type" : "CQ",
+                "coOccurrence" : 0.25,
+                "entity1" : "en2",
+                "entity2" : "en3"
+            },
+            {
+                "type" : "QC",
+                "coOccurrence" : 0.25,
+                "entity1" : "en2",
+                "entity2" : "en3"
+            },
+            {
+                "type" : "QQ",
+                "coOccurrence" : 0.25,
+                "entity1" : "en2",
+                "entity2" : "en3"
+            }
+        ]
+    },
+
+    {
+        "ID" : "ep2",
+        "frequency" : 0.91,
+        "coupList" : [
+            {
+                "type" : "CC",
+                "coOccurrence" : 0.7,
+                "entity1" : "en0",
+                "entity2" : "en1"
+            },
+            {
+                "type" : "CQ",
+                "coOccurrence" : 0.7,
+                "entity1" : "en0",
+                "entity2" : "en1"
+            },
+            {
+                "type" : "QC",
+                "coOccurrence" : 0.7,
+                "entity1" : "en0",
+                "entity2" : "en1"
+            },
+            {
+                "type" : "QQ",
+                "coOccurrence" : 0.7,
+                "entity1" : "en0",
+                "entity2" : "en1"
+            },
+            {
+                "type" : "CC",
+                "coOccurrence" : 0.7,
+                "entity1" : "en0",
+                "entity2" : "en2"
+            },
+            {
+                "type" : "CQ",
+                "coOccurrence" : 0.7,
+                "entity1" : "en0",
+                "entity2" : "en2"
+            },
+            {
+                "type" : "QC",
+                "coOccurrence" : 0.7,
+                "entity1" : "en0",
+                "entity2" : "en2"
+            },
+            {
+                "type" : "QQ",
+                "coOccurrence" : 0.7,
+                "entity1" : "en0",
+                "entity2" : "en2"
+            },
+            {
+                "type" : "CC",
+                "coOccurrence" : 0.7,
+                "entity1" : "en0",
+                "entity2" : "en3"
+            },
+            {
+                "type" : "CQ",
+                "coOccurrence" : 0.7,
+                "entity1" : "en0",
+                "entity2" : "en3"
+            },
+            {
+                "type" : "QC",
+                "coOccurrence" : 0.7,
+                "entity1" : "en0",
+                "entity2" : "en3"
+            },
+            {
+                "type" : "QQ",
+                "coOccurrence" : 0.7,
+                "entity1" : "en0",
+                "entity2" : "en3"
+            },
+            {
+                "type" : "CC",
+                "coOccurrence" : 0.6,
+                "entity1" : "en1",
+                "entity2" : "en0"
+            },
+            {
+                "type" : "CQ",
+                "coOccurrence" : 0.6,
+                "entity1" : "en1",
+                "entity2" : "en0"
+            },
+            {
+                "type" : "QC",
+                "coOccurrence" : 0.6,
+                "entity1" : "en1",
+                "entity2" : "en0"
+            },
+            {
+                "type" : "QQ",
+                "coOccurrence" : 0.6,
+                "entity1" : "en1",
+                "entity2" : "en0"
+            },
+            {
+                "type" : "CC",
+                "coOccurrence" : 0.6,
+                "entity1" : "en1",
+                "entity2" : "en2"
+            },
+            {
+                "type" : "CQ",
+                "coOccurrence" : 0.6,
+                "entity1" : "en1",
+                "entity2" : "en2"
+            },
+            {
+                "type" : "QC",
+                "coOccurrence" : 0.6,
+                "entity1" : "en1",
+                "entity2" : "en2"
+            },
+            {
+                "type" : "QQ",
+                "coOccurrence" : 0.6,
+                "entity1" : "en1",
+                "entity2" : "en2"
+            },
+            {
+                "type" : "CC",
+                "coOccurrence" : 0.6,
+                "entity1" : "en1",
+                "entity2" : "en3"
+            },
+            {
+                "type" : "CQ",
+                "coOccurrence" : 0.6,
+                "entity1" : "en1",
+                "entity2" : "en3"
+            },
+            {
+                "type" : "QC",
+                "coOccurrence" : 0.6,
+                "entity1" : "en1",
+                "entity2" : "en3"
+            },
+            {
+                "type" : "QQ",
+                "coOccurrence" : 0.6,
+                "entity1" : "en1",
+                "entity2" : "en3"
+            },
+            {
+                "type" : "CC",
+                "coOccurrence" : 0.4,
+                "entity1" : "en2",
+                "entity2" : "en0"
+            },
+            {
+                "type" : "CQ",
+                "coOccurrence" : 0.4,
+                "entity1" : "en2",
+                "entity2" : "en0"
+            },
+            {
+                "type" : "QC",
+                "coOccurrence" : 0.4,
+                "entity1" : "en2",
+                "entity2" : "en0"
+            },
+            {
+                "type" : "QQ",
+                "coOccurrence" : 0.4,
+                "entity1" : "en2",
+                "entity2" : "en0"
+            },
+            {
+                "type" : "CC",
+                "coOccurrence" : 0.4,
+                "entity1" : "en2",
+                "entity2" : "en1"
+            },
+            {
+                "type" : "CQ",
+                "coOccurrence" : 0.4,
+                "entity1" : "en2",
+                "entity2" : "en1"
+            },
+            {
+                "type" : "QC",
+                "coOccurrence" : 0.4,
+                "entity1" : "en2",
+                "entity2" : "en1"
+            },
+            {
+                "type" : "QQ",
+                "coOccurrence" : 0.4,
+                "entity1" : "en2",
+                "entity2" : "en1"
+            },
+            {
+                "type" : "CC",
+                "coOccurrence" : 0.4,
+                "entity1" : "en2",
+                "entity2" : "en3"
+            },
+            {
+                "type" : "CQ",
+                "coOccurrence" : 0.4,
+                "entity1" : "en2",
+                "entity2" : "en3"
+            },
+            {
+                "type" : "QC",
+                "coOccurrence" : 0.4,
+                "entity1" : "en2",
+                "entity2" : "en3"
+            },
+            {
+                "type" : "QQ",
+                "coOccurrence" : 0.4,
+                "entity1" : "en2",
+                "entity2" : "en3"
+            }
+        ]
+
+
+    },
+
+
+    {
+        "ID" : "ep3",
+        "frequency" : 0.85,
+        "coupList" : [
+            {
+                "type" : "CC",
+                "coOccurrence" : 0.3,
+                "entity1" : "en0",
+                "entity2" : "en1"
+            },
+            {
+                "type" : "CQ",
+                "coOccurrence" : 0.3,
+                "entity1" : "en0",
+                "entity2" : "en1"
+            },
+            {
+                "type" : "QC",
+                "coOccurrence" : 0.3,
+                "entity1" : "en0",
+                "entity2" : "en1"
+            },
+            {
+                "type" : "QQ",
+                "coOccurrence" : 0.3,
+                "entity1" : "en0",
+                "entity2" : "en1"
+            },
+            {
+                "type" : "CC",
+                "coOccurrence" : 0.3,
+                "entity1" : "en0",
+                "entity2" : "en2"
+            },
+            {
+                "type" : "CQ",
+                "coOccurrence" : 0.3,
+                "entity1" : "en0",
+                "entity2" : "en2"
+            },
+            {
+                "type" : "QC",
+                "coOccurrence" : 0.3,
+                "entity1" : "en0",
+                "entity2" : "en2"
+            },
+            {
+                "type" : "QQ",
+                "coOccurrence" : 0.3,
+                "entity1" : "en0",
+                "entity2" : "en2"
+            },
+            {
+                "type" : "CC",
+                "coOccurrence" : 0.3,
+                "entity1" : "en0",
+                "entity2" : "en3"
+            },
+            {
+                "type" : "CQ",
+                "coOccurrence" : 0.3,
+                "entity1" : "en0",
+                "entity2" : "en3"
+            },
+            {
+                "type" : "QC",
+                "coOccurrence" : 0.3,
+                "entity1" : "en0",
+                "entity2" : "en3"
+            },
+            {
+                "type" : "QQ",
+                "coOccurrence" : 0.3,
+                "entity1" : "en0",
+                "entity2" : "en3"
+            },
+            {
+                "type" : "CC",
+                "coOccurrence" : 0.8,
+                "entity1" : "en1",
+                "entity2" : "en0"
+            },
+            {
+                "type" : "CQ",
+                "coOccurrence" : 0.8,
+                "entity1" : "en1",
+                "entity2" : "en0"
+            },
+            {
+                "type" : "QC",
+                "coOccurrence" : 0.8,
+                "entity1" : "en1",
+                "entity2" : "en0"
+            },
+            {
+                "type" : "QQ",
+                "coOccurrence" : 0.8,
+                "entity1" : "en1",
+                "entity2" : "en0"
+            },
+            {
+                "type" : "CC",
+                "coOccurrence" : 0.8,
+                "entity1" : "en1",
+                "entity2" : "en2"
+            },
+            {
+                "type" : "CQ",
+                "coOccurrence" : 0.8,
+                "entity1" : "en1",
+                "entity2" : "en2"
+            },
+            {
+                "type" : "QC",
+                "coOccurrence" : 0.8,
+                "entity1" : "en1",
+                "entity2" : "en2"
+            },
+            {
+                "type" : "QQ",
+                "coOccurrence" : 0.8,
+                "entity1" : "en1",
+                "entity2" : "en2"
+            },
+            {
+                "type" : "CC",
+                "coOccurrence" : 0.8,
+                "entity1" : "en1",
+                "entity2" : "en3"
+            },
+            {
+                "type" : "CQ",
+                "coOccurrence" : 0.8,
+                "entity1" : "en1",
+                "entity2" : "en3"
+            },
+            {
+                "type" : "QC",
+                "coOccurrence" : 0.8,
+                "entity1" : "en1",
+                "entity2" : "en3"
+            },
+            {
+                "type" : "QQ",
+                "coOccurrence" : 0.8,
+                "entity1" : "en1",
+                "entity2" : "en3"
+            }
+        ]
+    },
+
+    {
+        "ID" : "ep4",
+        "frequency" : 0.33,
+        "coupList" : [
+            {
+                "type" : "CC",
+                "coOccurrence" : 0.9,
+                "entity1" : "en4",
+                "entity2" : "en1"
+            },
+            {
+                "type" : "CQ",
+                "coOccurrence" : 0.5,
+                "entity1" : "en4",
+                "entity2" : "en3"
+            },
+            {
+                "type" : "QC",
+                "coOccurrence" : 0.6,
+                "entity1" : "en0",
+                "entity2" : "en7"
+            },
+            {
+                "type" : "QQ",
+                "coOccurrence" : 0.7,
+                "entity1" : "en0",
+                "entity2" : "en5"
+            }
+        ]
+    },
+
+    {
+        "ID" : "ep5",
+        "frequency" : 0.33,
+        "coupList" : [
+            {
+                "type" : "CC",
+                "coOccurrence" : 0.9,
+                "entity1" : "en5",
+                "entity2" : "en4"
+            },
+            {
+                "type" : "CQ",
+                "coOccurrence" : 0.5,
+                "entity1" : "en5",
+                "entity2" : "en8"
+            },
+            {
+                "type" : "QC",
+                "coOccurrence" : 0.6,
+                "entity1" : "en5",
+                "entity2" : "en9"
+            },
+            {
+                "type" : "QQ",
+                "coOccurrence" : 0.7,
+                "entity1" : "en5",
+                "entity2" : "en2"
+            }
+        ]
+    },
+
+    {
+        "ID" : "ep6",
+        "frequency" : 0.33,
+        "coupList" : [
+            {
+                "type" : "CC",
+                "coOccurrence" : 0.3,
+                "entity1" : "en6",
+                "entity2" : "en1"
+            },
+            {
+                "type" : "CQ",
+                "coOccurrence" : 0.2,
+                "entity1" : "en6",
+                "entity2" : "en3"
+            },
+            {
+                "type" : "QC",
+                "coOccurrence" : 0.9,
+                "entity1" : "en6",
+                "entity2" : "en7"
+            },
+            {
+                "type" : "QQ",
+                "coOccurrence" : 0.4,
+                "entity1" : "en6",
+                "entity2" : "en5"
+            },
+            {
+                "type" : "CC",
+                "coOccurrence" : 0.4,
+                "entity1" : "en6",
+                "entity2" : "en4"
+            },
+            {
+                "type" : "CQ",
+                "coOccurrence" : 0.35,
+                "entity1" : "en6",
+                "entity2" : "en7"
+            },
+            {
+                "type" : "QC",
+                "coOccurrence" : 0.7,
+                "entity1" : "en6",
+                "entity2" : "en9"
+            },
+            {
+                "type" : "QQ",
+                "coOccurrence" : 0.9,
+                "entity1" : "en6",
+                "entity2" : "en1"
+            }
+        ]
+    },
+
+    {
+        "ID" : "ep7",
+        "frequency" : 0.33,
+        "coupList" : [
+            {
+                "type" : "CC",
+                "coOccurrence" : 0.3,
+                "entity1" : "en7",
+                "entity2" : "en5"
+            },
+            {
+                "type" : "CQ",
+                "coOccurrence" : 0.2,
+                "entity1" : "en9",
+                "entity2" : "en5"
+            },
+            {
+                "type" : "QC",
+                "coOccurrence" : 0.9,
+                "entity1" : "en3",
+                "entity2" : "en4"
+            },
+            {
+                "type" : "QQ",
+                "coOccurrence" : 0.4,
+                "entity1" : "en5",
+                "entity2" : "en6"
+            },
+            {
+                "type" : "CC",
+                "coOccurrence" : 0.4,
+                "entity1" : "en7",
+                "entity2" : "en8"
+            },
+            {
+                "type" : "CQ",
+                "coOccurrence" : 0.35,
+                "entity1" : "en9",
+                "entity2" : "en1"
+            },
+            {
+                "type" : "QC",
+                "coOccurrence" : 0.7,
+                "entity1" : "en2",
+                "entity2" : "en7"
+            },
+            {
+                "type" : "QQ",
+                "coOccurrence" : 0.9,
+                "entity1" : "en5",
+                "entity2" : "en3"
+            }
+        ]
+    }
+
+
+
+]
+
+
