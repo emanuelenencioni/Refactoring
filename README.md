@@ -48,6 +48,84 @@ Di seguito proponiamo il Class Diagram sviluppato:
 
 ## Classi ed Interfacce
 
+### **CoOccurrenceMatrix**
+Contiene i dati relativi alla cooccorrenza tra le entità di una data ApplicationAbstraction. I dati sono memorizzati in una matrice quadrata, dove le righe e le colonne sono associate alle entità contenute nella ApplicationAbstraction tramite una HashMap.
+
+![](doc/screenshot_imgs/COMatrix_1.PNG)
+
+Permette anche di verificare se un’entità è presente o meno nelle righe e colonne della matrice tramite il metodo *isInMatrix(Entity e)*.
+
+![](doc/screenshot_imgs/COMatrix_2.PNG)
+
+### **ApplicationAbstraction, EndPoint, UseCase e BusinessLogic**
+ApplicationAbstraction è una classe astratta che definisce attributi e metodi usati dalle classi EndPoint, UseCase e BusinessLogic. Contiene 4 matrici di cooccorrenza, associate al rispettivo tipo tramite una HashMap. Espone il metodo astratto *buildMatrices()* per fare in modo che ognuna delle classi derivate possa costruire le sue matrici di cooccorrenza in modo diverso. EndPoint costruisce le matrici di cooccorrenza tramite una lista di Coupling data in input, mentre UseCase e BusinessLogic le costruiscono utilizzando una BuildCoMatStrategy.
+
+![](doc/screenshot_imgs/AppAbs.PNG)
+![](doc/screenshot_imgs/EndPoint.PNG)
+![](doc/screenshot_imgs/UseCase.PNG)
+![](doc/screenshot_imgs/BusinessLogic.PNG)
+
+### **Coupling**
+È una classe che contiene un singolo valore di cooccorrenza tra due entità. I dati di input verranno memorizzati in istanze di questa classe, che andranno a loro volta a formare le matrici di cooccorrenza degli EndPoint. Ogni istanza di Coupling corrisponderà a una singola casella di una matrice di cooccorrenza.
+
+![](doc/screenshot_imgs/Coupling.PNG)
+
+### **DomainModel** 
+Questa classe rappresenta il domain model dell’applicazione monolitica restful di partenza. In particolare, contiene una lista di tutte le entità dell’applicazione di partenza.
+
+![](doc/screenshot_imgs/DomainModel.PNG)
+
+### **BuildCoMatStrategy e BuildMatricesFactory**
+BuildCoMatStrategy è l’interfaccia dello strategy pattern utilizzato per creare le matrici di cooccorrenza di UseCase e BusinessLogic. Le strategie concrete devono implementare il metodo *buildCoMat()*, che crea le matrici di cooccorrenza degli UseCase e della BusinessLogic, unendo le matrici di cooccorrenza delle ApplicationAbstraction di livello inferiore che essi contengono (degli EndPoint nel caso di uno UseCase, degli UseCase nel caso della BusinessLogic).
+<br/>
+BuildMatricesFactory ha il compito di istanziare dinamicamente la strategia scelta per la creazione delle matrici di cooccorrenza.  
+
+![](doc/screenshot_imgs/BuildMatFactory.PNG)
+
+
+### GraphManager
+Questa classe ha lo scopo di costruire e contenere il grafo generato dalle matrici di cooccorrenza di una ApplicationAbstraction, e di invocare una SimplifyGraphStrategy e una LossFunctionStrategy, al fine di scomporre il grafo tagliando determinati archi, minimizzando la funzione di loss. 
+
+![](doc/screenshot_imgs/GraphManager_1.PNG)
+
+La funzione *simplifyAndComputeLoss()* permette di semplificare il grafo con la strategia contenuta in GraphManager con dei parametri di default.
+
+![](doc/screenshot_imgs/GraphManager_2.PNG)
+
+La funzione *myBestSolution()* calcola la semplificazione migliore con la strategia contenuta in GraphManager, iterando sui parametri specifici della strategia.
+
+![](doc/screenshot_imgs/GraphManager_3.PNG)
+
+La funzione *findBestSolution()* permette di iterare su tutte le strategie di semplificazione implementate, calcolando la soluzione migliore per ciascuna strategia, confrontandole e scegliendo la migliore.
+
+![](doc/screenshot_imgs/GraphManager_4.PNG)
+
+Tutte e tre queste funzioni ritornano il valore di loss della semplificazione, e salvano il grafo semplificato dentro GraphManager.  
+
+### SimplifyGraphStrategy, SimplifyGraphFactory, LossFunctionStrategy e LossFunctionFactory
+SimplifyGraphStrategy e LossFunctionStrategy sono le interfacce rispettivamente dello strategy pattern utilizzato per semplificare il grafo e di quello utilizzato per stimare il costo in termini di IPC che una particolare semplificazione del grafo comporta. Le strategie di semplificazione concrete devono implementare un metodo *simplifyGraph()* per semplificare il grafo usando dei parametri di default, e un metodo *myBestSolution()* per iterare la semplificazione del grafo di partenza con diversi parametri, per trovare la semplificazione migliore.
+<br/>
+SimplifyGraphFactory e LossFunctionFactory hanno rispettivamente il compito di istanziare dinamicamente la strategia di semplificazione e la funzione di loss scelta.
+
+![](doc/screenshot_imgs/SimplifyFactory.PNG)
+![](doc/screenshot_imgs/LossFactory.PNG)
+
+### Graph, Edge e Vertex
+Queste tre classi implementano la struttura del grafo.
+<br/>
+La classe Graph contiene una lista di tutti gli archi e una di tutti i vertici, insieme ai metodi per aggiungere e rimuovere elementi dalle liste.
+
+![](doc/screenshot_imgs/Graph.PNG)
+
+La classe Edge rappresenta gli archi, contiene il peso dell’arco, i due vertici connessi, e un metodo getConnVertex(Vertex v) che ricevendo uno dei due vertici dell’arco ritorna l’altro. Gli archi sono adirezionali.
+
+![](doc/screenshot_imgs/Edge.PNG)
+
+La classe Vertex rappresenta i vertici, contiene una lista di tutti gli archi a cui è connesso il vertice.
+
+![](doc/screenshot_imgs/Vertex.PNG)
+
+
 ## Mockups
 Di seguito vengono proposti dei mockups di una possibile implemetazione di un front-end. Il software utilizzato è Pencil. 
 <br/>
@@ -105,10 +183,6 @@ Abbiamo deciso di utilizzare il Design Pattern Factory al fine di rendere più e
 In particolare viene utilizzato:
 - all'interno del metodo "findBestSolution()" della classe GraphManager, in quanto questo metodo necessita di utilizzare tutte le diverse streategie di semplificazione del grafo, al fine di trovare la strategia che minimizza il valore della loss. 
 - all'interno della classe InputManager, per ottimizzare la creazione delle strategie di costruzione delle matrici di co-occorrenza e delle strategie di calcolo della loss, a partire dall'input dei file JSON.
-
-
-## Disposizione delle classi nei package
-
 
 # **Unit Test**
 Siccome ogni classe è fortemente collegata alle altre, è stata presa la decisione di testare la maggior parte del codice per evitare il maggior numero di bugs. Nel progetto è stato usato il framework JUnit 4.13.2.
