@@ -36,7 +36,7 @@ public class mainclass {
 
     BusinessLogic businessLogic = im.getBusinessLogic(useCaseList);
 
-    System.out.println(businessLogic.getID() + " " + businessLogic.getFrequency());
+    //System.out.println(businessLogic.getID() + " " + businessLogic.getFrequency());
 
     GraphManager graphManager = new GraphManager(
                                                 businessLogic,
@@ -48,12 +48,16 @@ public class mainclass {
                                                 im.getLossFucntionStrategy(),
                                                 domainModel
                                                 );
+
+    Graph initialGraph = graphManager.getGraph();
+
+    initialGraph.visualizeGraph();
     
     Float lossValue = graphManager.simplifyAndComputeLoss();
     
-    Graph graph = graphManager.getSimplifiedGraph();
+    Graph finalGraph = graphManager.getSimplifiedGraph();
 
-    graph.visualizeGraph();
+    finalGraph.visualizeGraph();
 
     System.out.println("The loss value for the simplification made is: " + lossValue);
 
