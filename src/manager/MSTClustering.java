@@ -13,7 +13,7 @@ public class MSTClustering implements SimplifyGraphStrategy {
      * Default constructor
      */
     public MSTClustering() {
-        this(4,5);
+        this(2,3);
     }
     /**
      * constructor fot test for deciding the params

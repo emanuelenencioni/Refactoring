@@ -3,7 +3,7 @@
     {
 
         "ID" : "uc1",
-        "frequency" : 0.55,
+        "frequency" : 0.75,
         "buildMatStrategy" : "Average",
         "endPointList" : [
             "ep1",
@@ -15,7 +15,7 @@
     {
 
         "ID" : "uc2",
-        "frequency" : 0.45,
+        "frequency" : 0.84,
         "buildMatStrategy" : "Average",
         "endPointList" : [
             "ep1",

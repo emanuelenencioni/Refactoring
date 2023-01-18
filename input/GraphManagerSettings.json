@@ -1,6 +1,6 @@
 {
     "simpifyGraphStrategy" : "MSTClustering",
-    "lossFunctionStrategy" : "CutSum",
+    "lossFunctionStrategy" : "EdgeLoss",
     "weightCC" : 1.0,
     "weightCQ" : 0.75,
     "weightQC" : 0.5,
