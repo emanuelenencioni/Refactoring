@@ -5,5 +5,6 @@ package src.manager;
  */
 public enum LossFunctionType{
     CutSum,
-    LossStrategy2
+    LossStrategy2,
+    EdgeLoss
 }

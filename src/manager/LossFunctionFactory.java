@@ -26,6 +26,9 @@ public class LossFunctionFactory {
             case LossStrategy2:
                 return new MSE();
 
+            case EdgeLoss:
+                return new ReverseHuber();
+
             default:
                 return null;}
 
