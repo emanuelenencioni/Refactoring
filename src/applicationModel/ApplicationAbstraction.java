@@ -73,7 +73,7 @@ public abstract class ApplicationAbstraction {
         if(mapper.size() > 0)
             return mapper.get(type).getValue(e1, e2);
         else
-            return null;
+            return 0.f;
     }
 
     /**
