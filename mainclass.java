@@ -1,6 +1,9 @@
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import src.applicationModel.BusinessLogic;
+import src.applicationModel.Coupling;
 import src.applicationModel.DomainModel;
 import src.applicationModel.EndPoint;
 import src.applicationModel.Entity;
@@ -24,7 +27,47 @@ public class mainclass {
 
   public static void main(String Args[]) {
 
-    InputManager im = new InputManager();
+    final String inputPath = "./input/";
+
+    File folder = new File(inputPath);
+    File[] listOfFiles = folder.listFiles();
+    ArrayList<String> listOfDirectories = new ArrayList<>();
+
+
+    for (int i = 0; i < listOfFiles.length; i++) {
+      if (listOfFiles[i].isDirectory()) {
+        listOfDirectories.add(listOfFiles[i].getName() + "/");
+      }
+    }
+
+    System.out.println("Choose an input:");
+    for (int i = 0; i < listOfDirectories.size(); i++){
+      System.out.println( i + ": " + listOfDirectories.get(i));
+    }
+
+    Scanner scan = new Scanner(System.in);
+    boolean inputOk = false;
+
+    int inputChoice = 0;
+    while (!inputOk) {
+      System.out.println("Enter a number between 0 and " + (listOfDirectories.size()-1) + ": ");
+      if (!scan.hasNextInt()) {
+       System.out.println("Input is not valid: not a number");
+       scan.next();
+      }
+      else {
+        inputChoice = scan.nextInt();
+       if (inputChoice < 0 || inputChoice > (listOfDirectories.size()-1)){
+        System.out.println("Input is not valid: number must be between 0 and " + (listOfDirectories.size()-1));
+       }
+       else{
+        inputOk = true;
+       }
+      }
+    }
+    scan.close();
+
+    InputManager im = new InputManager(inputPath + listOfDirectories.get(inputChoice));
 
     ArrayList<Entity> entityList = im.getEntityList();
 
@@ -35,8 +78,6 @@ public class mainclass {
     ArrayList<UseCase> useCaseList = im.getUseCaseList(endPointList);
 
     BusinessLogic businessLogic = im.getBusinessLogic(useCaseList);
-
-    //System.out.println(businessLogic.getID() + " " + businessLogic.getFrequency());
 
     GraphManager graphManager = new GraphManager(
                                                 businessLogic,
@@ -61,7 +102,7 @@ public class mainclass {
 
     System.out.println("The loss value for the simplification made is: " + lossValue);
 
-    // JSON GENERATOR
+    // //JSON GENERATOR
     // ArrayList<Entity> enList = new ArrayList<>();
     // for (int i = 0; i < 4; i++) {
     //   enList.add(new Entity("en" + i));
@@ -76,28 +117,27 @@ public class mainclass {
 
     //       switch (r.getName()) {
     //         case "en0":
-    //           cpList.add(new Coupling(r, c, Type.CC, 1.f));
     //           System.out.println("{");
     //           System.out.println(" \"type\" : \"" + Type.CC + "\",");
     //           System.out.println(" \"coOccurrence\" : 0.3,");
     //           System.out.println(" \"entity1\" : \"" + r.getName() + "\",");
     //           System.out.println(" \"entity2\" : \"" + c.getName() + "\"");
     //           System.out.println("},");
-    //           cpList.add(new Coupling(r, c, Type.CQ, 1.f));
+
     //           System.out.println("{");
     //           System.out.println(" \"type\" : \"" + Type.CQ + "\",");
     //           System.out.println(" \"coOccurrence\" : 0.3,");
     //           System.out.println(" \"entity1\" : \"" + r.getName() + "\",");
     //           System.out.println(" \"entity2\" : \"" + c.getName() + "\"");
     //           System.out.println("},");
-    //           cpList.add(new Coupling(r, c, Type.QC, 1.f));
+
     //           System.out.println("{");
     //           System.out.println(" \"type\" : \"" + Type.QC + "\",");
     //           System.out.println(" \"coOccurrence\" : 0.3,");
     //           System.out.println(" \"entity1\" : \"" + r.getName() + "\",");
     //           System.out.println(" \"entity2\" : \"" + c.getName() + "\"");
     //           System.out.println("},");
-    //           cpList.add(new Coupling(r, c, Type.QQ, 1.f));
+
     //           System.out.println("{");
     //           System.out.println(" \"type\" : \"" + Type.QQ + "\",");
     //           System.out.println(" \"coOccurrence\" : 0.3,");
@@ -138,6 +178,37 @@ public class mainclass {
     //           break;
 
     //         case "en2":
+    //           cpList.add(new Coupling(r, c, Type.CC, 0.25f));
+    //           System.out.println("{");
+    //           System.out.println(" \"type\" : \"" + Type.CC + "\",");
+    //           System.out.println(" \"coOccurrence\" : 0.4,");
+    //           System.out.println(" \"entity1\" : \"" + r.getName() + "\",");
+    //           System.out.println(" \"entity2\" : \"" + c.getName() + "\"");
+    //           System.out.println("},");
+    //           cpList.add(new Coupling(r, c, Type.CQ, 0.25f));
+    //           System.out.println("{");
+    //           System.out.println(" \"type\" : \"" + Type.CQ + "\",");
+    //           System.out.println(" \"coOccurrence\" : 0.4,");
+    //           System.out.println(" \"entity1\" : \"" + r.getName() + "\",");
+    //           System.out.println(" \"entity2\" : \"" + c.getName() + "\"");
+    //           System.out.println("},");
+    //           cpList.add(new Coupling(r, c, Type.QC, 0.25f));
+    //           System.out.println("{");
+    //           System.out.println(" \"type\" : \"" + Type.QC + "\",");
+    //           System.out.println(" \"coOccurrence\" : 0.4,");
+    //           System.out.println(" \"entity1\" : \"" + r.getName() + "\",");
+    //           System.out.println(" \"entity2\" : \"" + c.getName() + "\"");
+    //           System.out.println("},");
+    //           cpList.add(new Coupling(r, c, Type.QQ, 0.25f));
+    //           System.out.println("{");
+    //           System.out.println(" \"type\" : \"" + Type.QQ + "\",");
+    //           System.out.println(" \"coOccurrence\" : 0.4,");
+    //           System.out.println(" \"entity1\" : \"" + r.getName() + "\",");
+    //           System.out.println(" \"entity2\" : \"" + c.getName() + "\"");
+    //           System.out.println("}");
+    //           break;
+
+    //         case "en3":
     //           cpList.add(new Coupling(r, c, Type.CC, 0.25f));
     //           System.out.println("{");
     //           System.out.println(" \"type\" : \"" + Type.CC + "\",");

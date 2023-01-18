@@ -26,12 +26,12 @@ import src.manager.SimplifyGraphType;
 public class InputManager {
     
 
-    public InputManager(){
+    public InputManager(String input){
 
         buildMatricesFactory = new BuildMatricesFactory();
         simplifyGraphFactory = new SimplifyGraphFactory();
         lossFunctionFactory = new LossFunctionFactory();
-
+        this.inputPath = input;
     }
 
     
@@ -412,7 +412,7 @@ public class InputManager {
     }
     
 
-    private final String inputPath = "./input/";
+    private String inputPath;
     private final String entities = "Entities.json";
     private final String endPoints = "EndPoints.json";
     private final String useCases = "UseCases.json";
