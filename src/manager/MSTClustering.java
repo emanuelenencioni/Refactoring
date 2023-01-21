@@ -35,7 +35,7 @@ public class MSTClustering implements SimplifyGraphStrategy {
         ms.sort(sg.getEdgeList(), 0, sg.getEdgeList().size()-1);
         
         int n = 1;
-        while(n< numb_partition) {
+        while(n< numb_partition && !sg.getEdgeList().isEmpty()) {
             sg.removeEdge(sg.getEdgeList().get(0));
             n = depthFirstSearch(sg);
         }
