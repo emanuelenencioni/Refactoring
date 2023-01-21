@@ -24,7 +24,7 @@ public class GraphManager {
         this.weightQC = 1;
         this.weightQQ = 1;
         
-        this.simplifyGraphFactory = new SimplifyGraphFactory();
+        this.simplifyGraphFactory = new StandardSGF();
 
         this.matContainer = null;
         this.graphStrategy = null;
@@ -54,7 +54,7 @@ public class GraphManager {
             System.err.println("Error in creating graph");
         }
 
-        this.simplifyGraphFactory = new SimplifyGraphFactory();
+        this.simplifyGraphFactory = new StandardSGF();
 
         this.simplifiedGraph = null;
 
@@ -78,7 +78,7 @@ public class GraphManager {
         this.weightQC = 1;
         this.weightQQ = 1;
         
-        this.simplifyGraphFactory = new SimplifyGraphFactory();
+        this.simplifyGraphFactory = new StandardSGF();
 
     }
 
@@ -376,7 +376,7 @@ public class GraphManager {
     /**
      * Factory that produces each SimplifyGraphStetegy
      */
-    private SimplifyGraphFactory simplifyGraphFactory;
+    private StandardSGF simplifyGraphFactory;
 
     /**
      * Strategy used to simplify the Graph
