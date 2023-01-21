@@ -15,10 +15,11 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import src.manager.InputSGF;
 import src.manager.LossFunctionFactory;
 import src.manager.LossFunctionStrategy;
 import src.manager.LossFunctionType;
-import src.manager.SimplifyGraphFactory;
+import src.manager.StandardSGF;
 import src.manager.SimplifyGraphStrategy;
 import src.manager.SimplifyGraphType;
 
@@ -29,7 +30,7 @@ public class InputManager {
     public InputManager(String input){
 
         buildMatricesFactory = new BuildMatricesFactory();
-        simplifyGraphFactory = new SimplifyGraphFactory();
+        simplifyGraphFactory = new InputSGF();
         lossFunctionFactory = new LossFunctionFactory();
         this.inputPath = input;
     }
@@ -422,7 +423,7 @@ public class InputManager {
     private final String graphMangerSettings = "GraphManagerSettings.json";
 
     private BuildMatricesFactory buildMatricesFactory;
-    private SimplifyGraphFactory simplifyGraphFactory;
+    private InputSGF simplifyGraphFactory;
     private LossFunctionFactory lossFunctionFactory;
 
 }
