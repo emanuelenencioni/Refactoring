@@ -3,7 +3,6 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import src.applicationModel.BusinessLogic;
-import src.applicationModel.Coupling;
 import src.applicationModel.DomainModel;
 import src.applicationModel.EndPoint;
 import src.applicationModel.Entity;

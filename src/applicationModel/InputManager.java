@@ -19,7 +19,6 @@ import src.manager.InputSGF;
 import src.manager.LossFunctionFactory;
 import src.manager.LossFunctionStrategy;
 import src.manager.LossFunctionType;
-import src.manager.StandardSGF;
 import src.manager.SimplifyGraphStrategy;
 import src.manager.SimplifyGraphType;
 
@@ -313,8 +312,6 @@ public class InputManager {
                 System.err.println("incorrect SimplifyGraphStrategy");
             }
             
-            //TODO difficile impostare caso specifico per MST
-
             simplifyGraphStrategy = simplifyGraphFactory.createSimplifyGraphStrategy(strategyType);
             
 

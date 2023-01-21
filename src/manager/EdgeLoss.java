@@ -64,7 +64,7 @@ public class EdgeLoss implements LossFunctionStrategy {
             return res;
         }
         else 
-            return (float) ((Math.pow(res,2) + Math.pow(th, 2))/(2*th));
+            return (float) ((Math.pow(res,2) + Math.pow(th, 2))/(2*th)); //TODO return loss???
         //return  (g_sum - sg_sum)/g.getEdgeList().size();
     }
 
