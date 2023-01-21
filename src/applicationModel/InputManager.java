@@ -312,6 +312,8 @@ public class InputManager {
                 System.err.println("incorrect SimplifyGraphStrategy");
             }
             
+            //TODO difficile impostare caso specifico per MST
+
             simplifyGraphStrategy = simplifyGraphFactory.createSimplifyGraphStrategy(strategyType);
             
 
