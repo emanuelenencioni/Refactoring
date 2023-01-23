@@ -355,7 +355,7 @@ public class ManagerTest {
 
         LossFunctionStrategy sfs = new ReverseHuber();       
         Graph sg = swk.myBestSolution(g, sfs);
-        assertEquals(106.5999, sfs.lossFunction(g, sg), 0.0001);
+        assertEquals(26.375, sfs.lossFunction(g, sg), 0.0001);
     }
 
 

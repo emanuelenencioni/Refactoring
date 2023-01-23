@@ -66,7 +66,7 @@ public class AppModelTest{
         Float x =  cm.getValue(el.get(0), el.get(10));
         
         assertEquals(0, x.intValue());
-        assertNull(cm.getValue(el.get(0),new Entity("E10")));
+        assertEquals(0, cm.getValue(el.get(0),new Entity("E10")), 0.00000001);
 
         Entity z = new Entity("E30");
         cm.addCoValue(Type.CC, el.get(0), z, 0.5f);
