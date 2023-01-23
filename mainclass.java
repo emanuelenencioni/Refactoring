@@ -57,10 +57,10 @@ public class mainclass {
       else {
         inputChoice = scan.nextInt();
         if (inputChoice < 0 || inputChoice > (listOfDirectories.size()-1)){
-        System.out.println("Input is not valid: number must be between 0 and " + (listOfDirectories.size()-1));
+          System.out.println("Input is not valid: number must be between 0 and " + (listOfDirectories.size()-1));
         }
         else{
-        inputOk = true;
+          inputOk = true;
         }
       }
     }

@@ -30,7 +30,7 @@ public class InputSGF implements SimplifyGraphFactory{
             boolean inputOk = false;
             int n = 0;
             while (!inputOk) {
-                System.out.println("Insert n:");
+                System.out.println("Insert n (number of partitions):");
                 if(!this.scanner.hasNextInt()){
                     System.out.println("Input is not valid: not a number");
                     this.scanner.next();
@@ -48,7 +48,7 @@ public class InputSGF implements SimplifyGraphFactory{
             inputOk = false;
             int s = 0;
             while (!inputOk) {
-                System.out.println("Insert s:");
+                System.out.println("Insert s (max entities per partition):");
                 if(!this.scanner.hasNextInt()){
                     System.out.println("Input is not valid: not a number");
                     this.scanner.next();
