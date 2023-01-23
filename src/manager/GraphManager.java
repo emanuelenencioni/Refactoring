@@ -130,8 +130,11 @@ public class GraphManager {
                                 2*this.weightCC + 2*this.weightCQ + 2*this.weightQC + 2*this.weightQQ
                                 );
 
-                Edge e = new Edge(edgeWeight, this.graph.getVertex(r), this.graph.getVertex(c));
-                this.graph.addEdge(e);
+                if(edgeWeight != 0.f){
+                    Edge e = new Edge(edgeWeight, this.graph.getVertex(r), this.graph.getVertex(c));
+                    this.graph.addEdge(e);
+                }
+                
 
                 }
                 

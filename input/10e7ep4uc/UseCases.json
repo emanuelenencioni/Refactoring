@@ -7,7 +7,9 @@
         "buildMatStrategy" : "Average",
         "endPointList" : [
             "ep1",
-            "ep2"
+            "ep2",
+            "ep6",
+            "ep7"
         ]
 
     },
@@ -19,9 +21,38 @@
         "buildMatStrategy" : "Average",
         "endPointList" : [
             "ep1",
-            "ep3"
+            "ep3",
+            "ep5"
+        ]
+
+    },
+
+    {
+
+        "ID" : "uc3",
+        "frequency" : 0.84,
+        "buildMatStrategy" : "Average",
+        "endPointList" : [
+            "ep4",
+            "ep5",
+            "ep7",
+            "ep1"
+        ]
+
+    },
+
+    {
+
+        "ID" : "uc4",
+        "frequency" : 0.84,
+        "buildMatStrategy" : "Average",
+        "endPointList" : [
+            "ep6",
+            "ep7"
         ]
 
     }
+
+
 
 ]

@@ -601,7 +601,7 @@
 
     {
         "ID" : "ep4",
-        "frequency" : 0.33,
+        "frequency" : 0.78,
         "coupList" : [
             {
                 "type" : "CC",
@@ -632,7 +632,7 @@
 
     {
         "ID" : "ep5",
-        "frequency" : 0.33,
+        "frequency" : 0.93,
         "coupList" : [
             {
                 "type" : "CC",
@@ -663,7 +663,7 @@
 
     {
         "ID" : "ep6",
-        "frequency" : 0.33,
+        "frequency" : 0.83,
         "coupList" : [
             {
                 "type" : "CC",
@@ -718,7 +718,7 @@
 
     {
         "ID" : "ep7",
-        "frequency" : 0.33,
+        "frequency" : 0.73,
         "coupList" : [
             {
                 "type" : "CC",
