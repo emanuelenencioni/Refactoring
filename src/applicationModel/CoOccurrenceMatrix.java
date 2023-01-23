@@ -89,7 +89,7 @@ public class CoOccurrenceMatrix {
         Integer x = mapper.get(source);
         Integer y = mapper.get(dest);
         if(x == null || y == null)
-            return 0.f;
+            return null;
         else
             return cOMatrix[x][y];
     }
