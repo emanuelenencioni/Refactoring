@@ -64,9 +64,9 @@ public class mainclass {
        }
       }
     }
-    scan.close();
+   
 
-    InputManager im = new InputManager(inputPath + listOfDirectories.get(inputChoice));
+    InputManager im = new InputManager(inputPath + listOfDirectories.get(inputChoice), scan);
 
     ArrayList<Entity> entityList = im.getEntityList();
 

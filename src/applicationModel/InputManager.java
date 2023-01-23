@@ -1,7 +1,7 @@
 package src.applicationModel;
 
 import java.util.ArrayList;
-// import java.util.Scanner;
+import java.util.Scanner;
 // import java.util.regex.Pattern;
 // import java.io.File;
 // import java.io.FileNotFoundException;
@@ -26,10 +26,10 @@ import src.manager.SimplifyGraphType;
 public class InputManager {
     
 
-    public InputManager(String input){
+    public InputManager(String input, Scanner scanner){
 
         buildMatricesFactory = new BuildMatricesFactory();
-        simplifyGraphFactory = new InputSGF();
+        simplifyGraphFactory = new InputSGF(scanner);
         lossFunctionFactory = new LossFunctionFactory();
         this.inputPath = input;
     }
