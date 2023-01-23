@@ -51,20 +51,20 @@ public class mainclass {
     while (!inputOk) {
       System.out.println("Enter a number between 0 and " + (listOfDirectories.size()-1) + ": ");
       if (!scan.hasNextInt()) {
-       System.out.println("Input is not valid: not a number");
-       scan.next();
+        System.out.println("Input is not valid: not a number");
+        scan.next();
       }
       else {
         inputChoice = scan.nextInt();
-       if (inputChoice < 0 || inputChoice > (listOfDirectories.size()-1)){
+        if (inputChoice < 0 || inputChoice > (listOfDirectories.size()-1)){
         System.out.println("Input is not valid: number must be between 0 and " + (listOfDirectories.size()-1));
-       }
-       else{
+        }
+        else{
         inputOk = true;
-       }
+        }
       }
     }
-   
+
 
     InputManager im = new InputManager(inputPath + listOfDirectories.get(inputChoice), scan);
 
