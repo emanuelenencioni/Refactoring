@@ -128,13 +128,20 @@ public class MSTClustering implements SimplifyGraphStrategy {
         }
         return sg;
     }
-
+    /**
+     * function that try to split the connected component with too much vertices inside it.
+     * @param sg the simplified graph
+     * @param s the number of max vertex per connected component
+     * @return the new graph with new connected components
+     */
     private Graph reduceCluster(Graph sg, int s){
             HashMap<Vertex, Integer> counter = DFSCounter(sg);
             int value;
             for(Vertex v : counter.keySet())
                 if(counter.get(v) > s){
-                    ArrayList<Edge> eList = v.getNeighbour();
+                    //here we have to add all the edge of the connected components
+                    ArrayList<Edge> eList = getEdgeListCC(v);
+
                     while(counter.get(v) > s && eList.size()>0){
                         
                         value = counter.get(v);
@@ -391,6 +398,32 @@ public class MSTClustering implements SimplifyGraphStrategy {
         }
     }
     
+    /**
+     * function that compute the list of the edge of a connected component
+     * @param v a vertex of a connected component
+     * @return the list of all the edge of the connected component
+     */
+    private ArrayList<Edge> getEdgeListCC(Vertex v){
+        ArrayList<Edge> el = new ArrayList<>();
+        ArrayList<Vertex> vl = new ArrayList<>();
+        ArrayList<Vertex> visited = new ArrayList<>();
+
+        vl.add(v);
+        Vertex vx = null;
+        while(!vl.isEmpty()){
+            vx = vl.remove(0);
+            if(!vl.contains(vx))
+                for(Edge e : vx.getNeighbour()){
+                    if(!el.contains(e)){
+                        el.add(e);
+                        vl.add(e.getConnVertex(vx));
+                    }
+                    visited.add(vx);
+                }
+        }
+        return el;
+    }
+
     class MergeSort {
     // Merges two subarrays of el.
     // First subarray is el[l..m]
@@ -467,6 +500,7 @@ public class MSTClustering implements SimplifyGraphStrategy {
         }
     }
 
+        
 
 
 
