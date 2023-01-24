@@ -17254,9 +17254,9 @@
 											"font": "Arial;13;0",
 											"left": -32,
 											"top": 48,
-											"width": 73.67724609375,
+											"width": 135.83349609375,
 											"height": 13,
-											"text": "(from Model)"
+											"text": "(from manager)"
 										},
 										{
 											"_type": "LabelView",
@@ -17716,9 +17716,9 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"width": 73.67724609375,
+											"width": 135.83349609375,
 											"height": 13,
-											"text": "(from Model)"
+											"text": "(from manager)"
 										},
 										{
 											"_type": "LabelView",
@@ -25457,6 +25457,112 @@
 									]
 								}
 							]
+						},
+						{
+							"_type": "UMLClass",
+							"_id": "AAAAAAGE1RHKI9kBzTU=",
+							"_parent": {
+								"$ref": "AAAAAAF+gTmOGVVAIUk="
+							},
+							"name": "LossFunctionFactory",
+							"ownedElements": [
+								{
+									"_type": "UMLAssociation",
+									"_id": "AAAAAAGE1RKxHOTualg=",
+									"_parent": {
+										"$ref": "AAAAAAGE1RHKI9kBzTU="
+									},
+									"end1": {
+										"_type": "UMLAssociationEnd",
+										"_id": "AAAAAAGE1RKxHOTv1tQ=",
+										"_parent": {
+											"$ref": "AAAAAAGE1RKxHOTualg="
+										},
+										"reference": {
+											"$ref": "AAAAAAGE1RHKI9kBzTU="
+										}
+									},
+									"end2": {
+										"_type": "UMLAssociationEnd",
+										"_id": "AAAAAAGE1RKxHOTwl4A=",
+										"_parent": {
+											"$ref": "AAAAAAGE1RKxHOTualg="
+										},
+										"reference": {
+											"$ref": "AAAAAAGE1PoaTct7G3c="
+										},
+										"aggregation": "shared"
+									}
+								},
+								{
+									"_type": "UMLDependency",
+									"_id": "AAAAAAGE1RZxLZnpdnk=",
+									"_parent": {
+										"$ref": "AAAAAAGE1RHKI9kBzTU="
+									},
+									"source": {
+										"$ref": "AAAAAAGE1RHKI9kBzTU="
+									},
+									"target": {
+										"$ref": "AAAAAAGE1RXXuYupfyM="
+									}
+								}
+							],
+							"operations": [
+								{
+									"_type": "UMLOperation",
+									"_id": "AAAAAAGE1RJ85d4nJFw=",
+									"_parent": {
+										"$ref": "AAAAAAGE1RHKI9kBzTU="
+									},
+									"name": "createLossFunctionStrategy",
+									"parameters": [
+										{
+											"_type": "UMLParameter",
+											"_id": "AAAAAAGE1RKK2uFnqxk=",
+											"_parent": {
+												"$ref": "AAAAAAGE1RJ85d4nJFw="
+											},
+											"name": "LossFunctionType t",
+											"type": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"_type": "UMLEnumeration",
+							"_id": "AAAAAAGE1RXXuYupfyM=",
+							"_parent": {
+								"$ref": "AAAAAAF+gTmOGVVAIUk="
+							},
+							"name": "LossFunctionType",
+							"literals": [
+								{
+									"_type": "UMLEnumerationLiteral",
+									"_id": "AAAAAAGE1RYGLJAbZUA=",
+									"_parent": {
+										"$ref": "AAAAAAGE1RXXuYupfyM="
+									},
+									"name": "MSE"
+								},
+								{
+									"_type": "UMLEnumerationLiteral",
+									"_id": "AAAAAAGE1RY7EpWe/YE=",
+									"_parent": {
+										"$ref": "AAAAAAGE1RXXuYupfyM="
+									},
+									"name": "ReverseHuber"
+								},
+								{
+									"_type": "UMLEnumerationLiteral",
+									"_id": "AAAAAAGF04DMz9V7uO0=",
+									"_parent": {
+										"$ref": "AAAAAAGE1RXXuYupfyM="
+									},
+									"name": "EdgeLoss"
+								}
+							]
 						}
 					]
 				},
@@ -25493,112 +25599,6 @@
 							"target": {
 								"$ref": "AAAAAAGE1PoaTct7G3c="
 							}
-						}
-					]
-				},
-				{
-					"_type": "UMLClass",
-					"_id": "AAAAAAGE1RHKI9kBzTU=",
-					"_parent": {
-						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
-					},
-					"name": "LossFunctionFactory",
-					"ownedElements": [
-						{
-							"_type": "UMLAssociation",
-							"_id": "AAAAAAGE1RKxHOTualg=",
-							"_parent": {
-								"$ref": "AAAAAAGE1RHKI9kBzTU="
-							},
-							"end1": {
-								"_type": "UMLAssociationEnd",
-								"_id": "AAAAAAGE1RKxHOTv1tQ=",
-								"_parent": {
-									"$ref": "AAAAAAGE1RKxHOTualg="
-								},
-								"reference": {
-									"$ref": "AAAAAAGE1RHKI9kBzTU="
-								}
-							},
-							"end2": {
-								"_type": "UMLAssociationEnd",
-								"_id": "AAAAAAGE1RKxHOTwl4A=",
-								"_parent": {
-									"$ref": "AAAAAAGE1RKxHOTualg="
-								},
-								"reference": {
-									"$ref": "AAAAAAGE1PoaTct7G3c="
-								},
-								"aggregation": "shared"
-							}
-						},
-						{
-							"_type": "UMLDependency",
-							"_id": "AAAAAAGE1RZxLZnpdnk=",
-							"_parent": {
-								"$ref": "AAAAAAGE1RHKI9kBzTU="
-							},
-							"source": {
-								"$ref": "AAAAAAGE1RHKI9kBzTU="
-							},
-							"target": {
-								"$ref": "AAAAAAGE1RXXuYupfyM="
-							}
-						}
-					],
-					"operations": [
-						{
-							"_type": "UMLOperation",
-							"_id": "AAAAAAGE1RJ85d4nJFw=",
-							"_parent": {
-								"$ref": "AAAAAAGE1RHKI9kBzTU="
-							},
-							"name": "createLossFunctionStrategy",
-							"parameters": [
-								{
-									"_type": "UMLParameter",
-									"_id": "AAAAAAGE1RKK2uFnqxk=",
-									"_parent": {
-										"$ref": "AAAAAAGE1RJ85d4nJFw="
-									},
-									"name": "LossFunctionType t",
-									"type": ""
-								}
-							]
-						}
-					]
-				},
-				{
-					"_type": "UMLEnumeration",
-					"_id": "AAAAAAGE1RXXuYupfyM=",
-					"_parent": {
-						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
-					},
-					"name": "LossFunctionType",
-					"literals": [
-						{
-							"_type": "UMLEnumerationLiteral",
-							"_id": "AAAAAAGE1RYGLJAbZUA=",
-							"_parent": {
-								"$ref": "AAAAAAGE1RXXuYupfyM="
-							},
-							"name": "MSE"
-						},
-						{
-							"_type": "UMLEnumerationLiteral",
-							"_id": "AAAAAAGE1RY7EpWe/YE=",
-							"_parent": {
-								"$ref": "AAAAAAGE1RXXuYupfyM="
-							},
-							"name": "ReverseHuber"
-						},
-						{
-							"_type": "UMLEnumerationLiteral",
-							"_id": "AAAAAAGF04DMz9V7uO0=",
-							"_parent": {
-								"$ref": "AAAAAAGE1RXXuYupfyM="
-							},
-							"name": "EdgeLoss"
 						}
 					]
 				},
