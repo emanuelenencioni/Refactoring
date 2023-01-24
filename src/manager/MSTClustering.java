@@ -82,7 +82,7 @@ public class MSTClustering implements SimplifyGraphStrategy {
         }
         numb_partition = best_n;
         max_entity_per_service = best_s;
-        System.out.println("numb partition: "+numb_partition+" max entity per microservice: "+max_entity_per_service);
+        System.out.println("numb partition: "+numb_partition+"; max entity per microservice: "+max_entity_per_service);
         return best_result;
     }
     

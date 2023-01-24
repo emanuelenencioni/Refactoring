@@ -93,12 +93,41 @@ public class mainclass {
 
     initialGraph.visualizeGraph();
     
+
+    // SimplifyAndComputeLoss
+
     Float lossValue = graphManager.simplifyAndComputeLoss();
+
+    if(lossValue == null){
+      System.out.println("simplifyGraphStrategy or graph not set");
+    }
     
     Graph finalGraph = graphManager.getSimplifiedGraph();
 
     finalGraph.visualizeGraph();
 
+    System.out.println("The loss value for the simplification made is: " + lossValue);
+
+
+    // MyBestSolution
+    
+    lossValue = graphManager.myBestSolution();
+
+    Graph myBest = graphManager.getSimplifiedGraph();
+
+    myBest.visualizeGraph();
+    
+    System.out.println("The loss value for the simplification made is: " + lossValue);
+
+
+    // FindBestSolution
+    
+    lossValue = graphManager.findBestSolution();
+
+    Graph findBest = graphManager.getSimplifiedGraph();
+
+    findBest.visualizeGraph();
+    
     System.out.println("The loss value for the simplification made is: " + lossValue);
 
     // //JSON GENERATOR
