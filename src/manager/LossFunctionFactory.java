@@ -20,14 +20,14 @@ public class LossFunctionFactory {
     public LossFunctionStrategy createLossFunctiontrategy(LossFunctionType t) {
 
         switch (t) {
-            case CutSum:
-                return new ReverseHuber();
-
-            case LossStrategy2:
+            case MSE:
                 return new MSE();
 
-            case EdgeLoss:
+            case ReverseHuber:
                 return new ReverseHuber();
+
+            case EdgeLoss:
+                return new EdgeLoss();
 
             default:
                 return null;}

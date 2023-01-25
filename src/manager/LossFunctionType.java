@@ -4,7 +4,7 @@ package src.manager;
  * 
  */
 public enum LossFunctionType{
-    CutSum,
-    LossStrategy2,
+    MSE,
+    ReverseHuber,
     EdgeLoss
 }
