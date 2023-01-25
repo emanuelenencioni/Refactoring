@@ -320,14 +320,9 @@ public class MSTClustering implements SimplifyGraphStrategy {
      * @param route
      */
     private int choosePath(Random rand, Graph g, int lastPath){
-        if(lastPath > 0){
-            routeSelection(lastPath);
-            return lastPath;
-        }
-        
         ArrayList<Integer> routes = new ArrayList<Integer>();
         for(int i = 0; i<=7;i++){
-            routes.add(i,i);
+            routes.add(i);
         }
         
         if(numb_partition >= (g.getVertexList().size()-1)){
@@ -359,6 +354,10 @@ public class MSTClustering implements SimplifyGraphStrategy {
                     routes.remove(i);
                     i--;
                 }
+        }
+
+        if(lastPath > 0 && routes.contains(lastPath)){
+            return lastPath;
         }
         
         int route = routes.get(rand.nextInt(routes.size()));
