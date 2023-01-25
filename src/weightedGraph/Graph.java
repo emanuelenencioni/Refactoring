@@ -1,7 +1,10 @@
 package src.weightedGraph;
 
 import java.util.*;
-import org.graphstream.graph.implementations.SingleGraph;
+import org.graphstream.graph.*;
+import org.graphstream.graph.implementations.*;
+import org.graphstream.ui.view.*;
+import org.graphstream.ui.view.util.*;
 
 import src.applicationModel.Entity;
 
@@ -142,9 +145,16 @@ public class Graph {
             graph.addEdge(edgeList.get(i).getVertex1().getEntity().getName()+edgeList.get(i).getVertex2().getEntity().getName(), edgeList.get(i).getVertex1().getEntity().getName(), edgeList.get(i).getVertex2().getEntity().getName());
             graph.getEdge(i).setAttribute("ui.label", edgeList.get(i).getWeight());
         }
+        graph.setAttribute("ui.quality");
+        graph.setAttribute("ui.antialias");
+
         graph.setAttribute("ui.stylesheet", "node { text-background-mode: rounded-box;  fill-color: black; size: 30px, 35px; text-background-color: black; text-color: white;} edge{text-mode: normal;text-background-mode: rounded-box; text-background-color: yellow;}");
         System.setProperty("org.graphstream.ui", "swing");
-        graph.display();
+        Viewer viewer = graph.display();
+        //viewer.disableAutoLayout();
+        View view = viewer.getDefaultView();
+        viewer.getDefaultView().enableMouseOptions();
+
     }
 
 

@@ -51,22 +51,8 @@ public class EdgeLoss implements LossFunctionStrategy {
                 loss += 1-avg;
 
         }
-        
-        // for(Edge e : g.getEdgeList())
-        //     g_sum += e.getWeight()*100;
     
-        // for(Edge e : sg.getEdgeList())
-        //     sg_sum += e.getWeight()*100;
-        
-        // double th = 0.2*(g_sum - sg_sum);
-        // float res = Math.abs(g_sum - sg_sum);
-        // if(res <= th){
-        //     return res;
-        // }
-        // else
-
         return loss;
-        //return  (g_sum - sg_sum)/g.getEdgeList().size();
     }
 
     /**
