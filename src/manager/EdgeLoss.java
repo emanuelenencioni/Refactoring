@@ -110,35 +110,49 @@ public class EdgeLoss implements LossFunctionStrategy {
         }
     }
 
-
+    /**
+     * function that compute the average of the weight in a connected component
+     * @param v the vertex of a connected component
+     * @return the average weight
+     */
     private float avgCCWeight(Vertex v){
 
-        ArrayList<Vertex> toVisit = new ArrayList<>();
+        ArrayList<Edge> el = getEdgeListCC(v);
+        if(el.size() == 0)
+            return 0.0f;
+
+        float sumWeight = 0;    
+
+        for(Edge e : el)
+            sumWeight += e.getWeight();
+
+        return sumWeight/((float)el.size());
+
+    }
+
+    /**
+     * function that compute the list of the edge of a connected component
+     * @param v a vertex of a connected component
+     * @return the list of all the edge of the connected component
+     */
+    private ArrayList<Edge> getEdgeListCC(Vertex v){
+        ArrayList<Edge> el = new ArrayList<>();
+        ArrayList<Vertex> vl = new ArrayList<>();
         ArrayList<Vertex> visited = new ArrayList<>();
-        int numEdge = 0;
-        float sumWeight = 0.f;
-
-        toVisit.add(v);
-
-        for (Vertex k : toVisit){
-
-            visited.add(k);
-
-            for (Edge e : v.getNeighbour()){
-
-                if(!visited.contains(e.getConnVertex(k))){
-
-                    sumWeight += e.getWeight();
-                    numEdge++;
-                    toVisit.add(e.getConnVertex(k));
-
+    
+        vl.add(v);
+        Vertex vx = null;
+        while(!vl.isEmpty()){
+            vx = vl.remove(0);
+            if(!vl.contains(vx))
+                for(Edge e : vx.getNeighbour()){
+                    if(!el.contains(e)){
+                        el.add(e);
+                        vl.add(e.getConnVertex(vx));
+                    }
+                    visited.add(vx);
                 }
-
-            }
-
         }
-
-        return sumWeight/((float)numEdge);
-
+        return el;
     }
 }
