@@ -36,7 +36,7 @@ Elenchiamo di seguito possibili implementazioni aggiuntive per questo Software:
 ## Use Case Template
 ![](doc/diagram_imgs/UseCaseTemplate-1.jpg)
 ![](doc/diagram_imgs/UseCaseTemplate-2.jpg)
-![](doc/diagram_imgs/UseCaseTemplate-3.jpg)
+![](doc/diagram_imgs/UseCaseTemplate-3.png)
 # **Progettazione ed Implementazione**
 
 ## Scelte implementative e considerazioni
