@@ -1,10 +1,8 @@
 package src.weightedGraph;
 
 import java.util.*;
-import org.graphstream.graph.*;
 import org.graphstream.graph.implementations.*;
 import org.graphstream.ui.view.*;
-import org.graphstream.ui.view.util.*;
 
 import src.applicationModel.Entity;
 
@@ -153,7 +151,7 @@ public class Graph {
         Viewer viewer = graph.display();
         //viewer.disableAutoLayout();
         View view = viewer.getDefaultView();
-        viewer.getDefaultView().enableMouseOptions();
+        view.enableMouseOptions();
 
     }
 
